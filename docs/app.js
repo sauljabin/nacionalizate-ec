@@ -1984,7 +1984,13 @@ function showSymbols(articleIndex) {
       label: "Volver a los símbolos patrios",
     });
   });
-  app.querySelector(".print-anthem").addEventListener("click", printAnthem);
+  // The anthem also gets a button to print its lyrics, beside the others.
+  const print = document.createElement("button");
+  print.type = "button";
+  print.className = "ghost";
+  print.innerHTML = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M7 14h10v7H7z"/></svg>Imprimir la letra';
+  print.addEventListener("click", printAnthem);
+  articles.find((article) => article.querySelector(".lyrics")).querySelector(".symbol-actions").append(print);
   if (articleIndex !== undefined) scrollIntoPlace(articles[articleIndex]);
 }
 

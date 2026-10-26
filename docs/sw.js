@@ -76,7 +76,9 @@ self.addEventListener("activate", (event) => {
 async function networkFirst(request) {
   const cache = await caches.open(CACHE);
   try {
-    const response = await fetch(request);
+    // Skip the browser's HTTP cache (GitHub Pages keeps files for 10
+    // minutes), so a new page never runs with an old app.js.
+    const response = await fetch(request.url, { cache: "no-cache" });
     if (response.ok) cache.put(request, response.clone());
     return response;
   } catch (error) {
