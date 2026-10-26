@@ -133,6 +133,7 @@ docs/                       Página estática (lo que publica GitHub Pages)
 .github/ISSUE_TEMPLATE/     Formularios para reportar errores y proponer preguntas
 scripts/build_part_images.py   Genera las imágenes de las partes del escudo y de la bandera
 scripts/build_province_map.py  Genera el mapa de «Mapa de provincias»
+scripts/og-image.html          Plantilla de la imagen que se ve al compartir el enlace
 assets/                     SVG originales: escudo, bandera y mapa de provincias
 ```
 

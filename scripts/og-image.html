@@ -1,0 +1,41 @@
+<!doctype html>
+<!--
+  Template for docs/icons/og-image.png, the 1200x630 preview shown when the
+  site link is shared. To render it again, from the repository root:
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+    --hide-scrollbars --virtual-time-budget=5000 --window-size=1200,630 \
+    --screenshot=docs/icons/og-image.png "file://$PWD/scripts/og-image.html"
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght@9..144,800&display=block">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    display: flex; align-items: center; gap: 56px; box-sizing: border-box; padding: 0 64px;
+    background: #f7f2e8; color: #1b2330; font-family: "Atkinson Hyperlegible", sans-serif;
+    border-bottom: 18px solid; border-image: linear-gradient(90deg, #f2b705 0 50%, #0a4fa3 50% 75%, #d0312d 75%) 1;
+  }
+  .flag {
+    position: relative; flex: none; width: 300px; height: 200px; overflow: hidden;
+    border: 6px solid #1b2330; border-radius: 26px; box-shadow: 10px 10px 0 #0a4fa3;
+    background: linear-gradient(#f2b705 0 50%, #0a4fa3 50% 75%, #d0312d 75%);
+  }
+  .flag img { position: absolute; left: 50%; top: 50%; height: 62%; transform: translate(-50%, -50%); }
+  h1 { margin: 0; white-space: nowrap; font: 800 82px/1 "Fraunces", Georgia, serif; letter-spacing: -1px; }
+  h1 span { font-family: "Atkinson Hyperlegible", sans-serif; font-weight: 400; }
+  p { margin: 22px 0 0; font-size: 38px; line-height: 1.25; }
+  ul { display: flex; gap: 14px; margin: 30px 0 0; padding: 0; list-style: none; }
+  li { padding: 8px 20px; border: 3px solid #1b2330; border-radius: 999px; background: #fff1c2; font-size: 26px; font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="flag"><img src="../docs/images/escudo.svg" alt=""></div>
+  <div>
+    <h1>Nacionalízate <span>EC</span></h1>
+    <p>Practica para el examen de nacionalización ecuatoriana</p>
+    <ul><li>Gratis</li><li>Sin registro</li><li>Sin conexión</li></ul>
+  </div>
+</body>
+</html>
