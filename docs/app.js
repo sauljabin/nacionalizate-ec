@@ -35,7 +35,42 @@ function cloneTemplate(id) {
 function showScreen(templateId) {
   app.replaceChildren(cloneTemplate(templateId));
   window.scrollTo({ top: 0, behavior: "instant" });
+  state.screen = templateId;
+  state.screenHash = location.hash;
+  // Any screen but the home page sits on one extra history entry, so the
+  // phone's back button comes back here instead of closing the app.
+  if (templateId !== "home-template" && !history.state?.inApp) {
+    // A shared link (#examen=…, #temas=…) moves to the new entry, so going
+    // back leaves it behind instead of opening it again.
+    const url = location.href;
+    if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+    history.pushState({ inApp: true }, "", url);
+  }
 }
+
+// The phone's back button (or gesture) does what the screen's own way back
+// does: «Salir» in an exam, «Volver…» elsewhere. On the home page it leaves.
+const BACK_CONTROLS = [".exam-bar .exit", ".exam-bar .back-progress", ".exam-bar .back-home", ".result-actions .restart"];
+
+window.addEventListener("popstate", (event) => {
+  // Going forward, or a new shared link typed in the address bar (the
+  // "hashchange" listener opens that one).
+  if (event.state?.inApp || (location.hash && location.hash !== state.screenHash)) return;
+  const dialog = document.querySelector("dialog[open]");
+  if (state.screen === "home-template" && !dialog) {
+    history.back();
+    return;
+  }
+  // Keep an entry for the next press before running the way back.
+  history.pushState({ inApp: true }, "");
+  if (dialog) {
+    dialog.close();
+    return;
+  }
+  const control = BACK_CONTROLS.map((selector) => app.querySelector(selector)).find(Boolean);
+  if (control) control.click();
+  else showHome();
+});
 
 // Redraws the screen that is already open without moving the page.
 function redraw(show) {
@@ -423,7 +458,7 @@ function selectedCards() {
 
 function showHome() {
   // Leaving a shared exam: drop its link from the address bar.
-  if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+  if (location.hash) history.replaceState(history.state, "", location.pathname + location.search);
   showScreen("home-template");
   setupInstall();
   setupPractice();
@@ -587,7 +622,7 @@ async function shareTopics() {
 
 function showSharedTopics(keys) {
   state.selected = new Set(keys);
-  history.replaceState(null, "", location.pathname + location.search);
+  history.replaceState(history.state, "", location.pathname + location.search);
   showTopics();
   app.querySelector(".topics-status").textContent = keys.length
     ? `Abriste un enlace con ${plural(keys.length, "subtema marcado", "subtemas marcados")}.`
@@ -1656,7 +1691,7 @@ function statValue(number, unit) {
 }
 
 function showProgress() {
-  if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+  if (location.hash) history.replaceState(history.state, "", location.pathname + location.search);
   unlockAchievements();
   showScreen("progress-template");
   app.querySelector(".back-home").addEventListener("click", showHome);
@@ -3075,7 +3110,7 @@ function removeButton(card) {
 }
 
 function showBuilder() {
-  if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+  if (location.hash) history.replaceState(history.state, "", location.pathname + location.search);
   showScreen("builder-template");
   // Editing a saved exam: say so, so it is clear that saving changes it.
   if (progress.exams.some((exam) => exam.id === progress.draft.editing)) {
@@ -3201,7 +3236,7 @@ function examFromHash() {
 
 function showShared({ cards, title, missing = 0 }) {
   const link = examLink(cards, title);
-  history.replaceState(null, "", link);
+  history.replaceState(history.state, "", link);
   showScreen("shared-template");
   app.querySelector(".shared-title").textContent = title || "Examen personalizado";
   const categories = categoryNames(cards);
