@@ -4,7 +4,7 @@ Guía para agentes de IA (y personas) que trabajen en este repositorio.
 
 ## Qué es
 
-Una página estática para practicar el examen de nacionalización ecuatoriana. Se publica con GitHub Pages desde `docs/` en <https://github.com/sauljabin/examen-de-nacionalidad-ecuatoriana>. Todas las preguntas están en `docs/data/cards.json`, que se edita a mano.
+Una página estática para practicar el examen de nacionalización ecuatoriana. Se publica con GitHub Pages desde `docs/` en <https://github.com/sauljabin/nacionalizate-ec>. Todas las preguntas están en `docs/data/cards.json`, que se edita a mano.
 
 Las preguntas vinieron originalmente de una exportación de RemNote. El conversor (`scripts/convert_remnote.py`) y su documentación se quitaron del repositorio; si alguna vez hace falta volver a convertir una exportación, recupéralos del historial de git (commit `85e5832`).
 

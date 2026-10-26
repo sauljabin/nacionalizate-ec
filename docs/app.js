@@ -2,7 +2,7 @@
 
 // Static practice exam. Questions come from data/cards.json.
 
-const REPO_URL = "https://github.com/sauljabin/examen-de-nacionalidad-ecuatoriana";
+const REPO_URL = "https://github.com/sauljabin/nacionalizate-ec";
 const DEFAULT_SETTINGS = { fontSize: "m", theme: "auto", spacing: "normal", contrast: "", motion: "", combo: "" };
 
 const app = document.getElementById("app");
@@ -2886,7 +2886,7 @@ function buildPrintArea({ answers, images }) {
   const note = document.createElement("p");
   note.className = "print-disclaimer";
   note.textContent = "Material gratuito con fines exclusivamente pedagógicos; no es material oficial. "
-    + "sauljabin.github.io/examen-de-nacionalidad-ecuatoriana";
+    + "sauljabin.github.io/nacionalizate-ec";
   header.append(title, meta, note);
 
   const content = [header];

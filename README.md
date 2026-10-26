@@ -114,9 +114,9 @@ Las preguntas de huecos y de imagen no salen en el simulacro, que solo usa pregu
 
 ¿Encontraste un dato incorrecto o quieres proponer una pregunta? Abre un *issue*:
 
-- [Reportar un error](https://github.com/sauljabin/examen-de-nacionalidad-ecuatoriana/issues/new?template=error.yml): etiqueta `error`. Cada pregunta tiene un enlace que rellena el reporte por ti.
-- [Proponer una pregunta](https://github.com/sauljabin/examen-de-nacionalidad-ecuatoriana/issues/new?template=incluir-pregunta.yml): etiqueta `incluir pregunta`.
-- [Sugerir una mejora](https://github.com/sauljabin/examen-de-nacionalidad-ecuatoriana/issues/new?template=mejora.yml): etiqueta `mejora`.
+- [Reportar un error](https://github.com/sauljabin/nacionalizate-ec/issues/new?template=error.yml): etiqueta `error`. Cada pregunta tiene un enlace que rellena el reporte por ti.
+- [Proponer una pregunta](https://github.com/sauljabin/nacionalizate-ec/issues/new?template=incluir-pregunta.yml): etiqueta `incluir pregunta`.
+- [Sugerir una mejora](https://github.com/sauljabin/nacionalizate-ec/issues/new?template=mejora.yml): etiqueta `mejora`.
 
 Incluye una fuente cuando puedas.
 
