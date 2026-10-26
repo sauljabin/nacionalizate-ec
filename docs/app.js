@@ -2886,7 +2886,7 @@ function buildPrintArea({ answers, images }) {
   const note = document.createElement("p");
   note.className = "print-disclaimer";
   note.textContent = "Material gratuito con fines exclusivamente pedagógicos; no es material oficial. "
-    + "sauljabin.github.io/nacionalizate-ec";
+    + "sauljabin.dev/nacionalizate-ec";
   header.append(title, meta, note);
 
   const content = [header];
