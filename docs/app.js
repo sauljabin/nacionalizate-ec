@@ -789,7 +789,7 @@ function setupPractice() {
   app.querySelector("#open-timeline").addEventListener("click", () => showTimeline());
   app.querySelector("#open-map").addEventListener("click", showMap);
   app.querySelector("#open-order").addEventListener("click", showOrderGame);
-  app.querySelector("#open-pairs").addEventListener("click", () => showPairsGame());
+  app.querySelector("#open-map-game").addEventListener("click", () => showMap("game"));
   app.querySelector("#open-true-false").addEventListener("click", () => showTrueFalseGame());
   app.querySelector("#open-progress").addEventListener("click", showProgress);
   app.querySelector("#open-builder").addEventListener("click", showBuilder);
@@ -2180,11 +2180,23 @@ function provinceCards(province) {
   return state.allCards.filter((card) => searchableText(card).includes(name));
 }
 
-function showMap() {
+// "explore" shows the map with its regions; "game" is «Encuentra las
+// provincias», the game of «Formas de practicar».
+function showMap(mode = "explore") {
   showScreen("map-template");
   app.querySelector(".back-home").addEventListener("click", showHome);
-  state.map = { mode: "explore", selected: null, game: null };
-  const exit = { back: showMap, label: "Volver al mapa" };
+  state.map = { mode, selected: null, game: null };
+  const exit = mode === "game"
+    ? { back: () => showMap("game"), label: "Volver al juego" }
+    : { back: () => showMap(), label: "Volver al mapa" };
+  if (mode === "game") {
+    app.querySelector(".map-page .eyebrow").textContent = "Juego";
+    app.querySelector(".map-page h1").textContent = "Encuentra las provincias";
+  }
+  const play = app.querySelector(".map-play");
+  play.textContent = mode === "game" ? "Explorar el mapa" : "Jugar a encontrar las provincias";
+  play.className = `${mode === "game" ? "ghost" : "primary"} map-play`;
+  play.addEventListener("click", () => showMap(mode === "game" ? "explore" : "game"));
   const mapCards = subcategoriesById(MAP_SUBCATEGORIES).flatMap((sub) => sub.cards);
   const study = app.querySelector(".map-study");
   study.textContent = `Estudiar las ${mapCards.length} preguntas de provincias`;
@@ -2199,14 +2211,6 @@ function showMap() {
     item.querySelector("span").textContent = `${region}: ${plural(count, "provincia", "provincias")}`;
     return item;
   }));
-
-  app.querySelectorAll('input[name="map-mode"]').forEach((input) => {
-    input.addEventListener("change", () => {
-      state.map.mode = input.value;
-      if (input.value === "game") startMapGame();
-      else exploreMap();
-    });
-  });
 
   const frame = app.querySelector(".map-frame");
   const screen = app.firstElementChild;
@@ -2296,6 +2300,9 @@ function pickProvince(id) {
   if (panel.getBoundingClientRect().top < 0) scrollToAnswer(panel);
 }
 
+// Like the real exam, the game is won with 90 %: 22 of the 24 at first try.
+const MAP_PASS = 22;
+
 function startMapGame() {
   const map = app.querySelector(".province-map");
   if (!map) return;
@@ -2321,7 +2328,7 @@ function askMapGame() {
     <h2 class="map-question"></h2>
     <p class="map-hint">Tócala en el mapa.</p>`;
   panel.querySelector(".map-counter").textContent =
-    `${game.index + 1} de ${game.queue.length} · ${plural(game.right, "acierto", "aciertos")}`;
+    `${game.index + 1} de ${game.queue.length} · ${plural(game.right, "acierto", "aciertos")} · para ganar: ${MAP_PASS}`;
   panel.querySelector(".map-question").textContent = `¿Dónde está ${province.name}?`;
 }
 
@@ -2367,31 +2374,32 @@ function endMapGame() {
   const game = state.map.game;
   const panel = app.querySelector(".map-panel");
   panel.innerHTML = `
-    <h2 class="map-question"></h2>
     <p class="map-hint"></p>
     <div class="practice-actions"><button class="primary map-again" type="button">Jugar otra vez</button></div>`;
-  panel.querySelector(".map-question").textContent = `Acertaste ${game.right} de ${game.queue.length}`;
+  const won = game.right >= MAP_PASS;
   const perfect = game.right === game.queue.length;
-  panel.querySelector(".map-hint").textContent = perfect
-    ? "¡Encontraste todas las provincias a la primera!"
-    : "Las provincias en verde son las que acertaste a la primera.";
+  panel.prepend(gameVerdict(won, won
+    ? `Acertaste ${game.right} de ${game.queue.length} a la primera${perfect ? ": ¡todas!" : "."}`
+    : `Acertaste ${game.right} de ${game.queue.length} a la primera. Para ganar necesitas ${MAP_PASS}.`));
+  panel.querySelector(".map-hint").textContent = "Las provincias en verde son las que acertaste a la primera.";
   if (perfect) {
     progress.stats.mapPerfect = true;
     saveProgress();
     const unlocked = unlockAchievements();
     if (unlocked.length) {
       panel.querySelector(".map-hint").textContent += ` Ganaste el logro «${unlocked.map((item) => item.title).join("», «")}».`;
-      celebrate();
     }
   }
+  if (won) celebrate();
   panel.querySelector(".map-again").addEventListener("click", startMapGame);
   panel.querySelector(".map-again").focus({ preventScroll: true });
 }
 
 // Games ----------------------------------------------------------------------
 //
-// Three games in «Formas de practicar». Like the study mode, they do not
-// count for the streak, the missed list or the progress.
+// «Ordena la historia» and «Verdadero o falso»; «Encuentra las provincias»
+// is the map's game mode. Like the study mode, they do not count for the
+// streak, the missed list or the progress.
 
 function make(tag, className, text) {
   const element = document.createElement(tag);
@@ -2417,8 +2425,28 @@ function showGameScreen({ eyebrow, title, lead }) {
   return app.querySelector(".game-board");
 }
 
+// Read aloud by screen readers. The map game has none: its panel is read
+// aloud already.
 function gameStatus(text) {
-  app.querySelector(".game-status").textContent = text;
+  const status = app.querySelector(".game-status");
+  if (status) status.textContent = text;
+}
+
+const TROPHY_ICON = '<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/></svg>';
+// A target: the goal is still there to reach.
+const TARGET_ICON = '<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>';
+
+// The end of a game: whether it was won, in words, color and an icon, and
+// what it takes to win.
+function gameVerdict(won, detail) {
+  const box = make("div", `game-verdict ${won ? "is-won" : "is-lost"}`);
+  const icon = make("span", "game-verdict-icon");
+  icon.innerHTML = won ? TROPHY_ICON : TARGET_ICON;
+  const text = make("div");
+  text.append(make("h2", "", won ? "¡Ganaste!" : "Esta vez no ganaste"), make("p", "", detail));
+  box.append(icon, text);
+  gameStatus(`${won ? "¡Ganaste!" : "Esta vez no ganaste."} ${detail}`);
+  return box;
 }
 
 // Ordena la historia: put five events of the timeline in order.
@@ -2448,7 +2476,7 @@ function showOrderGame() {
   const board = showGameScreen({
     eyebrow: "Juego",
     title: "Ordena la historia",
-    lead: "Toca los hechos del más antiguo al más reciente. Para cambiar uno de lugar, tócalo otra vez.",
+    lead: "Toca los hechos del más antiguo al más reciente; para cambiar uno de lugar, tócalo otra vez. Ganas si los cinco quedan en su lugar.",
   });
   const events = orderRound();
   const placed = [];
@@ -2501,9 +2529,12 @@ function showOrderGame() {
       return item;
     }));
     pool.remove();
+    const won = right === events.length;
+    slots.before(gameVerdict(won, won
+      ? `Pusiste los ${events.length} hechos en su lugar.`
+      : `Pusiste ${right} de ${events.length} en su lugar. Para ganar, los ${events.length} tienen que quedar bien.`));
     const result = make("div", "order-result");
-    result.append(make("h2", "", right === events.length ? "¡Todo en orden!" : `Pusiste ${right} de ${events.length} en su lugar`));
-    if (right < events.length) {
+    if (!won) {
       result.append(make("p", "", "El orden correcto es:"));
       const list = make("ol", "order-answer");
       list.append(...sorted.map((event, index) => {
@@ -2520,293 +2551,26 @@ function showOrderGame() {
       makeButton("ghost", "Ver la línea de tiempo", () => showTimeline()),
     );
     actions.before(result);
-    gameStatus(result.querySelector("h2").textContent);
     actions.querySelector("button").focus({ preventScroll: true });
   };
 
   draw();
 }
 
-const PAIRS_SIZE = 6;
-const PAIR_TOPICS = [
-  {
-    id: "capitales",
-    title: "Provincias y capitales",
-    // Without the ones whose capital has the province's name, like Loja.
-    pairs: () => PROVINCES
-      .filter((province) => !province.name.startsWith(province.capital))
-      .map((province) => [province.name, province.capital]),
-  },
-  {
-    id: "obras",
-    title: "Obras y autores",
-    pairs: () => [
-      ["Cumandá", "Juan León Mera"],
-      ["La Emancipada", "Miguel Riofrío"],
-      ["Las Catilinarias", "Juan Montalvo"],
-      ["A la costa", "Luis Alfredo Martínez"],
-      ["El alma en los labios", "Medardo Ángel Silva"],
-      ["Las cruces sobre el agua", "Joaquín Gallegos Lara"],
-      ["El antropófago", "Pablo Palacio"],
-      ["Huasipungo", "Jorge Icaza"],
-      ["Siete lunas y siete serpientes", "Demetrio Aguilera Malta"],
-      ["Bruna, soroche y los tíos", "Alicia Yánez Cossío"],
-      ["La victoria de Junín: Canto a Bolívar", "José Joaquín de Olmedo"],
-      ["Carta a Lizardo", "Juan Bautista Aguirre"],
-      ["El carbonero", "Eduardo Kingman"],
-      ["Las floristas", "Camilo Egas"],
-      ["El Tren Volador", "Gonzalo Endara Crow"],
-      ["El hombre, la casa y la luna", "Oswaldo Viteri"],
-    ],
-  },
-  {
-    id: "fechas",
-    title: "Fechas para recordar",
-    pairs: () => [
-      ["10 de agosto", "Primer Grito de Independencia"],
-      ["24 de mayo", "Batalla del Pichincha"],
-      ["9 de octubre", "Independencia de Guayaquil"],
-      ["3 de noviembre", "Independencia de Cuenca"],
-      ["27 de febrero", "Batalla de Tarqui"],
-      ["13 de mayo", "Nace la República del Ecuador (1830)"],
-      ["6 de diciembre", "Fundación de Quito"],
-      ["12 de octubre", "Descubrimiento de América"],
-      ["26 de septiembre", "Día de la Bandera"],
-      ["31 de octubre", "Día del Escudo"],
-      ["26 de noviembre", "Día del Himno"],
-      ["2 de noviembre", "Día de los Difuntos"],
-      ["13 de abril", "Día del Maestro"],
-      ["1 de mayo", "Día del Trabajador"],
-    ],
-  },
-  {
-    id: "presidentes",
-    title: "Presidentes",
-    pairs: () => [
-      ["Juan José Flores", "Primer presidente del Ecuador"],
-      ["Vicente Rocafuerte", "Primer presidente nacido en el Ecuador"],
-      ["José María Urbina", "Decretó la manumisión de los esclavos"],
-      ["Gabriel García Moreno", "Inició el ferrocarril"],
-      ["Eloy Alfaro", "Lideró la Revolución Liberal"],
-      ["José Luis Tamayo", "Gobernaba en la masacre de obreros de 1922"],
-      ["Carlos Arroyo del Río", "Gobernaba en la guerra del 41"],
-      ["José María Velasco Ibarra", "Fue presidente cinco veces"],
-      ["Guillermo Rodríguez Lara", "Comenzó la exportación petrolera"],
-      ["Jaime Roldós", "Ganó las elecciones de 1979, con las que volvió la democracia"],
-      ["Rosalía Arteaga", "Primera mujer presidenta"],
-      ["Sixto Durán-Ballén", "Gobernaba en la Guerra del Cenepa"],
-      ["Jamil Mahuad", "Firmó la paz definitiva con el Perú"],
-    ],
-  },
-  {
-    id: "simbolos",
-    title: "Qué significan los símbolos",
-    pairs: () => [
-      ["Cóndor", "Energía, esfuerzo y grandeza"],
-      ["Sol dorado", "El oro y la riqueza"],
-      ["Río Guayas", "La unión del pueblo ecuatoriano"],
-      ["Caduceo", "La navegación y el comercio"],
-      ["Laurel", "La gloria de la nación"],
-      ["Palma", "La paz en la nación"],
-      ["Fasces consulares", "La dignidad republicana"],
-      ["Segur", "La fuerza pública"],
-      ["Signos del zodiaco", "Los meses de la Revolución Marcista"],
-      ["Franja amarilla", "Las riquezas y la fertilidad de la tierra"],
-      ["Franja azul", "El mar y el cielo"],
-      ["Franja roja", "La sangre de los héroes de la independencia"],
-    ],
-  },
-];
-
-// Moves elements from where they were to where change() puts them, smoothly
-// (FLIP: first, last, invert, play).
-function animateMove(elements, change) {
-  const before = new Map(elements.map((element) => [element, element.getBoundingClientRect()]));
-  change();
-  if (reducedMotion()) return;
-  for (const element of elements) {
-    const from = before.get(element);
-    const to = element.getBoundingClientRect();
-    element.animate(
-      [{ transform: `translate(${from.left - to.left}px, ${from.top - to.top}px)` }, { transform: "none" }],
-      { duration: 350, easing: "cubic-bezier(.2, .8, .2, 1)" },
-    );
-  }
-}
-
-// Parejas: a puzzle. The left pieces have a tab and the right ones a notch;
-// a right piece dropped on (or tapped after) its pair moves into that row and
-// the two fit together.
-function showPairsGame(topicId = "") {
-  const board = showGameScreen({
-    eyebrow: "Juego",
-    title: "Parejas",
-    lead: "Arrastra cada pieza hasta su pareja en la otra columna, o toca las dos. Une las seis con los menos intentos que puedas.",
-  });
-  const picker = make("label", "text-field pairs-topic");
-  const select = make("select");
-  select.append(make("option", "", "Tema al azar"));
-  select.firstChild.value = "";
-  for (const item of PAIR_TOPICS) {
-    const option = make("option", "", item.title);
-    option.value = item.id;
-    select.append(option);
-  }
-  select.value = topicId;
-  select.addEventListener("change", () => showPairsGame(select.value));
-  picker.append(make("span", "", "Tema"), select);
-
-  const topic = PAIR_TOPICS.find((item) => item.id === topicId) || shuffle(PAIR_TOPICS)[0];
-  const pairs = shuffle(topic.pairs()).slice(0, PAIRS_SIZE);
-  const title = make("h2", "pairs-title", topic.title);
-  const counter = make("p", "pairs-counter");
-  const puzzle = make("div", "puzzle");
-  const actions = make("div", "practice-actions");
-  board.append(picker, title, counter, puzzle, actions);
-
-  const rows = new Map();
-  const pieces = [];
-  const place = (piece, row) => {
-    rows.set(piece, row);
-    piece.style.gridRow = String(row + 1);
-  };
-  let selected = null;
-  let attempts = 0;
-  let matched = 0;
-  let drag = null;
-  let skipClick = false;
-
-  const report = (prefix = "") => {
-    counter.textContent = `${matched} de ${pairs.length} parejas · ${plural(attempts, "intento", "intentos")}`;
-    gameStatus(prefix + counter.textContent);
-  };
-  const selectPiece = (piece) => {
-    selected?.classList.remove("is-selected");
-    selected?.setAttribute("aria-pressed", "false");
-    selected = piece;
-    selected?.classList.add("is-selected");
-    selected?.setAttribute("aria-pressed", "true");
-  };
-  const textOf = (piece) => piece.querySelector(".piece-text").textContent;
-
-  const tryPair = (first, second) => {
-    selectPiece(null);
-    attempts++;
-    if (first.dataset.pair !== second.dataset.pair) {
-      for (const piece of [first, second]) piece.classList.add("is-wrong");
-      setTimeout(() => [first, second].forEach((piece) => piece.classList.remove("is-wrong")), 600);
-      report(`«${textOf(first)}» y «${textOf(second)}» no son pareja. `);
-      return;
-    }
-    matched++;
-    const [leftPiece, rightPiece] = first.dataset.side === "0" ? [first, second] : [second, first];
-    // The right piece moves into its pair's row; the one there takes its place.
-    const row = rows.get(leftPiece);
-    const from = rows.get(rightPiece);
-    const other = pieces.find((piece) => piece.dataset.side === "1" && rows.get(piece) === row);
-    animateMove([rightPiece, other], () => {
-      place(other, from);
-      place(rightPiece, row);
-    });
-    for (const piece of [leftPiece, rightPiece]) {
-      piece.classList.add("is-matched");
-      piece.disabled = true;
-      piece.removeAttribute("aria-pressed");
-    }
-    report(`¡Pareja! «${textOf(leftPiece)}» y «${textOf(rightPiece)}». `);
-    if (matched === pairs.length) finish();
-  };
-
-  const tap = (piece) => {
-    if (skipClick || piece.disabled) return;
-    if (!selected || selected.dataset.side === piece.dataset.side) {
-      // First pick, or a change of mind in the same column.
-      selectPiece(piece === selected ? null : piece);
-      return;
-    }
-    tryPair(selected, piece);
-  };
-
-  // The piece of the other column under the pointer, if any.
-  const pieceAt = (x, y, dragged) => document.elementsFromPoint(x, y)
-    .map((element) => element.closest(".piece"))
-    .find((piece) => piece && piece !== dragged && !piece.disabled && piece.dataset.side !== dragged.dataset.side) || null;
-  const highlight = (target) => pieces.forEach((piece) => piece.classList.toggle("is-target", piece === target));
-
-  const enableDrag = (piece) => {
-    piece.addEventListener("pointerdown", (event) => {
-      if (piece.disabled || event.button > 0) return;
-      drag = { piece, x: event.clientX, y: event.clientY, moved: false, id: event.pointerId };
-    });
-    piece.addEventListener("pointermove", (event) => {
-      if (drag?.piece !== piece || event.pointerId !== drag.id) return;
-      const dx = event.clientX - drag.x;
-      const dy = event.clientY - drag.y;
-      if (!drag.moved) {
-        if (Math.hypot(dx, dy) < 8) return;
-        drag.moved = true;
-        piece.setPointerCapture(event.pointerId);
-        piece.classList.add("is-dragging");
-        selectPiece(null);
-      }
-      piece.style.transform = `translate(${dx}px, ${dy}px)`;
-      highlight(pieceAt(event.clientX, event.clientY, piece));
-    });
-    const drop = (event) => {
-      if (drag?.piece !== piece) return;
-      const { moved } = drag;
-      drag = null;
-      if (!moved) return;
-      // The click that follows the drop is not a tap.
-      skipClick = true;
-      setTimeout(() => { skipClick = false; });
-      const target = event.type === "pointerup" ? pieceAt(event.clientX, event.clientY, piece) : null;
-      highlight(null);
-      piece.classList.remove("is-dragging");
-      piece.style.transform = "";
-      if (target) tryPair(piece, target);
-    };
-    piece.addEventListener("pointerup", drop);
-    piece.addEventListener("pointercancel", drop);
-  };
-
-  for (const side of [0, 1]) {
-    shuffle(pairs.map((pair, index) => ({ text: pair[side], index }))).forEach((entry, row) => {
-      const piece = makeButton(`piece ${side ? "piece-right" : "piece-left"}`, "", () => tap(piece));
-      const body = make("span", "piece-body");
-      body.append(make("span", "piece-text", entry.text));
-      piece.append(body);
-      piece.dataset.pair = entry.index;
-      piece.dataset.side = side;
-      piece.style.gridColumn = String(side + 1);
-      piece.setAttribute("aria-pressed", "false");
-      place(piece, row);
-      enableDrag(piece);
-      pieces.push(piece);
-      puzzle.append(piece);
-    });
-  }
-
-  const finish = () => {
-    const perfect = attempts === pairs.length;
-    const result = make("div", "order-result");
-    result.append(
-      make("h2", "", perfect ? "¡Sin un solo error!" : "¡Completaste las parejas!"),
-      make("p", "", `Las uniste en ${plural(attempts, "intento", "intentos")}; lo mínimo son ${pairs.length}.`),
-    );
-    puzzle.after(result);
-    actions.replaceChildren(makeButton("primary", "Otra ronda", () => showPairsGame(select.value)));
-    actions.querySelector("button").focus({ preventScroll: true });
-    if (perfect) celebrate();
-  };
-
-  report();
-}
-
 // Verdadero o falso: a question with one answer; say whether it is the right one.
 
 const TF_SECONDS = 60;
 const TF_UNTIMED = 20;
+// Won with 90 % right, as in the exam; against the clock, with at least
+// TF_TIMED_MIN answers so that a couple of lucky ones are not enough.
+const TF_PASS = 0.9;
+const TF_TIMED_MIN = 15;
+
+function trueFalseGoal(timed) {
+  return timed
+    ? `Para ganar: al menos ${TF_TIMED_MIN} respuestas en ${TF_SECONDS} segundos, con el 90 % de aciertos.`
+    : `Para ganar: el 90 % de aciertos, es decir, ${Math.ceil(TF_UNTIMED * TF_PASS)} de ${TF_UNTIMED}.`;
+}
 
 // Choice questions with one right answer and no picture.
 function trueFalsePool() {
@@ -2820,6 +2584,7 @@ function showTrueFalseGame(mode = "timed") {
     title: "Verdadero o falso",
     lead: "Verás una pregunta y una respuesta. Di si esa respuesta es la correcta.",
   });
+  const goal = make("p", "tf-goal", trueFalseGoal(mode === "timed"));
   const modes = make("div", "segmented tf-modes");
   modes.setAttribute("role", "radiogroup");
   modes.setAttribute("aria-label", "Modo de juego");
@@ -2830,14 +2595,17 @@ function showTrueFalseGame(mode = "timed") {
     input.name = "tf-mode";
     input.value = value;
     input.checked = value === mode;
-    input.addEventListener("change", () => { mode = value; });
+    input.addEventListener("change", () => {
+      mode = value;
+      goal.textContent = trueFalseGoal(mode === "timed");
+    });
     label.append(input, make("span", "", text));
     modes.append(label);
   }
   const keys = make("p", "progress-hint tf-keys", "En la computadora también puedes responder con las flechas: ← falso, → verdadero.");
   const actions = make("div", "practice-actions");
   actions.append(makeButton("primary big", "Empezar", () => playTrueFalse(mode)));
-  board.append(modes, keys, actions);
+  board.append(modes, goal, keys, actions);
   gameStatus("");
 }
 
@@ -2932,16 +2700,18 @@ function endTrueFalse(answers, { timed, mode, seconds }) {
   state.tf = null;
   const board = app.querySelector(".game-board");
   const right = answers.filter((item) => item.right).length;
-  const result = make("div", "order-result");
-  result.append(make("h2", "", answers.length
-    ? `Acertaste ${right} de ${answers.length}`
-    : "No respondiste ninguna"));
-  const answered = plural(answers.length, "pregunta", "preguntas");
-  result.append(make("p", "", !timed
-    ? `Respondiste ${answered} sin tiempo.`
-    : seconds < TF_SECONDS
-      ? `Terminaste antes de tiempo: respondiste ${answered} en ${plural(seconds, "segundo", "segundos")}.`
-      : `En ${TF_SECONDS} segundos respondiste ${answered}.`));
+  const needed = Math.ceil(TF_UNTIMED * TF_PASS);
+  const won = timed
+    ? answers.length >= TF_TIMED_MIN && right >= answers.length * TF_PASS
+    : right >= needed;
+  const score = `Acertaste ${right} de ${answers.length}`
+    + (answers.length ? ` (${Math.round((right / answers.length) * 100)} %)` : "")
+    + (timed ? ` en ${plural(seconds, "segundo", "segundos")}` : "");
+  let detail = `${score}.`;
+  if (!won && !timed) detail += ` Para ganar necesitas ${needed} de ${TF_UNTIMED}.`;
+  else if (!won && answers.length < TF_TIMED_MIN) detail += ` Para ganar necesitas al menos ${TF_TIMED_MIN} respuestas con el 90 % de aciertos.`;
+  else if (!won) detail += " Para ganar necesitas el 90 % de aciertos.";
+  const result = gameVerdict(won, detail);
   const actions = make("div", "practice-actions");
   actions.append(makeButton("primary", "Jugar otra vez", () => playTrueFalse(mode)));
   const wrong = answers.filter((item) => !item.right);
@@ -2968,10 +2738,8 @@ function endTrueFalse(answers, { timed, mode, seconds }) {
       return entry;
     }));
     board.append(list);
-  } else if (answers.length >= 10) {
-    celebrate();
   }
-  gameStatus(result.querySelector("h2").textContent);
+  if (won) celebrate();
   actions.querySelector("button").focus({ preventScroll: true });
 }
 

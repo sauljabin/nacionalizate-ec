@@ -1058,105 +1058,23 @@ select {
 .order-pool { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
 .order-pool .order-item { border-radius: 12px; text-align: left; font-weight: 700; }
 
-/* Parejas: two columns of buttons; a matched pair shares a number. */
-.pairs-topic { max-width: 22rem; margin-top: 0; }
-.pairs-topic select {
-  padding: .55rem .8rem;
-  border: 2px solid var(--line-strong);
-  border-radius: 10px;
-  background: var(--surface);
-  color: var(--ink);
-  font: inherit;
-}
-.pairs-title { margin: 1.5rem 0 .25rem; font-size: 1.4rem; }
-.pairs-counter { margin: 0 0 1rem; color: var(--muted); font-weight: 700; }
-/* The pieces: the body holds the shape (a tab on the left pieces, a notch
-   on the right ones) and the outline is a drop shadow around it, so it
-   follows the shape. Every row has the height of the tallest piece. */
-.puzzle {
-  --gap: 1.4rem;
-  --tab: .7rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 1fr;
-  gap: .7rem var(--gap);
-}
-.piece {
-  --piece-line: var(--line-strong);
-  --piece-fill: var(--surface);
-  position: relative;
+/* The end of a game: won (green, a trophy) or not yet (red, a target). */
+.game-verdict {
   display: flex;
-  align-items: stretch;
-  width: 100%;
-  min-height: 3.5rem;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: none;
-  box-shadow: none;
-  color: var(--ink);
-  font-weight: 400;
-  text-align: left;
-  cursor: grab;
-  touch-action: none;
-  user-select: none;
-  -webkit-user-select: none;
-  filter: drop-shadow(2px 0 0 var(--piece-line)) drop-shadow(-2px 0 0 var(--piece-line)) drop-shadow(0 2px 0 var(--piece-line)) drop-shadow(0 -2px 0 var(--piece-line));
-  transition: translate .3s ease;
-}
-.piece:hover:not(:disabled) { box-shadow: none; transform: none; --piece-line: var(--accent); }
-.piece:active:not(:disabled) { box-shadow: none; }
-.piece:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
-.piece-body {
-  position: relative;
-  display: flex;
-  flex: 1;
   align-items: center;
-  padding: .6rem 1rem;
-  border-radius: 12px;
-  background: var(--piece-fill);
+  gap: 1rem;
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--wrong);
+  border-radius: var(--radius);
+  background: var(--wrong-soft);
+  color: var(--wrong);
 }
-.piece-left .piece-body { padding-right: calc(1rem + var(--tab) / 2); }
-.piece-left .piece-body::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: calc(var(--tab) * -1);
-  width: calc(var(--tab) * 2);
-  height: calc(var(--tab) * 2);
-  margin-top: calc(var(--tab) * -1);
-  border-radius: 50%;
-  background: var(--piece-fill);
-}
-.piece-right .piece-body {
-  padding-left: calc(1rem + var(--tab));
-  -webkit-mask: radial-gradient(circle at 0 50%, transparent calc(var(--tab) + 2px), #000 calc(var(--tab) + 3px));
-  mask: radial-gradient(circle at 0 50%, transparent calc(var(--tab) + 2px), #000 calc(var(--tab) + 3px));
-}
-.piece.is-selected, .piece.is-target { --piece-line: var(--accent); --piece-fill: var(--accent-soft); color: var(--accent); font-weight: 700; }
-.piece.is-selected { translate: 0 -3px; }
-.piece.is-wrong { --piece-line: var(--wrong); --piece-fill: var(--wrong-soft); color: var(--wrong); animation: piece-shake .4s; }
-.piece.is-matched { --piece-line: var(--right); --piece-fill: var(--right-soft); opacity: 1; color: var(--right); font-weight: 700; cursor: default; }
-/* A matched pair closes the gap between the columns, so the tab fits the notch. */
-.piece-left.is-matched { translate: calc(var(--gap) / 2) 0; }
-.piece-right.is-matched { translate: calc(var(--gap) / -2) 0; }
-.piece.is-dragging { z-index: 2; cursor: grabbing; transition: none; }
-@keyframes piece-shake {
-  20%, 60% { transform: translateX(-4px); }
-  40%, 80% { transform: translateX(4px); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .piece { transition: none; }
-  .piece.is-wrong { animation: none; }
-}
-:root[data-motion="reduce"] .piece { transition: none; }
-:root[data-motion="reduce"] .piece.is-wrong { animation: none; }
-@media (forced-colors: active) {
-  .piece { filter: none; }
-  .piece-body { border: 2px solid CanvasText; -webkit-mask: none; mask: none; }
-  .piece-left .piece-body::after { display: none; }
-  .piece.is-selected .piece-body, .piece.is-matched .piece-body { border-color: Highlight; }
-}
+.game-verdict.is-won { border-color: var(--right); background: var(--right-soft); color: var(--right); }
+.game-verdict-icon { flex: none; display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 50%; background: var(--surface); }
+.game-verdict h2 { margin: 0; font-size: 1.6rem; }
+.game-verdict p { margin: .2rem 0 0; color: var(--ink); }
+.tf-goal { margin: .75rem 0 0; font-weight: 700; }
 
 /* Verdadero o falso. */
 .tf-modes { max-width: 34rem; }
@@ -1181,12 +1099,6 @@ select {
 .tf-true { background: var(--right-soft); color: var(--right); }
 .tf-quit { display: block; margin: 1rem auto 0; }
 @media (prefers-reduced-motion: reduce) { .tf-card { transition: none; } }
-@media (max-width: 30rem) {
-  .puzzle { --gap: 1.1rem; }
-  .piece-body { padding: .5rem .6rem; font-size: .95rem; }
-  .piece-left .piece-body { padding-right: calc(.6rem + var(--tab) / 2); }
-  .piece-right .piece-body { padding-left: calc(.6rem + var(--tab)); }
-}
 
 /* Mis simulacros: one line, round marks; a filled mark is a passed exam and
    a hollow one a failed exam, so the state does not rely on color alone. */
@@ -1585,7 +1497,6 @@ legend { margin-bottom: .45rem; font-weight: 700; }
 .timeline-summary { margin: 0 0 1rem; }
 .timeline-extra h2 { margin: 2rem 0 .75rem; font-size: 1.3rem; }
 
-.map-modes { max-width: 20rem; margin-bottom: 1rem; }
 .map-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);

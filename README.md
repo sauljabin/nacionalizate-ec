@@ -10,12 +10,11 @@ No hay cuentas, publicidad ni servidor: todo pasa en tu navegador.
 ## Cómo se usa
 
 1. En el inicio, elige cómo practicar (ver abajo).
-2. Lee la pregunta y piensa la respuesta.
-3. Pulsa **Ver respuesta**, toca la tarjeta o usa la barra espaciadora.
-4. Indica si acertaste: **No** (tecla `1`) o **Sí** (tecla `2`).
-5. Al final ves tu porcentaje por categoría, puedes repasar solo las preguntas falladas y puedes guardar el examen con un nombre.
+2. En las preguntas de selección, toca la respuesta (o usa las teclas `1` a `4`). Si dice «Varias respuestas», márcalas todas y pulsa **Comprobar**. Enseguida ves si acertaste y una breve explicación; en el simulacro, todo eso aparece al final.
+3. En las pocas de huecos o de imagen (la letra del himno, las partes del escudo y de la bandera, y las capitales en el mapa), piensa la respuesta, pulsa **Ver respuesta** (o la barra espaciadora) e indica si acertaste: **No** (tecla `1`) o **Sí** (tecla `2`).
+4. Al final ves tu porcentaje por categoría, puedes repasar solo las preguntas falladas y puedes guardar el examen con un nombre.
 
-Puedes salir del examen en cualquier momento con el botón **Salir** o la tecla `Esc`.
+Puedes salir del examen en cualquier momento con el botón **Salir** o la tecla `Esc`. En el teléfono, el botón o gesto de «atrás» lleva a la pantalla anterior (en un examen, pregunta antes de salir); en el inicio cierra la app.
 
 ### Formas de practicar
 
@@ -26,21 +25,22 @@ El inicio tiene tres bloques: **Mi progreso** (ver más abajo), **Formas de prac
   - **Simulacro:** 30 preguntas de selección, como en el examen real: 15 entre las que se repiten (las que más se repiten salen más seguido) y 15 al azar de todos los temas, repartidas por igual. Mientras respondes no ves si acertaste ni el contador de aciertos seguidos; al final aparecen las falladas, con tu respuesta y la correcta, y las acertadas. Con **Compartir resultado** (en la computadora, **Copiar resultado**) mandas un mensaje corto que dice si aprobaste y cuántas acertaste, con el enlace a la página. Cada simulacro queda guardado en «Mi progreso». También te dice si habrías aprobado: se aprueba con el 90 %, es decir, 27 aciertos ([artículo 67 del Reglamento a la Ley Orgánica de Movilidad Humana, según la Cancillería](https://www.cancilleria.gob.ec/2019/12/23/examenes-de-simbolos-patrios-para-obtener-carta-de-naturalizacion-se-rendiran-a-traves-del-sistema-informatico/)).
   - **Por temas:** abre una pantalla donde eliges categorías y subcategorías (por ejemplo, *Geografía › Volcanes*), cuántas preguntas y si van en orden aleatorio. Desde ahí también se imprime, y **Compartir esta selección** da un enlace que abre la misma pantalla con esos temas marcados (por ejemplo, para mandar solo *Símbolos Patrios › Himno Nacional*).
   - **Modo estudio:** eliges temas como en «Por temas», pero cada pregunta aparece ya con su respuesta, la explicación y la foto, sin calificación. Avanzas con **Siguiente** (o la flecha derecha, `Espacio` o `Enter`) y retrocedes con **Anterior** (o la flecha izquierda). No cuenta para la racha ni para las falladas. Al terminar puedes practicar esas mismas preguntas.
-  - **Símbolos patrios:** la bandera, el escudo y el himno, uno debajo del otro, con su imagen, qué significa cada elemento, su historia y su día. El himno se puede escuchar (versión instrumental de dominio público) y tiene la letra que se canta y la completa, con sus seis estrofas. **Imprimir la letra** la imprime en dos columnas.
-  - **Línea de tiempo:** los temas de Historia en orden, de la época prehispánica a la dolarización, agrupados por época. Cada fecha se abre para leer un resumen y estudiar o practicar sus preguntas.
-  - **Mapa de provincias:** en **Explorar**, tocas una provincia y ves su capital y su región, con los colores de las cuatro regiones. En **Jugar**, la página te pide las 24 provincias en desorden y las encuentras en el mapa.
-  - **Ordena la historia** (juego): cinco hechos de la línea de tiempo, de años distintos, para poner del más antiguo al más reciente. Al comprobar se ven los años, los que quedaron en su lugar y el orden correcto.
-  - **Parejas** (juego): un rompecabezas de seis pares. Las piezas de la izquierda tienen una pestaña y las de la derecha, la muesca donde encaja; se unen arrastrando una pieza hasta su pareja o tocando las dos, y al acertar quedan encajadas en la misma fila. Hay cinco temas: provincias y capitales, obras y autores, fechas para recordar, presidentes y qué significan los símbolos. Se elige el tema o sale al azar, y al final dice en cuántos intentos lo resolviste.
-  - **Verdadero o falso** (juego): una pregunta de selección con una respuesta propuesta, que puede ser la correcta o no. Se juega contrarreloj (60 segundos) o con 20 preguntas sin tiempo; en la computadora también con las flechas (← falso, → verdadero). Al final muestra las que fallaste, con la respuesta correcta, y puedes practicarlas.
-
-  Los juegos, como el modo estudio, no cuentan para la racha, las falladas ni el progreso.
   - **Falladas:** las preguntas que respondes mal se guardan solas, aunque cierres la página. Cuando aciertas una, sale de la lista.
   - **Marcadas:** durante un examen o en el buscador, el botón **Marcar** (o la tecla `M`) guarda una pregunta para repasarla después.
+  - **Símbolos patrios:** la bandera, el escudo y el himno, uno debajo del otro, con su imagen, qué significa cada elemento, su historia y su día. El himno se puede escuchar (versión instrumental de dominio público) y tiene la letra que se canta y la completa, con sus seis estrofas. **Imprimir la letra** la imprime en dos columnas.
+  - **Línea de tiempo:** los temas de Historia en orden, de la época prehispánica a la dolarización, agrupados por época. Cada fecha se abre para leer un resumen y estudiar o practicar sus preguntas.
+  - **Mapa de provincias:** tocas una provincia y ves su capital y su región, con los colores de las cuatro regiones.
+  - **Ordena la historia** (juego): cinco hechos de la línea de tiempo, de años distintos, para poner del más antiguo al más reciente. Ganas si los cinco quedan en su lugar; al comprobar se ven los años y, si fallaste, el orden correcto.
+  - **Encuentra las provincias** (juego): la página te pide las 24 provincias en desorden y las encuentras en el mapa. Ganas con 22 aciertos a la primera (el 90 %, como en el examen). Se abre desde su tarjeta o con **Jugar a encontrar las provincias** en el mapa.
+  - **Verdadero o falso** (juego): una pregunta de selección con una respuesta propuesta, que puede ser la correcta o no. Se juega contrarreloj (60 segundos; ganas con al menos 15 respuestas y el 90 % de aciertos) o con 20 preguntas sin tiempo (ganas con 18); en la computadora también con las flechas (← falso, → verdadero). Al final muestra las que fallaste, con la respuesta correcta, y puedes practicarlas.
+
+    Cada juego dice antes de empezar qué hace falta para ganar y, al final, si ganaste. Como el modo estudio, no cuentan para la racha, las falladas ni el progreso.
+
 - **Mis exámenes:** los exámenes que guardaste, para repetirlos o compartirlos. Arriba aparecen cuatro exámenes **recomendados** de 30 preguntas, «Lo esencial», «Lo importante», «Para reforzar» y «Complementarias», con las preguntas que más se repiten en las guías de estudio públicas que arma gente que ya dio el examen oficial. Es una referencia, no una garantía de que salgan. Para tener un examen propio hay dos formas:
   - **Crear examen:** elige preguntas con el buscador o desde tus marcadas y falladas, ponle un nombre y pulsa **Guardar**.
   - **Al terminar cualquier examen**, incluido un simulacro, escribe un nombre y pulsa **Guardar**.
 
-Cada examen guardado tiene un enlace para compartirlo: quien lo abra verá las mismas preguntas, sin registrarse, y podrá guardarlo en sus propios exámenes. También se puede imprimir, editar o eliminar. Los exámenes recomendados y los que te comparten no se editan: **Copiar y editar** crea una copia tuya, y el original queda igual.
+Cada examen guardado tiene un enlace para compartirlo: quien lo abra verá las mismas preguntas, sin registrarse, y podrá guardarlo en sus propios exámenes. También se puede imprimir, editar o eliminar. Los exámenes recomendados y los que te comparten no se editan: **Copiar y editar** crea una copia tuya, y el original queda igual. Al compartir un examen o unos temas, el mensaje dice qué es; para recomendar la página entera, usa **Compartir esta página**, al final de cualquier pantalla.
 
 Las listas y los exámenes se guardan solo en el navegador de cada dispositivo. Un examen compartido viaja completo dentro del enlace (un código corto por pregunta después de `#examen=`), así que no hace falta ningún servidor.
 
@@ -57,7 +57,7 @@ En el inicio, **Mi progreso** muestra tu racha, cuántas preguntas dominas, cuá
 - **Meta diaria:** eliges 10, 20 o 30 preguntas al día y ves cuántas llevas hoy y cuántos días la cumpliste.
 - **Logros:** 30 medallas, como «Tres días seguidos», «Simulacro aprobado», «Tres aprobados seguidos», «Mapa a la primera» o «Símbolos dominados». Los nuevos aparecen al terminar un examen.
 
-Durante el examen (menos en el simulacro), un contador muestra tus aciertos seguidos (por ejemplo, «🔥 5 seguidas»); al fallar vuelve a cero sin ningún aviso. Al aprobar un simulacro, terminar un examen con el 90 % o más, cumplir la meta o ganar un logro, cae un poco de confeti con los colores de la bandera.
+Durante el examen (menos en el simulacro), un contador muestra tus aciertos seguidos (por ejemplo, «🔥 5 seguidas»); al fallar vuelve a cero sin ningún aviso. Al aprobar un simulacro, terminar un examen con el 90 % o más, ganar un juego, cumplir la meta o ganar un logro, cae un poco de confeti con los colores de la bandera.
 
 Todo se guarda solo en el navegador de cada dispositivo. Para pasarlo a otro teléfono o computadora, en **Mis datos** usa **Descargar mis datos** (guarda un archivo) y luego **Cargar mis datos** en el otro dispositivo. **Borrar mi progreso** lo reinicia, también tus simulacros, sin tocar tus falladas, marcadas ni exámenes.
 
