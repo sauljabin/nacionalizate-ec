@@ -1504,7 +1504,7 @@ legend { margin-bottom: .45rem; font-weight: 700; }
   #open-settings { padding: .5rem .7rem; }
   #open-settings span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .brand { font-size: .95rem; }
-  .brand strong { display: block; font-size: min(1.15rem, 4.8vw); hyphens: none; }
+  .brand strong { font-size: min(1.15rem, 4.8vw); hyphens: none; }
   .topbar, main { padding-left: 1rem; padding-right: 1rem; }
   .question { padding: 1.1rem; box-shadow: 4px 4px 0 var(--accent); }
   .exam-bar { flex-wrap: wrap; gap: .5rem; }
