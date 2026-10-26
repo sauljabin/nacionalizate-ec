@@ -514,7 +514,9 @@ function showTopics() {
     const ordered = app.querySelector("#shuffle").checked ? shuffle(cards) : cards;
     const count = app.querySelector("#question-count").value;
     const chosen = count === "all" ? ordered : ordered.slice(0, Number(count));
-    if (state.topicsMode === "study") startStudy(chosen);
+    if (state.topicsMode === "study") {
+      startStudy(chosen, { exit: { back: () => { state.topicsMode = "study"; showTopics(); }, label: "Volver a los temas" } });
+    }
     else startExam(chosen, { exit: { back: showTopics, label: "Volver a los temas" } });
   });
   updateTopics();
