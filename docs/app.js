@@ -2527,8 +2527,6 @@ function showOrderGame() {
   draw();
 }
 
-// Parejas: join six pairs of the same topic.
-
 const PAIRS_SIZE = 6;
 const PAIR_TOPICS = [
   {
@@ -2620,11 +2618,30 @@ const PAIR_TOPICS = [
   },
 ];
 
+// Moves elements from where they were to where change() puts them, smoothly
+// (FLIP: first, last, invert, play).
+function animateMove(elements, change) {
+  const before = new Map(elements.map((element) => [element, element.getBoundingClientRect()]));
+  change();
+  if (reducedMotion()) return;
+  for (const element of elements) {
+    const from = before.get(element);
+    const to = element.getBoundingClientRect();
+    element.animate(
+      [{ transform: `translate(${from.left - to.left}px, ${from.top - to.top}px)` }, { transform: "none" }],
+      { duration: 350, easing: "cubic-bezier(.2, .8, .2, 1)" },
+    );
+  }
+}
+
+// Parejas: a puzzle. The left pieces have a tab and the right ones a notch;
+// a right piece dropped on (or tapped after) its pair moves into that row and
+// the two fit together.
 function showPairsGame(topicId = "") {
   const board = showGameScreen({
     eyebrow: "Juego",
     title: "Parejas",
-    lead: "Toca un elemento de cada columna para unirlos. Une las seis parejas con los menos intentos que puedas.",
+    lead: "Arrastra cada pieza hasta su pareja en la otra columna, o toca las dos. Une las seis con los menos intentos que puedas.",
   });
   const picker = make("label", "text-field pairs-topic");
   const select = make("select");
@@ -2643,64 +2660,132 @@ function showPairsGame(topicId = "") {
   const pairs = shuffle(topic.pairs()).slice(0, PAIRS_SIZE);
   const title = make("h2", "pairs-title", topic.title);
   const counter = make("p", "pairs-counter");
-  const columns = make("div", "pairs-board");
-  const left = make("ul", "pairs-column");
-  const right = make("ul", "pairs-column");
-  columns.append(left, right);
+  const puzzle = make("div", "puzzle");
   const actions = make("div", "practice-actions");
-  board.append(picker, title, counter, columns, actions);
+  board.append(picker, title, counter, puzzle, actions);
 
+  const rows = new Map();
+  const pieces = [];
+  const place = (piece, row) => {
+    rows.set(piece, row);
+    piece.style.gridRow = String(row + 1);
+  };
   let selected = null;
   let attempts = 0;
   let matched = 0;
-  const report = () => {
-    counter.textContent = `${matched} de ${pairs.length} parejas · ${plural(attempts, "intento", "intentos")}`;
-    gameStatus(counter.textContent);
-  };
-  const fill = (list, side) => list.append(...shuffle(pairs.map((pair, index) => ({ text: pair[side], index }))).map((entry) => {
-    const item = make("li");
-    const button = makeButton("pair", entry.text, () => pick(button));
-    button.dataset.pair = entry.index;
-    button.dataset.side = side;
-    button.setAttribute("aria-pressed", "false");
-    item.append(button);
-    return item;
-  }));
-  fill(left, 0);
-  fill(right, 1);
+  let drag = null;
+  let skipClick = false;
 
-  const pick = (button) => {
-    if (button.classList.contains("is-matched")) return;
-    if (!selected || selected.dataset.side === button.dataset.side) {
-      // First pick, or a change of mind in the same column.
-      selected?.classList.remove("is-selected");
-      selected?.setAttribute("aria-pressed", "false");
-      selected = button === selected ? null : button;
-      selected?.classList.add("is-selected");
-      selected?.setAttribute("aria-pressed", "true");
+  const report = (prefix = "") => {
+    counter.textContent = `${matched} de ${pairs.length} parejas · ${plural(attempts, "intento", "intentos")}`;
+    gameStatus(prefix + counter.textContent);
+  };
+  const selectPiece = (piece) => {
+    selected?.classList.remove("is-selected");
+    selected?.setAttribute("aria-pressed", "false");
+    selected = piece;
+    selected?.classList.add("is-selected");
+    selected?.setAttribute("aria-pressed", "true");
+  };
+  const textOf = (piece) => piece.querySelector(".piece-text").textContent;
+
+  const tryPair = (first, second) => {
+    selectPiece(null);
+    attempts++;
+    if (first.dataset.pair !== second.dataset.pair) {
+      for (const piece of [first, second]) piece.classList.add("is-wrong");
+      setTimeout(() => [first, second].forEach((piece) => piece.classList.remove("is-wrong")), 600);
+      report(`«${textOf(first)}» y «${textOf(second)}» no son pareja. `);
       return;
     }
-    const first = selected;
-    selected = null;
-    first.classList.remove("is-selected");
-    first.setAttribute("aria-pressed", "false");
-    attempts++;
-    if (first.dataset.pair === button.dataset.pair) {
-      matched++;
-      for (const item of [first, button]) {
-        item.classList.add("is-matched");
-        item.disabled = true;
-        item.prepend(make("span", "pair-number", String(matched)));
-      }
-      report();
-      if (matched === pairs.length) finish();
-    } else {
-      for (const item of [first, button]) item.classList.add("is-wrong");
-      setTimeout(() => [first, button].forEach((item) => item.classList.remove("is-wrong")), 700);
-      counter.textContent = `${matched} de ${pairs.length} parejas · ${plural(attempts, "intento", "intentos")}`;
-      gameStatus(`«${first.textContent}» y «${button.textContent}» no son pareja. ${counter.textContent}`);
+    matched++;
+    const [leftPiece, rightPiece] = first.dataset.side === "0" ? [first, second] : [second, first];
+    // The right piece moves into its pair's row; the one there takes its place.
+    const row = rows.get(leftPiece);
+    const from = rows.get(rightPiece);
+    const other = pieces.find((piece) => piece.dataset.side === "1" && rows.get(piece) === row);
+    animateMove([rightPiece, other], () => {
+      place(other, from);
+      place(rightPiece, row);
+    });
+    for (const piece of [leftPiece, rightPiece]) {
+      piece.classList.add("is-matched");
+      piece.disabled = true;
+      piece.removeAttribute("aria-pressed");
     }
+    report(`¡Pareja! «${textOf(leftPiece)}» y «${textOf(rightPiece)}». `);
+    if (matched === pairs.length) finish();
   };
+
+  const tap = (piece) => {
+    if (skipClick || piece.disabled) return;
+    if (!selected || selected.dataset.side === piece.dataset.side) {
+      // First pick, or a change of mind in the same column.
+      selectPiece(piece === selected ? null : piece);
+      return;
+    }
+    tryPair(selected, piece);
+  };
+
+  // The piece of the other column under the pointer, if any.
+  const pieceAt = (x, y, dragged) => document.elementsFromPoint(x, y)
+    .map((element) => element.closest(".piece"))
+    .find((piece) => piece && piece !== dragged && !piece.disabled && piece.dataset.side !== dragged.dataset.side) || null;
+  const highlight = (target) => pieces.forEach((piece) => piece.classList.toggle("is-target", piece === target));
+
+  const enableDrag = (piece) => {
+    piece.addEventListener("pointerdown", (event) => {
+      if (piece.disabled || event.button > 0) return;
+      drag = { piece, x: event.clientX, y: event.clientY, moved: false, id: event.pointerId };
+    });
+    piece.addEventListener("pointermove", (event) => {
+      if (drag?.piece !== piece || event.pointerId !== drag.id) return;
+      const dx = event.clientX - drag.x;
+      const dy = event.clientY - drag.y;
+      if (!drag.moved) {
+        if (Math.hypot(dx, dy) < 8) return;
+        drag.moved = true;
+        piece.setPointerCapture(event.pointerId);
+        piece.classList.add("is-dragging");
+        selectPiece(null);
+      }
+      piece.style.transform = `translate(${dx}px, ${dy}px)`;
+      highlight(pieceAt(event.clientX, event.clientY, piece));
+    });
+    const drop = (event) => {
+      if (drag?.piece !== piece) return;
+      const { moved } = drag;
+      drag = null;
+      if (!moved) return;
+      // The click that follows the drop is not a tap.
+      skipClick = true;
+      setTimeout(() => { skipClick = false; });
+      const target = event.type === "pointerup" ? pieceAt(event.clientX, event.clientY, piece) : null;
+      highlight(null);
+      piece.classList.remove("is-dragging");
+      piece.style.transform = "";
+      if (target) tryPair(piece, target);
+    };
+    piece.addEventListener("pointerup", drop);
+    piece.addEventListener("pointercancel", drop);
+  };
+
+  for (const side of [0, 1]) {
+    shuffle(pairs.map((pair, index) => ({ text: pair[side], index }))).forEach((entry, row) => {
+      const piece = makeButton(`piece ${side ? "piece-right" : "piece-left"}`, "", () => tap(piece));
+      const body = make("span", "piece-body");
+      body.append(make("span", "piece-text", entry.text));
+      piece.append(body);
+      piece.dataset.pair = entry.index;
+      piece.dataset.side = side;
+      piece.style.gridColumn = String(side + 1);
+      piece.setAttribute("aria-pressed", "false");
+      place(piece, row);
+      enableDrag(piece);
+      pieces.push(piece);
+      puzzle.append(piece);
+    });
+  }
 
   const finish = () => {
     const perfect = attempts === pairs.length;
@@ -2709,7 +2794,7 @@ function showPairsGame(topicId = "") {
       make("h2", "", perfect ? "¡Sin un solo error!" : "¡Completaste las parejas!"),
       make("p", "", `Las uniste en ${plural(attempts, "intento", "intentos")}; lo mínimo son ${pairs.length}.`),
     );
-    columns.after(result);
+    puzzle.after(result);
     actions.replaceChildren(makeButton("primary", "Otra ronda", () => showPairsGame(select.value)));
     actions.querySelector("button").focus({ preventScroll: true });
     if (perfect) celebrate();
