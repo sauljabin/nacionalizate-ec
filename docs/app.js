@@ -1733,8 +1733,9 @@ function mockPassed(entry) {
   return entry.right >= entry.pass;
 }
 
-// A line chart of the last mock exams and, below, the list of all of them
-// (newest first). The list is also the text version of the chart.
+// A line chart of the last mock exams and, behind «Ver historial», the list
+// of all of them (newest first). The list is also the text version of the
+// chart; it starts closed so a long history does not push the page down.
 function renderMocks(section) {
   const mocks = progress.mocks;
   const summary = section.querySelector(".mocks-summary");
@@ -1743,7 +1744,7 @@ function renderMocks(section) {
     return;
   }
   const passed = mocks.filter(mockPassed).length;
-  summary.textContent = `Aprobaste ${passed} de ${plural(mocks.length, "simulacro", "simulacros")}. Toca uno para ver sus respuestas.`
+  summary.textContent = `Aprobaste ${passed} de ${plural(mocks.length, "simulacro", "simulacros")}. Toca un punto de la gráfica, o abre el historial, para ver sus respuestas.`
     + (mocks.length > MOCK_CHART_SIZE ? ` La gráfica muestra los últimos ${MOCK_CHART_SIZE}.` : "");
   const list = section.querySelector(".mock-list");
   list.replaceChildren(...mocks.map((entry, index) => {
@@ -1763,6 +1764,15 @@ function renderMocks(section) {
     item.append(button);
     return item;
   }).reverse());
+  const toggle = section.querySelector(".mock-history-toggle");
+  const label = `Ver historial (${plural(mocks.length, "simulacro", "simulacros")})`;
+  toggle.hidden = false;
+  toggle.textContent = label;
+  toggle.addEventListener("click", () => {
+    list.hidden = !list.hidden;
+    toggle.setAttribute("aria-expanded", String(!list.hidden));
+    toggle.textContent = list.hidden ? label : "Ocultar historial";
+  });
   const chart = section.querySelector(".mock-chart");
   chart.hidden = false;
   section.querySelector(".mock-legend").hidden = false;
@@ -1776,12 +1786,19 @@ function renderMocks(section) {
   }).observe(chart);
 }
 
+// Each mock exam gets at least this much room; when they do not fit, as on a
+// phone, the chart scrolls sideways and starts at the latest ones.
+const MOCK_POINT_GAP = 24;
+const MOCK_AXIS_WIDTH = 30;
+
 function renderMockChart(chart, width) {
   const offset = Math.max(0, progress.mocks.length - MOCK_CHART_SIZE);
   const mocks = progress.mocks.slice(offset);
   const height = 200;
-  const pad = { top: 14, right: 14, bottom: 28, left: 30 };
-  const plotWidth = width - pad.left - pad.right;
+  const pad = { top: 14, right: 14, bottom: 28, left: 8 };
+  const visible = width - MOCK_AXIS_WIDTH;
+  const plotWidth = Math.max(visible - pad.left - pad.right, (mocks.length - 1) * MOCK_POINT_GAP);
+  const plotsWidth = plotWidth + pad.left + pad.right;
   const plotHeight = height - pad.top - pad.bottom;
   const top = Math.max(...mocks.map((entry) => entry.total));
   // Scores are mostly near the top: start the scale a little below the
@@ -1791,15 +1808,15 @@ function renderMockChart(chart, width) {
   const y = (value) => pad.top + (1 - (value - bottom) / (top - bottom)) * plotHeight;
   const gap = mocks.length === 1 ? plotWidth : plotWidth / (mocks.length - 1);
   const every = Math.ceil(28 / gap);
-  // Smaller marks when many fit in little space, like 30 on a phone.
-  const radius = gap < 16 ? 4 : 5.5;
-  let svg = `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" aria-hidden="true">`;
+  // The scale stays put on the left while the chart scrolls.
+  let axis = `<svg class="mock-scale" width="${MOCK_AXIS_WIDTH}" height="${height}" aria-hidden="true">`;
+  let svg = `<svg width="${plotsWidth}" height="${height}" aria-hidden="true">`;
   const step = top - bottom > 15 ? 10 : 5;
   for (let value = top; value >= bottom; value -= step) {
-    svg += `<line class="mock-grid" x1="${pad.left}" x2="${width - pad.right}" y1="${y(value)}" y2="${y(value)}"/>`;
-    svg += `<text class="mock-axis" x="${pad.left - 8}" y="${y(value)}" text-anchor="end" dominant-baseline="middle">${value}</text>`;
+    axis += `<text class="mock-axis" x="${MOCK_AXIS_WIDTH - 4}" y="${y(value)}" text-anchor="end" dominant-baseline="middle">${value}</text>`;
+    svg += `<line class="mock-grid" x1="0" x2="${plotsWidth}" y1="${y(value)}" y2="${y(value)}"/>`;
   }
-  svg += `<line class="mock-pass" x1="${pad.left}" x2="${width - pad.right}" y1="${y(mocks.at(-1).pass)}" y2="${y(mocks.at(-1).pass)}"/>`;
+  svg += `<line class="mock-pass" x1="0" x2="${plotsWidth}" y1="${y(mocks.at(-1).pass)}" y2="${y(mocks.at(-1).pass)}"/>`;
   mocks.forEach((entry, index) => {
     if ((mocks.length - 1 - index) % every === 0) {
       svg += `<text class="mock-axis" x="${x(index)}" y="${height - 8}" text-anchor="middle">${entry.n}</text>`;
@@ -1810,17 +1827,20 @@ function renderMockChart(chart, width) {
   }
   mocks.forEach((entry, index) => {
     svg += `<g class="mock-point${mockPassed(entry) ? " is-passed" : ""}" data-index="${offset + index}">`
-      + `<circle class="mock-hit" cx="${x(index)}" cy="${y(entry.right)}" r="14"/>`
-      + `<circle class="mock-mark" cx="${x(index)}" cy="${y(entry.right)}" r="${radius}"/></g>`;
+      + `<circle class="mock-hit" cx="${x(index)}" cy="${y(entry.right)}" r="12"/>`
+      + `<circle class="mock-mark" cx="${x(index)}" cy="${y(entry.right)}" r="5.5"/></g>`;
   });
-  chart.innerHTML = `${svg}</svg><p class="mock-tip" hidden></p>`;
+  chart.innerHTML = `${axis}</svg><div class="mock-scroll">${svg}</svg></div><p class="mock-tip" hidden></p>`;
+  const scroller = chart.querySelector(".mock-scroll");
+  scroller.scrollLeft = scroller.scrollWidth;
   const tip = chart.querySelector(".mock-tip");
+  scroller.addEventListener("scroll", () => { tip.hidden = true; });
   for (const point of chart.querySelectorAll(".mock-point")) {
     const entry = progress.mocks[Number(point.dataset.index)];
     const mark = point.querySelector(".mock-mark");
     point.addEventListener("pointerenter", () => {
       tip.textContent = `Simulacro ${entry.n} · ${MOCK_DATE.format(entry.at)}\n${entry.right} de ${entry.total} · ${mockPassed(entry) ? "Aprobado" : "No aprobado"}`;
-      const left = Number(mark.getAttribute("cx"));
+      const left = MOCK_AXIS_WIDTH + Number(mark.getAttribute("cx")) - scroller.scrollLeft;
       // Near an edge, the tip opens toward the middle so it stays visible.
       tip.dataset.side = left < width / 3 ? "left" : left > (width * 2) / 3 ? "right" : "";
       tip.style.left = `${left}px`;

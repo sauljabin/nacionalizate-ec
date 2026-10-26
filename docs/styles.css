@@ -1020,8 +1020,9 @@ select {
    a hollow one a failed exam, so the state does not rely on color alone. */
 .mocks-section { margin-top: 2rem; }
 .mocks-summary { margin: 0 0 .75rem; }
-.mock-chart { position: relative; margin: .5rem 0; }
-.mock-chart svg { display: block; overflow: visible; }
+.mock-chart { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); margin: .5rem 0; }
+.mock-chart svg { display: block; }
+.mock-scroll { overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; }
 .mock-grid { stroke: var(--line); stroke-width: 1; }
 .mock-axis { fill: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
 .mock-pass { stroke: var(--right); stroke-width: 1.5; stroke-dasharray: 5 4; }
@@ -1058,7 +1059,9 @@ select {
 .mock-dot { width: .7rem; height: .7rem; border: 2.5px solid var(--wrong); border-radius: 50%; background: var(--surface); }
 .mock-dot.is-passed { border-color: var(--right); background: var(--right); }
 .mock-pass-line { width: 1.2rem; border-top: 2px dashed var(--right); }
+.mock-history-toggle { margin-top: 1rem; }
 .mock-list { display: grid; gap: .5rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+.mock-list[hidden] { display: none; }
 .mock-list button {
   display: grid;
   grid-template-columns: 1fr auto auto;

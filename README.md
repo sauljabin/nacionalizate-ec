@@ -48,7 +48,7 @@ En el inicio, **Mi progreso** muestra tu racha, cuántas preguntas dominas, cuá
 - **Dominadas:** una pregunta está dominada si la acertaste la última vez que la respondiste. Se muestra en total y por categoría, junto con las que tienes por repasar.
 - **Mejor simulacro:** tu mejor puntaje y cuántos simulacros aprobaste.
 - **Mi actividad:** un calendario del último año, con un cuadro por día. El color se intensifica según cuántas preguntas respondiste, comparado con tu meta diaria. En el teléfono se desliza de lado para ver los meses anteriores.
-- **Mis simulacros:** una gráfica de línea con el puntaje de tus últimos 30 simulacros y la línea de 27 aciertos para aprobar. Los aprobados se ven como puntos llenos y los no aprobados, como puntos vacíos. Debajo está la lista de todos, del más reciente al más antiguo. Al tocar un punto o un simulacro de la lista ves su resultado: tus respuestas, las correctas y las que fallaste.
+- **Mis simulacros:** una gráfica de línea con el puntaje de tus últimos 30 simulacros y la línea de 27 aciertos para aprobar. Los aprobados se ven como puntos llenos y los no aprobados, como puntos vacíos. En el teléfono la gráfica se desliza de lado y empieza en los más recientes. **Ver historial** abre la lista de todos, del más reciente al más antiguo. Al tocar un punto o un simulacro de la lista ves su resultado: tus respuestas, las correctas y las que fallaste.
 - **Meta diaria:** eliges 10, 20 o 30 preguntas al día y ves cuántas llevas hoy y cuántos días la cumpliste.
 - **Logros:** 30 medallas, como «Tres días seguidos», «Simulacro aprobado», «Tres aprobados seguidos», «Mapa a la primera» o «Símbolos dominados». Los nuevos aparecen al terminar un examen.
 
