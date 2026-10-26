@@ -1,6 +1,6 @@
 {
-  "name": "Examen de Nacionalización Ecuatoriana",
-  "short_name": "Examen Ecuador",
+  "name": "Nacionalízate EC",
+  "short_name": "Nacionalízate",
   "description": "Preguntas de práctica para el examen de nacionalización ecuatoriana. Gratuito y con fines pedagógicos.",
   "lang": "es",
   "start_url": "./",

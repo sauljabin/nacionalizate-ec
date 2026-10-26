@@ -2688,7 +2688,7 @@ function showShared({ cards, title, missing = 0 }) {
   const share = app.querySelector(".share-link-button");
   share.textContent = nativeShare ? "Compartir" : "Copiar enlace";
   share.addEventListener("click", async () => {
-    const result = await shareLink(link, title || "Examen de nacionalización ecuatoriana");
+    const result = await shareLink(link, title || "Nacionalízate EC");
     if (result === "copied") status.textContent = "Enlace copiado.";
     if (result === "failed") {
       input.select();
@@ -2879,7 +2879,7 @@ function buildPrintArea({ answers, images }) {
   const header = document.createElement("header");
   header.className = "print-header";
   const title = document.createElement("h1");
-  title.textContent = state.print.title || "Examen de Nacionalización Ecuatoriana";
+  title.textContent = state.print.title || "Nacionalízate EC";
   const meta = document.createElement("p");
   const date = new Date().toLocaleDateString("es-EC", { day: "numeric", month: "long", year: "numeric" });
   meta.textContent = `${cards.length} preguntas · ${answers ? "con respuestas" : "sin respuestas"} · ${date}`;

@@ -1,4 +1,4 @@
-# Examen de Nacionalización Ecuatoriana
+# Nacionalízate EC
 
 Página web para practicar el examen de nacionalización ecuatoriana con preguntas de estudio. Funciona en el navegador de la computadora y del teléfono. Tiene 714 preguntas sobre símbolos patrios, geografía, historia, política y cultura del Ecuador.
 
