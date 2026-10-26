@@ -1018,6 +1018,113 @@ select {
 .activity-cell[data-level="2"] { background: color-mix(in srgb, var(--right) 55%, var(--surface)); box-shadow: none; }
 .activity-cell[data-level="3"] { background: color-mix(in srgb, var(--right) 80%, var(--surface)); box-shadow: none; }
 .activity-cell[data-level="4"] { background: var(--right); box-shadow: none; }
+/* Games --------------------------------------------------------------------- */
+
+.game-board { margin-top: 1rem; }
+.game-board .practice-actions { margin-top: 1.25rem; }
+.order-result { margin-top: 1.5rem; }
+.order-result h2 { margin: 0 0 .5rem; font-size: 1.5rem; }
+.order-result p { margin: 0 0 .5rem; }
+
+/* Ordena la historia: numbered slots on top, the events to place below. */
+.order-slots, .order-answer { display: grid; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+.order-slot {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  min-height: 3.25rem;
+  padding-left: .75rem;
+  border: 2px dashed var(--line);
+  border-radius: 12px;
+}
+.order-slot:has(button), .order-slot.is-checked { border-style: solid; border-color: var(--line-strong); }
+.order-slot.is-checked { padding: .6rem .75rem; }
+.order-position {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--sunken);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.order-slot .order-item { flex: 1; min-height: 3rem; border: 0; border-radius: 10px; box-shadow: none; justify-content: flex-start; text-align: left; }
+.order-empty { color: var(--muted); font-size: .9rem; }
+.order-slot.is-right { border-color: var(--right); background: var(--right-soft); }
+.order-slot.is-wrong { border-color: var(--wrong); background: var(--wrong-soft); }
+.order-year { min-width: 3.5rem; font-variant-numeric: tabular-nums; }
+.order-pool { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+.order-pool .order-item { border-radius: 12px; text-align: left; font-weight: 700; }
+
+/* Parejas: two columns of buttons; a matched pair shares a number. */
+.pairs-topic { max-width: 22rem; margin-top: 0; }
+.pairs-topic select {
+  padding: .55rem .8rem;
+  border: 2px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+}
+.pairs-title { margin: 1.5rem 0 .25rem; font-size: 1.4rem; }
+.pairs-counter { margin: 0 0 1rem; color: var(--muted); font-weight: 700; }
+.pairs-board { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+.pairs-column { display: grid; gap: .6rem; align-content: start; margin: 0; padding: 0; list-style: none; }
+.pair {
+  width: 100%;
+  min-height: 3.25rem;
+  justify-content: flex-start;
+  border-radius: 12px;
+  box-shadow: none;
+  text-align: left;
+  font-weight: 400;
+}
+.pair:hover:not(:disabled) { border-color: var(--accent); box-shadow: none; transform: none; }
+.pair.is-selected { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); font-weight: 700; }
+.pair.is-wrong { border-color: var(--wrong); background: var(--wrong-soft); color: var(--wrong); }
+.pair.is-matched { opacity: 1; border-color: var(--right); background: var(--right-soft); color: var(--right); font-weight: 700; cursor: default; }
+.pair-number {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--right);
+  color: var(--surface);
+  font-size: .8rem;
+}
+
+/* Verdadero o falso. */
+.tf-modes { max-width: 34rem; }
+.tf-keys { margin-bottom: 0; }
+.tf-counter { margin: 0 0 .4rem; color: var(--muted); font-weight: 700; font-variant-numeric: tabular-nums; }
+.tf-card {
+  padding: 1.25rem;
+  border: 2px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 6px 6px 0 var(--accent);
+  transition: border-color .15s ease, background .15s ease;
+}
+.tf-card.is-right { border-color: var(--right); background: var(--right-soft); }
+.tf-card.is-wrong { border-color: var(--wrong); background: var(--wrong-soft); }
+.tf-question { margin: 0; font-size: 1.15rem; }
+.tf-label { margin: 1rem 0 .25rem; color: var(--muted); font-size: .9rem; font-weight: 700; }
+.tf-proposal { margin: 0; font-family: "Fraunces", Georgia, serif; font-size: 1.5rem; font-weight: 800; }
+.tf-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: 1.25rem; }
+.tf-buttons button { padding: 1rem; font-size: 1.15rem; }
+.tf-false { background: var(--wrong-soft); color: var(--wrong); }
+.tf-true { background: var(--right-soft); color: var(--right); }
+.tf-quit { display: block; margin: 1rem auto 0; }
+@media (prefers-reduced-motion: reduce) { .tf-card { transition: none; } }
+@media (max-width: 30rem) {
+  .pairs-board { gap: .4rem; }
+  .pair { padding: .55rem .6rem; font-size: .95rem; }
+}
+
 /* Mis simulacros: one line, round marks; a filled mark is a passed exam and
    a hollow one a failed exam, so the state does not rely on color alone. */
 .mocks-section { margin-top: 2rem; }

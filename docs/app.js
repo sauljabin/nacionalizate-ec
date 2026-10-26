@@ -753,6 +753,9 @@ function setupPractice() {
   app.querySelector("#open-symbols").addEventListener("click", () => showSymbols());
   app.querySelector("#open-timeline").addEventListener("click", () => showTimeline());
   app.querySelector("#open-map").addEventListener("click", showMap);
+  app.querySelector("#open-order").addEventListener("click", showOrderGame);
+  app.querySelector("#open-pairs").addEventListener("click", () => showPairsGame());
+  app.querySelector("#open-true-false").addEventListener("click", () => showTrueFalseGame());
   app.querySelector("#open-progress").addEventListener("click", showProgress);
   app.querySelector("#open-builder").addEventListener("click", showBuilder);
   updatePractice();
@@ -2350,6 +2353,508 @@ function endMapGame() {
   panel.querySelector(".map-again").focus({ preventScroll: true });
 }
 
+// Games ----------------------------------------------------------------------
+//
+// Three games in «Formas de practicar». Like the study mode, they do not
+// count for the streak, the missed list or the progress.
+
+function make(tag, className, text) {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  if (text !== undefined) element.textContent = text;
+  return element;
+}
+
+function makeButton(className, text, onClick) {
+  const button = make("button", className, text);
+  button.type = "button";
+  if (onClick) button.addEventListener("click", onClick);
+  return button;
+}
+
+// Opens the shared game screen and returns its board, emptied.
+function showGameScreen({ eyebrow, title, lead }) {
+  showScreen("game-template");
+  app.querySelector(".back-home").addEventListener("click", showHome);
+  app.querySelector(".game-page .eyebrow").textContent = eyebrow;
+  app.querySelector(".game-page h1").textContent = title;
+  app.querySelector(".game-page .lead").textContent = lead;
+  return app.querySelector(".game-board");
+}
+
+function gameStatus(text) {
+  app.querySelector(".game-status").textContent = text;
+}
+
+// Ordena la historia: put five events of the timeline in order.
+
+const ORDER_SIZE = 5;
+// Shorter or clearer names than the subtopic titles, where needed.
+const ORDER_NAMES = {
+  "1563-real-audiencia-de-quito": "Creación de la Real Audiencia de Quito",
+  "1822-gran-colombia": "Unión a la Gran Colombia",
+  "1894-venta-de-la-bandera": "Venta de la bandera",
+};
+
+// Events with a year; two from the same year would have no single order.
+function orderRound() {
+  const used = new Set();
+  const picked = [];
+  for (const event of shuffle(timelineEvents().filter((item) => item.year > 0))) {
+    if (used.has(event.year)) continue;
+    used.add(event.year);
+    picked.push({ ...event, name: ORDER_NAMES[event.sub.id] || event.title });
+    if (picked.length === ORDER_SIZE) break;
+  }
+  return picked;
+}
+
+function showOrderGame() {
+  const board = showGameScreen({
+    eyebrow: "Juego",
+    title: "Ordena la historia",
+    lead: "Toca los hechos del más antiguo al más reciente. Para cambiar uno de lugar, tócalo otra vez.",
+  });
+  const events = orderRound();
+  const placed = [];
+  const slots = make("ol", "order-slots");
+  const pool = make("ul", "order-pool");
+  const actions = make("div", "practice-actions");
+  const check = makeButton("primary", "Comprobar", () => checkOrder());
+  check.disabled = true;
+  actions.append(check);
+  board.append(slots, pool, actions);
+
+  const draw = () => {
+    slots.replaceChildren(...events.map((_, index) => {
+      const item = make("li", "order-slot");
+      item.append(make("span", "order-position", String(index + 1)));
+      const event = placed[index];
+      if (event) {
+        item.append(makeButton("order-item", event.name, () => {
+          placed.splice(index, 1);
+          draw();
+        }));
+      } else {
+        item.append(make("span", "order-empty", index === 0 ? "El más antiguo" : index === ORDER_SIZE - 1 ? "El más reciente" : ""));
+      }
+      return item;
+    }));
+    pool.replaceChildren(...events.filter((event) => !placed.includes(event)).map((event) => {
+      const item = make("li");
+      item.append(makeButton("ghost order-item", event.name, () => {
+        placed.push(event);
+        draw();
+        // Keep the focus in the list of events while there are any left.
+        (pool.querySelector("button") || check).focus({ preventScroll: true });
+      }));
+      return item;
+    }));
+    check.disabled = placed.length < events.length;
+    gameStatus(`${placed.length} de ${events.length} en orden.`);
+  };
+
+  const checkOrder = () => {
+    const sorted = [...events].sort((a, b) => a.year - b.year);
+    let right = 0;
+    slots.replaceChildren(...placed.map((event, index) => {
+      const ok = event === sorted[index];
+      if (ok) right++;
+      const item = make("li", `order-slot is-checked ${ok ? "is-right" : "is-wrong"}`);
+      item.append(make("span", "order-position", String(index + 1)), make("strong", "order-year", event.label), make("span", "", event.name));
+      item.setAttribute("aria-label", `${event.name}, ${event.label}: ${ok ? "en su lugar" : "fuera de lugar"}`);
+      return item;
+    }));
+    pool.remove();
+    const result = make("div", "order-result");
+    result.append(make("h2", "", right === events.length ? "¡Todo en orden!" : `Pusiste ${right} de ${events.length} en su lugar`));
+    if (right < events.length) {
+      result.append(make("p", "", "El orden correcto es:"));
+      const list = make("ol", "order-answer");
+      list.append(...sorted.map((event, index) => {
+        const item = make("li", "order-slot is-checked");
+        item.append(make("span", "order-position", String(index + 1)), make("strong", "order-year", event.label), make("span", "", event.name));
+        return item;
+      }));
+      result.append(list);
+    } else {
+      celebrate();
+    }
+    actions.replaceChildren(
+      makeButton("primary", "Otra ronda", showOrderGame),
+      makeButton("ghost", "Ver la línea de tiempo", () => showTimeline()),
+    );
+    actions.before(result);
+    gameStatus(result.querySelector("h2").textContent);
+    actions.querySelector("button").focus({ preventScroll: true });
+  };
+
+  draw();
+}
+
+// Parejas: join six pairs of the same topic.
+
+const PAIRS_SIZE = 6;
+const PAIR_TOPICS = [
+  {
+    id: "capitales",
+    title: "Provincias y capitales",
+    // Without the ones whose capital has the province's name, like Loja.
+    pairs: () => PROVINCES
+      .filter((province) => !province.name.startsWith(province.capital))
+      .map((province) => [province.name, province.capital]),
+  },
+  {
+    id: "obras",
+    title: "Obras y autores",
+    pairs: () => [
+      ["Cumandá", "Juan León Mera"],
+      ["La Emancipada", "Miguel Riofrío"],
+      ["Las Catilinarias", "Juan Montalvo"],
+      ["A la costa", "Luis Alfredo Martínez"],
+      ["El alma en los labios", "Medardo Ángel Silva"],
+      ["Las cruces sobre el agua", "Joaquín Gallegos Lara"],
+      ["El antropófago", "Pablo Palacio"],
+      ["Huasipungo", "Jorge Icaza"],
+      ["Siete lunas y siete serpientes", "Demetrio Aguilera Malta"],
+      ["Bruna, soroche y los tíos", "Alicia Yánez Cossío"],
+      ["La victoria de Junín: Canto a Bolívar", "José Joaquín de Olmedo"],
+      ["Carta a Lizardo", "Juan Bautista Aguirre"],
+      ["El carbonero", "Eduardo Kingman"],
+      ["Las floristas", "Camilo Egas"],
+      ["El Tren Volador", "Gonzalo Endara Crow"],
+      ["El hombre, la casa y la luna", "Oswaldo Viteri"],
+    ],
+  },
+  {
+    id: "fechas",
+    title: "Fechas para recordar",
+    pairs: () => [
+      ["10 de agosto", "Primer Grito de Independencia"],
+      ["24 de mayo", "Batalla del Pichincha"],
+      ["9 de octubre", "Independencia de Guayaquil"],
+      ["3 de noviembre", "Independencia de Cuenca"],
+      ["27 de febrero", "Batalla de Tarqui"],
+      ["13 de mayo", "Nace la República del Ecuador (1830)"],
+      ["6 de diciembre", "Fundación de Quito"],
+      ["12 de octubre", "Descubrimiento de América"],
+      ["26 de septiembre", "Día de la Bandera"],
+      ["31 de octubre", "Día del Escudo"],
+      ["26 de noviembre", "Día del Himno"],
+      ["2 de noviembre", "Día de los Difuntos"],
+      ["13 de abril", "Día del Maestro"],
+      ["1 de mayo", "Día del Trabajador"],
+    ],
+  },
+  {
+    id: "presidentes",
+    title: "Presidentes",
+    pairs: () => [
+      ["Juan José Flores", "Primer presidente del Ecuador"],
+      ["Vicente Rocafuerte", "Primer presidente nacido en el Ecuador"],
+      ["José María Urbina", "Decretó la manumisión de los esclavos"],
+      ["Gabriel García Moreno", "Inició el ferrocarril"],
+      ["Eloy Alfaro", "Lideró la Revolución Liberal"],
+      ["José Luis Tamayo", "Gobernaba en la masacre de obreros de 1922"],
+      ["Carlos Arroyo del Río", "Gobernaba en la guerra del 41"],
+      ["José María Velasco Ibarra", "Fue presidente cinco veces"],
+      ["Guillermo Rodríguez Lara", "Comenzó la exportación petrolera"],
+      ["Jaime Roldós", "Ganó las elecciones de 1979, con las que volvió la democracia"],
+      ["Rosalía Arteaga", "Primera mujer presidenta"],
+      ["Sixto Durán-Ballén", "Gobernaba en la Guerra del Cenepa"],
+      ["Jamil Mahuad", "Firmó la paz definitiva con el Perú"],
+    ],
+  },
+  {
+    id: "simbolos",
+    title: "Qué significan los símbolos",
+    pairs: () => [
+      ["Cóndor", "Energía, esfuerzo y grandeza"],
+      ["Sol dorado", "El oro y la riqueza"],
+      ["Río Guayas", "La unión del pueblo ecuatoriano"],
+      ["Caduceo", "La navegación y el comercio"],
+      ["Laurel", "La gloria de la nación"],
+      ["Palma", "La paz en la nación"],
+      ["Fasces consulares", "La dignidad republicana"],
+      ["Segur", "La fuerza pública"],
+      ["Signos del zodiaco", "Los meses de la Revolución Marcista"],
+      ["Franja amarilla", "Las riquezas y la fertilidad de la tierra"],
+      ["Franja azul", "El mar y el cielo"],
+      ["Franja roja", "La sangre de los héroes de la independencia"],
+    ],
+  },
+];
+
+function showPairsGame(topicId = "") {
+  const board = showGameScreen({
+    eyebrow: "Juego",
+    title: "Parejas",
+    lead: "Toca un elemento de cada columna para unirlos. Une las seis parejas con los menos intentos que puedas.",
+  });
+  const picker = make("label", "text-field pairs-topic");
+  const select = make("select");
+  select.append(make("option", "", "Tema al azar"));
+  select.firstChild.value = "";
+  for (const item of PAIR_TOPICS) {
+    const option = make("option", "", item.title);
+    option.value = item.id;
+    select.append(option);
+  }
+  select.value = topicId;
+  select.addEventListener("change", () => showPairsGame(select.value));
+  picker.append(make("span", "", "Tema"), select);
+
+  const topic = PAIR_TOPICS.find((item) => item.id === topicId) || shuffle(PAIR_TOPICS)[0];
+  const pairs = shuffle(topic.pairs()).slice(0, PAIRS_SIZE);
+  const title = make("h2", "pairs-title", topic.title);
+  const counter = make("p", "pairs-counter");
+  const columns = make("div", "pairs-board");
+  const left = make("ul", "pairs-column");
+  const right = make("ul", "pairs-column");
+  columns.append(left, right);
+  const actions = make("div", "practice-actions");
+  board.append(picker, title, counter, columns, actions);
+
+  let selected = null;
+  let attempts = 0;
+  let matched = 0;
+  const report = () => {
+    counter.textContent = `${matched} de ${pairs.length} parejas · ${plural(attempts, "intento", "intentos")}`;
+    gameStatus(counter.textContent);
+  };
+  const fill = (list, side) => list.append(...shuffle(pairs.map((pair, index) => ({ text: pair[side], index }))).map((entry) => {
+    const item = make("li");
+    const button = makeButton("pair", entry.text, () => pick(button));
+    button.dataset.pair = entry.index;
+    button.dataset.side = side;
+    button.setAttribute("aria-pressed", "false");
+    item.append(button);
+    return item;
+  }));
+  fill(left, 0);
+  fill(right, 1);
+
+  const pick = (button) => {
+    if (button.classList.contains("is-matched")) return;
+    if (!selected || selected.dataset.side === button.dataset.side) {
+      // First pick, or a change of mind in the same column.
+      selected?.classList.remove("is-selected");
+      selected?.setAttribute("aria-pressed", "false");
+      selected = button === selected ? null : button;
+      selected?.classList.add("is-selected");
+      selected?.setAttribute("aria-pressed", "true");
+      return;
+    }
+    const first = selected;
+    selected = null;
+    first.classList.remove("is-selected");
+    first.setAttribute("aria-pressed", "false");
+    attempts++;
+    if (first.dataset.pair === button.dataset.pair) {
+      matched++;
+      for (const item of [first, button]) {
+        item.classList.add("is-matched");
+        item.disabled = true;
+        item.prepend(make("span", "pair-number", String(matched)));
+      }
+      report();
+      if (matched === pairs.length) finish();
+    } else {
+      for (const item of [first, button]) item.classList.add("is-wrong");
+      setTimeout(() => [first, button].forEach((item) => item.classList.remove("is-wrong")), 700);
+      counter.textContent = `${matched} de ${pairs.length} parejas · ${plural(attempts, "intento", "intentos")}`;
+      gameStatus(`«${first.textContent}» y «${button.textContent}» no son pareja. ${counter.textContent}`);
+    }
+  };
+
+  const finish = () => {
+    const perfect = attempts === pairs.length;
+    const result = make("div", "order-result");
+    result.append(
+      make("h2", "", perfect ? "¡Sin un solo error!" : "¡Completaste las parejas!"),
+      make("p", "", `Las uniste en ${plural(attempts, "intento", "intentos")}; lo mínimo son ${pairs.length}.`),
+    );
+    columns.after(result);
+    actions.replaceChildren(makeButton("primary", "Otra ronda", () => showPairsGame(select.value)));
+    actions.querySelector("button").focus({ preventScroll: true });
+    if (perfect) celebrate();
+  };
+
+  report();
+}
+
+// Verdadero o falso: a question with one answer; say whether it is the right one.
+
+const TF_SECONDS = 60;
+const TF_UNTIMED = 20;
+
+// Choice questions with one right answer and no picture.
+function trueFalsePool() {
+  return state.allCards.filter((card) => card.type === "choice" && !isMultiChoice(card) && !card.image);
+}
+
+function showTrueFalseGame(mode = "timed") {
+  clearInterval(state.tfTimer);
+  const board = showGameScreen({
+    eyebrow: "Juego",
+    title: "Verdadero o falso",
+    lead: "Verás una pregunta y una respuesta. Di si esa respuesta es la correcta.",
+  });
+  const modes = make("div", "segmented tf-modes");
+  modes.setAttribute("role", "radiogroup");
+  modes.setAttribute("aria-label", "Modo de juego");
+  for (const [value, text] of [["timed", `Contrarreloj: ${TF_SECONDS} segundos`], ["untimed", `${TF_UNTIMED} preguntas, sin tiempo`]]) {
+    const label = make("label");
+    const input = make("input");
+    input.type = "radio";
+    input.name = "tf-mode";
+    input.value = value;
+    input.checked = value === mode;
+    input.addEventListener("change", () => { mode = value; });
+    label.append(input, make("span", "", text));
+    modes.append(label);
+  }
+  const keys = make("p", "progress-hint tf-keys", "En la computadora también puedes responder con las flechas: ← falso, → verdadero.");
+  const actions = make("div", "practice-actions");
+  actions.append(makeButton("primary big", "Empezar", () => playTrueFalse(mode)));
+  board.append(modes, keys, actions);
+  gameStatus("");
+}
+
+function playTrueFalse(mode) {
+  const board = app.querySelector(".game-board");
+  const timed = mode === "timed";
+  const deck = shuffle(trueFalsePool());
+  const answers = [];
+  const game = { index: 0, ended: false, current: null };
+  state.tf = game;
+
+  const top = make("div", "tf-top");
+  const counter = make("p", "tf-counter");
+  const meter = make("div", "meter");
+  meter.setAttribute("aria-hidden", "true");
+  meter.append(make("div"));
+  top.append(counter, meter);
+  const card = make("section", "tf-card");
+  const question = make("p", "tf-question");
+  const label = make("p", "tf-label", "¿Es esta la respuesta?");
+  const proposal = make("p", "tf-proposal");
+  card.append(question, label, proposal);
+  const buttons = make("div", "tf-buttons");
+  const no = makeButton("tf-false", "", () => answer(false));
+  no.append("Falso ", make("kbd", "", "←"));
+  const yes = makeButton("tf-true", "", () => answer(true));
+  yes.append("Verdadero ", make("kbd", "", "→"));
+  buttons.append(no, yes);
+  const quit = makeButton("link tf-quit", "Terminar ahora", () => end());
+  board.replaceChildren(top, card, buttons, quit);
+
+  const startedAt = Date.now();
+  const deadline = startedAt + TF_SECONDS * 1000;
+  const tick = () => {
+    if (!board.isConnected) {
+      clearInterval(state.tfTimer);
+      return;
+    }
+    const left = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+    counter.textContent = `${left} s · ${plural(answers.filter((item) => item.right).length, "acierto", "aciertos")}`;
+    meter.firstChild.style.width = `${((TF_SECONDS - left) / TF_SECONDS) * 100}%`;
+    if (left === 0) end();
+  };
+
+  const ask = () => {
+    const item = deck[game.index % deck.length];
+    const correct = item.options[item.answer];
+    const isTrue = Math.random() < 0.5;
+    const wrongOptions = item.options.filter((_, index) => index !== item.answer);
+    game.current = { card: item, isTrue, shown: isTrue ? correct : shuffle(wrongOptions)[0] };
+    question.replaceChildren(renderSegments(item.front, { revealCloze: false }));
+    proposal.textContent = game.current.shown;
+    card.classList.remove("is-right", "is-wrong");
+    if (!timed) {
+      counter.textContent = `${game.index + 1} de ${TF_UNTIMED} · ${plural(answers.filter((entry) => entry.right).length, "acierto", "aciertos")}`;
+      meter.firstChild.style.width = `${(game.index / TF_UNTIMED) * 100}%`;
+    }
+  };
+
+  const answer = (saidTrue) => {
+    if (game.ended) return;
+    const { card: item, isTrue, shown } = game.current;
+    const right = saidTrue === isTrue;
+    answers.push({ card: item, shown, isTrue, right });
+    card.classList.add(right ? "is-right" : "is-wrong");
+    gameStatus(right ? "Correcto." : `Incorrecto. La respuesta es: ${correctAnswerText(item)}.`);
+    game.index++;
+    if (!timed && game.index === TF_UNTIMED) {
+      end();
+      return;
+    }
+    // A short flash of the color, then the next one.
+    setTimeout(() => { if (!game.ended) ask(); }, reducedMotion() ? 0 : 250);
+  };
+
+  const end = () => {
+    if (game.ended) return;
+    game.ended = true;
+    clearInterval(state.tfTimer);
+    endTrueFalse(answers, { timed, mode, seconds: Math.round((Date.now() - startedAt) / 1000) });
+  };
+
+  ask();
+  if (timed) {
+    tick();
+    state.tfTimer = setInterval(tick, 250);
+  }
+  yes.focus({ preventScroll: true });
+}
+
+function endTrueFalse(answers, { timed, mode, seconds }) {
+  state.tf = null;
+  const board = app.querySelector(".game-board");
+  const right = answers.filter((item) => item.right).length;
+  const result = make("div", "order-result");
+  result.append(make("h2", "", answers.length
+    ? `Acertaste ${right} de ${answers.length}`
+    : "No respondiste ninguna"));
+  const answered = plural(answers.length, "pregunta", "preguntas");
+  result.append(make("p", "", !timed
+    ? `Respondiste ${answered} sin tiempo.`
+    : seconds < TF_SECONDS
+      ? `Terminaste antes de tiempo: respondiste ${answered} en ${plural(seconds, "segundo", "segundos")}.`
+      : `En ${TF_SECONDS} segundos respondiste ${answered}.`));
+  const actions = make("div", "practice-actions");
+  actions.append(makeButton("primary", "Jugar otra vez", () => playTrueFalse(mode)));
+  const wrong = answers.filter((item) => !item.right);
+  if (wrong.length) {
+    const cards = [...new Set(wrong.map((item) => item.card))];
+    actions.append(makeButton("ghost", "Practicar las que fallaste", () => startExam(cards, {
+      exit: { back: () => showTrueFalseGame(mode), label: "Volver a Verdadero o falso" },
+    })));
+  }
+  actions.append(makeButton("ghost", "Cambiar de modo", () => showTrueFalseGame(mode)));
+  board.replaceChildren(result, actions);
+  if (wrong.length) {
+    board.append(make("h2", "missed-title", `Las que fallaste (${wrong.length})`));
+    const list = make("ol", "missed");
+    list.append(...wrong.map((item) => {
+      const entry = make("li");
+      const text = make("p");
+      text.append(renderSegments(item.card.front, { revealCloze: true }));
+      entry.append(text, make("p", "picked-answer", item.isTrue
+        ? `«${item.shown}» sí era la respuesta, y dijiste falso.`
+        : `«${item.shown}» no era la respuesta, y dijiste verdadero.`));
+      if (!item.isTrue) entry.append(make("p", "missed-answer", `Respuesta correcta: ${correctAnswerText(item.card)}`));
+      if (item.card.explanation) entry.append(renderExplanation(item.card.explanation));
+      return entry;
+    }));
+    board.append(list);
+  } else if (answers.length >= 10) {
+    celebrate();
+  }
+  gameStatus(result.querySelector("h2").textContent);
+  actions.querySelector("button").focus({ preventScroll: true });
+}
+
 // Frequently asked questions ---------------------------------------------------
 
 // The questions live at the end of the home page; old links to the former
@@ -3052,6 +3557,14 @@ window.addEventListener("appinstalled", () => {
 // Startup --------------------------------------------------------------------
 
 document.addEventListener("keydown", (event) => {
+  // Verdadero o falso: the arrows answer.
+  if (state.tf && !state.tf.ended && app.querySelector(".tf-card") && !event.repeat && !document.querySelector("dialog[open]")) {
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      event.preventDefault();
+      app.querySelector(event.key === "ArrowLeft" ? ".tf-false" : ".tf-true")?.click();
+    }
+    return;
+  }
   if (app.querySelector(".study") && !event.repeat && !document.querySelector("dialog[open]")) {
     // A focused button or link already reacts to Space and Enter by itself.
     const onControl = event.target instanceof Element && event.target.closest("a, button");

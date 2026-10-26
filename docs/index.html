@@ -284,6 +284,27 @@
           </div>
         </article>
         <article class="practice-card">
+          <h3>Ordena la historia</h3>
+          <p>Juego: pon cinco hechos de la historia del Ecuador en orden, del más antiguo al más reciente.</p>
+          <div class="practice-actions">
+            <button id="open-order" class="primary" type="button">Jugar</button>
+          </div>
+        </article>
+        <article class="practice-card">
+          <h3>Parejas</h3>
+          <p>Juego: une provincias con sus capitales, obras con sus autores, fechas, presidentes y símbolos.</p>
+          <div class="practice-actions">
+            <button id="open-pairs" class="primary" type="button">Jugar</button>
+          </div>
+        </article>
+        <article class="practice-card">
+          <h3>Verdadero o falso</h3>
+          <p>Juego: di si la respuesta propuesta es la correcta. Contrarreloj de 60 segundos o 20 preguntas sin tiempo.</p>
+          <div class="practice-actions">
+            <button id="open-true-false" class="primary" type="button">Jugar</button>
+          </div>
+        </article>
+        <article class="practice-card">
           <h3>Falladas</h3>
           <p class="missed-summary"></p>
           <div class="practice-actions">
@@ -822,6 +843,22 @@
       <div class="practice-actions map-practice">
         <button class="ghost map-study" type="button">Estudiar las preguntas de provincias</button>
       </div>
+    </section>
+  </template>
+
+  <template id="game-template">
+    <div class="exam-bar">
+      <button class="ghost back-home" type="button">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+        Volver al inicio
+      </button>
+    </div>
+    <section class="learn-page game-page">
+      <p class="eyebrow"></p>
+      <h1></h1>
+      <p class="lead"></p>
+      <p class="game-status visually-hidden" aria-live="polite"></p>
+      <div class="game-board"></div>
     </section>
   </template>
 
