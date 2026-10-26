@@ -557,10 +557,12 @@ function topicsFromHash() {
 // computers copy the link. Returns "copied", "failed" or null after sharing.
 const nativeShare = Boolean(navigator.share) && matchMedia("(pointer: coarse)").matches;
 
-async function shareLink(link, title) {
+// The text goes with the link in the share menu (WhatsApp shows it above
+// the preview); "Copiar enlace" copies only the link.
+async function shareLink(link, title, text) {
   if (nativeShare) {
     try {
-      await navigator.share({ title, url: link });
+      await navigator.share({ title, text, url: link });
     } catch {}
     return null;
   }
@@ -575,7 +577,10 @@ async function shareLink(link, title) {
 async function shareTopics() {
   const status = app.querySelector(".topics-status");
   const link = topicsLink();
-  const result = await shareLink(link, "Temas para practicar");
+  const names = [...state.selected].map((key) => key.split("/")[0]);
+  const categories = state.categories.filter((category) => names.includes(category.id)).map((category) => category.title);
+  const result = await shareLink(link, "Temas para practicar",
+    `Te comparto estos temas para practicar para el examen de nacionalización ecuatoriana: ${joinList(categories)}.`);
   if (result === "copied") status.textContent = "Enlace copiado: quien lo abra verá estos mismos temas marcados.";
   else if (result === "failed") status.textContent = link;
 }
@@ -2449,8 +2454,8 @@ function setupShareResult(entry) {
   button.textContent = nativeShare ? "Compartir resultado" : "Copiar resultado";
   button.addEventListener("click", async () => {
     const text = entry.right >= entry.pass
-      ? `¡Aprobé un simulacro del examen de nacionalización ecuatoriana con ${entry.right} de ${entry.total} respuestas correctas!`
-      : `Hice un simulacro del examen de nacionalización ecuatoriana: ${entry.right} de ${entry.total} respuestas correctas. Se aprueba con ${entry.pass}, así que sigo practicando.`;
+      ? `¡Aprobé un simulacro del examen de nacionalización ecuatoriana con ${entry.right} de ${entry.total} respuestas correctas! Practica gratis en Nacionalízate EC:`
+      : `Hice un simulacro del examen de nacionalización ecuatoriana: ${entry.right} de ${entry.total} respuestas correctas. Se aprueba con ${entry.pass}, así que sigo practicando. Practica tú también en Nacionalízate EC:`;
     const url = location.origin + location.pathname;
     if (nativeShare) {
       try {
@@ -2690,7 +2695,9 @@ function showShared({ cards, title, missing = 0 }) {
   const share = app.querySelector(".share-link-button");
   share.textContent = nativeShare ? "Compartir" : "Copiar enlace";
   share.addEventListener("click", async () => {
-    const result = await shareLink(link, title || "Nacionalízate EC");
+    const result = await shareLink(link, title || "Nacionalízate EC", title
+      ? `Te comparto «${title}», un examen de ${plural(cards.length, "pregunta", "preguntas")} para practicar para el examen de nacionalización ecuatoriana.`
+      : `Te comparto un examen de ${plural(cards.length, "pregunta", "preguntas")} para practicar para el examen de nacionalización ecuatoriana.`);
     if (result === "copied") status.textContent = "Enlace copiado.";
     if (result === "failed") {
       input.select();
@@ -3075,6 +3082,15 @@ document.addEventListener("keydown", (event) => {
 document.getElementById("report-link").href = issueUrl("error.yml");
 document.getElementById("suggest-link").href = issueUrl("incluir-pregunta.yml");
 document.getElementById("repo-link").href = REPO_URL;
+document.getElementById("share-site").addEventListener("click", async (event) => {
+  const button = event.currentTarget;
+  const result = await shareLink(location.origin + location.pathname, "Nacionalízate EC",
+    "Para practicar el examen de nacionalización ecuatoriana: más de 700 preguntas y simulacros, gratis y sin registro.");
+  if (result === "copied") {
+    button.textContent = "Enlace copiado";
+    setTimeout(() => { button.textContent = "Compartir esta página"; }, 2500);
+  }
+});
 setupSettings();
 setupPrint();
 
