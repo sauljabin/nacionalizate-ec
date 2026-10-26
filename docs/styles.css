@@ -1558,6 +1558,11 @@ legend { margin-bottom: .45rem; font-weight: 700; }
   .print-header p { margin: 0; }
   .print-disclaimer { font-size: 9pt; color: #444; }
 
+  .print-lyrics .lyrics { display: block; columns: 2; column-gap: 1.5cm; }
+  .print-lyrics .lyrics section { break-inside: avoid; margin-bottom: .6rem; }
+  .print-lyrics h4 { margin: 0 0 .2rem; font-size: 11pt; }
+  .print-lyrics p { margin: 0; line-height: 1.3; }
+
   #print-area h2 {
     margin: 1.2rem 0 .4rem;
     font-size: 13pt;

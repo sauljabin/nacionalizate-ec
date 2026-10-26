@@ -1984,7 +1984,33 @@ function showSymbols(articleIndex) {
       label: "Volver a los símbolos patrios",
     });
   });
+  app.querySelector(".print-anthem").addEventListener("click", printAnthem);
   if (articleIndex !== undefined) scrollIntoPlace(articles[articleIndex]);
+}
+
+// Prints what is sung and the full lyrics, taken from the symbols page.
+function printAnthem() {
+  const header = document.createElement("header");
+  header.className = "print-header";
+  const title = document.createElement("h1");
+  title.textContent = "Himno Nacional del Ecuador";
+  const meta = document.createElement("p");
+  meta.textContent = "«¡Salve, oh Patria!» · Letra de Juan León Mera, música de Antonio Neumane";
+  const note = document.createElement("p");
+  note.className = "print-disclaimer";
+  note.textContent = "Nacionalízate EC · sauljabin.dev/nacionalizate-ec";
+  header.append(title, meta, note);
+  const [sung, full] = app.querySelectorAll(".symbol .lyrics");
+  const part = (heading, lyrics) => {
+    const section = document.createElement("section");
+    section.className = "print-lyrics";
+    const name = document.createElement("h2");
+    name.textContent = heading;
+    section.append(name, lyrics.cloneNode(true));
+    return section;
+  };
+  printArea.replaceChildren(header, part("Lo que se canta", sung), part("Letra completa: el coro y las seis estrofas", full));
+  window.print();
 }
 
 // Historia subtopics are named "<year> <event>"; the others have no year.
