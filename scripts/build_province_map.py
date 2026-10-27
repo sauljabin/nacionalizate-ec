@@ -132,7 +132,8 @@ def role(element):
         return "abroad"
     if "#0978ab" in style:
         return "coast"
-    if "fill:#fefee9" in style:
+    # The Guayas–El Oro border is a line with a land fill: keep it as a line.
+    if "fill:#fefee9" in style and "stroke:#646464" not in style:
         return "land"
     # Lines: the national border is drawn thicker than the provincial ones.
     return "border border-outer" if "stroke-width:4;" in style else "border"

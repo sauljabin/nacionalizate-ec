@@ -13,7 +13,7 @@
 // Bump VERSION when an image or the audio keeps its file name but changes
 // its content.
 
-const VERSION = "v2";
+const VERSION = "v3";
 const CACHE = `examen-${VERSION}`;
 const SHELL = [
   "./",
