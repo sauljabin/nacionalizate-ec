@@ -14032,9 +14032,9 @@
        "photo": {
         "src": "images/foto-charango.jpg",
         "alt": "Charango",
-        "credit": "Joel Takv",
-        "license": "CC BY-SA 2.5",
-        "url": "https://commons.wikimedia.org/wiki/File:Charango_jt.png"
+        "credit": "Villanueva",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Bolivian_charango_001.jpg"
        }
       },
       {
@@ -15838,7 +15838,14 @@
         "Una danza de la Sierra",
         "Un instrumento musical"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-ayahuasca.jpg",
+        "alt": "Liana de ayahuasca en la selva, con su letrero",
+        "credit": "Anthony Baratier",
+        "license": "CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Ayahuasca_Banisteriopsis_caapi.jpg"
+       }
       },
       {
        "id": "ho10wMdm4PLqFgtPU.f",
@@ -15854,7 +15861,14 @@
         "El maíz morado y el mortiño",
         "La hoja de coca y el cacao"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-ayahuasca.jpg",
+        "alt": "Liana de ayahuasca en la selva, con su letrero",
+        "credit": "Anthony Baratier",
+        "license": "CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Ayahuasca_Banisteriopsis_caapi.jpg"
+       }
       },
       {
        "id": "EfNm4xyaozmvqvOXZ.f",

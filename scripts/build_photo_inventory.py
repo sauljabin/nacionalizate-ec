@@ -91,7 +91,11 @@ def main():
   main {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }}
   article {{ position: relative; background: #fffdf8; border: 1px solid #d9d2c3; border-radius: 12px; padding: 12px; }}
   .number {{ position: absolute; top: 8px; left: 8px; min-width: 32px; padding: 2px 8px; border-radius: 999px; background: #1f2430; color: #fff; font-weight: 700; text-align: center; }}
-  img {{ display: block; width: 100%; height: 220px; object-fit: contain; background: #ece6da; border-radius: 8px; }}
+  img {{ display: block; width: 100%; height: 220px; object-fit: contain; background: #ece6da; border-radius: 8px; cursor: zoom-in; }}
+  dialog {{ max-width: min(96vw, 1200px); max-height: 96vh; padding: 12px; border: 0; border-radius: 12px; background: #fffdf8; }}
+  dialog::backdrop {{ background: rgb(0 0 0 / .75); }}
+  dialog img {{ width: auto; height: auto; max-width: 100%; max-height: calc(96vh - 80px); margin: 0 auto; background: #fff; cursor: zoom-out; }}
+  dialog p {{ margin: 8px 0 0; font-size: 14px; }}
   .file {{ margin: 8px 0 0; font: 12px ui-monospace, monospace; color: #5b6170; }}
   .alt {{ margin: 2px 0 0; font-weight: 600; }}
   .license {{ margin: 2px 0 8px; font-size: 13px; color: #5b6170; }}
@@ -107,6 +111,24 @@ def main():
 <main>
 {boxes}
 </main>
+<dialog id="viewer">
+  <img alt="">
+  <p></p>
+</dialog>
+<script>
+  // Click a photo to see it large; click it again, press Escape or click outside to close.
+  const viewer = document.getElementById("viewer");
+  document.querySelector("main").addEventListener("click", (event) => {{
+    const img = event.target.closest("article img");
+    if (!img) return;
+    const box = img.closest("article");
+    viewer.querySelector("img").src = img.src;
+    viewer.querySelector("img").alt = img.alt;
+    viewer.querySelector("p").textContent = `${{box.id}}. ${{box.querySelector(".alt").textContent}}`;
+    viewer.showModal();
+  }});
+  viewer.addEventListener("click", () => viewer.close());
+</script>
 </body>
 </html>
 """)
