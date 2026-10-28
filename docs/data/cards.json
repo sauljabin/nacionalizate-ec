@@ -11777,7 +11777,14 @@
         "Juan Bautista Aguirre"
        ],
        "answer": 0,
-       "explanation": "Fundó en 1792 el periódico «Primicias de la Cultura de Quito». Maldonado fue geógrafo, Velasco historiador y Aguirre poeta."
+       "explanation": "Fundó en 1792 el periódico «Primicias de la Cultura de Quito». Maldonado fue geógrafo, Velasco historiador y Aguirre poeta.",
+       "photo": {
+        "src": "images/foto-espejo.jpg",
+        "alt": "Eugenio Espejo, retrato de Manuel Salas Alzamora",
+        "credit": "Manuel Salas Alzamora",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Eugenio_Espejo_(por_Manuel_Salas_Alzamora).jpg"
+       }
       },
       {
        "id": "ORI1I9P9AGkUv7ZNb.f",
@@ -11856,7 +11863,14 @@
         "Sobre la independencia de Guayaquil"
        ],
        "answer": 0,
-       "explanation": "La mita era el trabajo forzado de los indígenas."
+       "explanation": "La mita era el trabajo forzado de los indígenas.",
+       "photo": {
+        "src": "images/foto-olmedo.jpg",
+        "alt": "José Joaquín de Olmedo",
+        "credit": "Pintor desconocido",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Jjolemdo.jpg"
+       }
       },
       {
        "id": "fqHXlFTdkmpNGJfNO.f",
@@ -12568,7 +12582,14 @@
         "«La patria ya es de todos»"
        ],
        "answer": 0,
-       "explanation": "«Dios no muere» es la frase que se atribuye a García Moreno al morir."
+       "explanation": "«Dios no muere» es la frase que se atribuye a García Moreno al morir.",
+       "photo": {
+        "src": "images/foto-montalvo.jpg",
+        "alt": "Juan Montalvo",
+        "credit": "Casa de Montalvo",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Jmontalvo.jpg"
+       }
       },
       {
        "id": "oiTXCKUQD5zigMbEg.f",
@@ -12647,7 +12668,14 @@
         "Ensayos de economía"
        ],
        "answer": 0,
-       "explanation": "Empezó como actor y autor de obras de teatro, como «El intruso»."
+       "explanation": "Empezó como actor y autor de obras de teatro, como «El intruso».",
+       "photo": {
+        "src": "images/foto-icaza.jpg",
+        "alt": "Jorge Icaza",
+        "credit": "Autor desconocido",
+        "license": "CC BY 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Jorgeicaza.png"
+       }
       },
       {
        "id": "fnwLpkTgJdazT7HnZ.f",
@@ -12689,7 +12717,14 @@
         "José de la Cuadra"
        ],
        "answer": 0,
-       "explanation": "Aguilera Malta también escribió «Don Goyo»."
+       "explanation": "Aguilera Malta también escribió «Don Goyo».",
+       "photo": {
+        "src": "images/foto-aguilera-malta.jpg",
+        "alt": "Demetrio Aguilera Malta con Velia Márquez",
+        "credit": "Autor desconocido",
+        "license": "CC BY 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Velia_marquez_demetrio_aguilera_malta.jpg"
+       }
       },
       {
        "id": "vCnrdgtsGBLG6JrW8.f",
@@ -13545,7 +13580,14 @@
         "Julio Jaramillo"
        ],
        "answer": 0,
-       "explanation": "Rubira Infante dedicó canciones a casi todas las provincias. Rubén Barba compuso «A mi lindo Ecuador»."
+       "explanation": "Rubira Infante dedicó canciones a casi todas las provincias. Rubén Barba compuso «A mi lindo Ecuador».",
+       "photo": {
+        "src": "images/foto-rubira.jpg",
+        "alt": "Carlos Rubira Infante",
+        "credit": "Ceibos",
+        "license": "CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Carlos_Rubira.jpg"
+       }
       },
       {
        "id": "xB48o9O98XHh8RKhF.f",
@@ -15183,7 +15225,14 @@
         "2014"
        ],
        "answer": 0,
-       "explanation": "Junto con Cracovia, fue la primera ciudad declarada Patrimonio Cultural de la Humanidad."
+       "explanation": "Junto con Cracovia, fue la primera ciudad declarada Patrimonio Cultural de la Humanidad.",
+       "photo": {
+        "src": "images/foto-centro-historico.jpg",
+        "alt": "Centro Histórico de Quito de noche",
+        "credit": "Carlos Costales Terán",
+        "license": "CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Quito_Centro_Hist%C3%B3rico.JPG"
+       }
       },
       {
        "id": "n6gcw9mypMhPyeKax.f",
@@ -15215,7 +15264,14 @@
         "2012"
        ],
        "answer": 0,
-       "explanation": "Fue uno de los primeros sitios de la lista, el mismo año que Quito."
+       "explanation": "Fue uno de los primeros sitios de la lista, el mismo año que Quito.",
+       "photo": {
+        "src": "images/foto-tortuga-gigante.jpg",
+        "alt": "Tortuga gigante de Galápagos",
+        "credit": "Matthew Field",
+        "license": "CC BY-SA 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Galapagos_giant_tortoise_Geochelone_elephantopus.jpg"
+       }
       },
       {
        "id": "yef4FtD4Oc70bg8yY.f",
@@ -15246,7 +15302,14 @@
         "1999",
         "2014"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-sangay.jpg",
+        "alt": "Volcán Sangay",
+        "credit": "Albert Backer",
+        "license": "CC BY-SA 2.5",
+        "url": "https://commons.wikimedia.org/wiki/File:Sangay1.jpg"
+       }
       },
       {
        "id": "CCAkYqGKRM4MIoasV.f",
