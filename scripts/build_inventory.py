@@ -154,9 +154,9 @@ PAGE = """<!doctype html>
     <select id="topic"><option value="">Todos los temas</option></select>
     <select id="img">
       <option value="">Con o sin imagen</option>
-      <option value="any">Con imagen</option>
-      <option value="photo">Con foto de respuesta</option>
-      <option value="image">Pregunta de imagen</option>
+      <option value="any">Con cualquier imagen</option>
+      <option value="photo">Con imagen en la respuesta</option>
+      <option value="image">Oclusión de imagen (parte tapada)</option>
       <option value="none">Sin imagen</option>
     </select>
     <select id="sort">
@@ -231,7 +231,7 @@ function questionHtml(q) {
     ? `<ol class="options">${q.options.map((o) => `<li class="${right.has(o) ? "right" : ""}">${esc(o)}</li>`).join("")}</ol>`
     : `<p class="answer">→ ${esc(q.answer)}</p>`;
   const src = imgOf(q);
-  const caption = q.photo ? `${q.photoNumber}. ${q.photo.alt}` : "Pregunta de imagen";
+  const caption = q.photo ? `${q.photoNumber}. ${q.photo.alt}` : "Oclusión de imagen";
   const picture = src
     ? `<img class="thumb" src="../docs/${esc(src)}" alt="${esc(caption)}" loading="lazy">`
     : `<div class="noimg">Sin imagen</div>`;
