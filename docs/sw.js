@@ -52,14 +52,22 @@ async function questionMedia() {
   return [...files];
 }
 
+// Asks the server whether the file changed instead of trusting the browser's
+// HTTP cache (GitHub Pages keeps files for 10 minutes), so a new version never
+// saves an old copy. It only skips that cache: offline copies still come from
+// the service worker's own cache.
+function fresh(src) {
+  return new Request(src, { cache: "no-cache" });
+}
+
 self.addEventListener("install", (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);
-    await cache.addAll(SHELL);
+    await cache.addAll(SHELL.map(fresh));
     // A file that fails to download must not block the install: it is saved
     // the first time it is shown instead.
     const media = [...PAGE_MEDIA, ...await questionMedia()];
-    await Promise.allSettled(media.map((src) => cache.add(src)));
+    await Promise.allSettled(media.map((src) => cache.add(fresh(src))));
     await self.skipWaiting();
   })());
 });
