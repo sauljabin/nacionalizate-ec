@@ -332,7 +332,14 @@
         "Vicente Rocafuerte"
        ],
        "answer": 0,
-       "explanation": "Eloy Alfaro la oficializó de forma definitiva en 1900."
+       "explanation": "Eloy Alfaro la oficializó de forma definitiva en 1900.",
+       "photo": {
+        "src": "images/foto-garcia-moreno.jpg",
+        "alt": "Gabriel García Moreno",
+        "credit": "Presidencia de la República del Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Gabriel_Garc%C3%ADa_Moreno.jpg"
+       }
       },
       {
        "id": "k65vk6RVo6MmuN505.f",
@@ -442,7 +449,14 @@
         "Juan José Flores"
        ],
        "answer": 0,
-       "explanation": "García Moreno había restablecido el tricolor en 1860; el decreto de 1900, con Alfaro, lo hizo definitivo junto con el escudo."
+       "explanation": "García Moreno había restablecido el tricolor en 1860; el decreto de 1900, con Alfaro, lo hizo definitivo junto con el escudo.",
+       "photo": {
+        "src": "images/foto-alfaro.jpg",
+        "alt": "Eloy Alfaro",
+        "credit": "Autor desconocido",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Eloy_Alfaro2.jpg"
+       }
       },
       {
        "id": "exACNqH0EibHrnINK.f",
@@ -1231,7 +1245,14 @@
         "Juan José Flores"
        ],
        "answer": 0,
-       "explanation": "Se adoptó el 31 de octubre de 1900, el mismo día que la Bandera Nacional."
+       "explanation": "Se adoptó el 31 de octubre de 1900, el mismo día que la Bandera Nacional.",
+       "photo": {
+        "src": "images/foto-alfaro.jpg",
+        "alt": "Eloy Alfaro",
+        "credit": "Autor desconocido",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Eloy_Alfaro2.jpg"
+       }
       },
       {
        "id": "kVl6Gk5u0aZ295Oph.f",
@@ -6429,7 +6450,14 @@
         "Manco Cápac",
         "Huayna Cápac"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-atahualpa.jpg",
+        "alt": "Atahualpa, retrato anónimo del siglo XVII",
+        "credit": "Ranoutofusername",
+        "license": "CC BY 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Atabalipa_Roy_Du_Peru_(s._XVII),_%C3%B3leo_sobre_lienzo._An%C3%B3nimo.jpg"
+       }
       }
      ]
     },
@@ -6544,7 +6572,14 @@
         "Rumiñahui"
        ],
        "answer": 0,
-       "explanation": "Lo ejecutaron los españoles en 1533. Huáscar fue su hermano y rival, y Huayna Cápac, su padre. Después, algunos incas resistieron en Vilcabamba hasta 1572, pero ya sin el imperio."
+       "explanation": "Lo ejecutaron los españoles en 1533. Huáscar fue su hermano y rival, y Huayna Cápac, su padre. Después, algunos incas resistieron en Vilcabamba hasta 1572, pero ya sin el imperio.",
+       "photo": {
+        "src": "images/foto-atahualpa.jpg",
+        "alt": "Atahualpa, retrato anónimo del siglo XVII",
+        "credit": "Ranoutofusername",
+        "license": "CC BY 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Atabalipa_Roy_Du_Peru_(s._XVII),_%C3%B3leo_sobre_lienzo._An%C3%B3nimo.jpg"
+       }
       },
       {
        "id": "eLkCc2xfav1ZSpuHR.f",
@@ -6896,7 +6931,14 @@
         "Antonio José de Sucre"
        ],
        "answer": 0,
-       "explanation": "Eugenio Espejo, precursor de la independencia, había muerto en 1795."
+       "explanation": "Eugenio Espejo, precursor de la independencia, había muerto en 1795.",
+       "photo": {
+        "src": "images/foto-montufar.jpg",
+        "alt": "Juan Pío Montúfar, retrato de Manuel Salas Alzamora",
+        "credit": "Manuel Salas Alzamora",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Juan_P%C3%ADo_de_Mont%C3%BAfar_(por_Manuel_Salas_Alzamora).jpg"
+       }
       }
      ]
     },
@@ -7047,7 +7089,14 @@
         "Abdón Calderón",
         "José de San Martín"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-sucre.jpg",
+        "alt": "Antonio José de Sucre, retrato de Martín Tovar y Tovar",
+        "credit": "Martín Tovar y Tovar",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Martin_Tovar_y_Tovar_12.JPG"
+       }
       },
       {
        "id": "i0U1OR5Xykjiu0ZOd.f",
@@ -7294,7 +7343,14 @@
         "Abdón Calderón"
        ],
        "answer": 0,
-       "explanation": "José de La Mar dirigía el ejército peruano."
+       "explanation": "José de La Mar dirigía el ejército peruano.",
+       "photo": {
+        "src": "images/foto-sucre.jpg",
+        "alt": "Antonio José de Sucre, retrato de Martín Tovar y Tovar",
+        "credit": "Martín Tovar y Tovar",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Martin_Tovar_y_Tovar_12.JPG"
+       }
       },
       {
        "id": "t3Q3zmnSunGCrvmVk.f",
@@ -7393,7 +7449,14 @@
         "José María Urbina"
        ],
        "answer": 0,
-       "explanation": "Fue el primer presidente del Ecuador; la constitución se aprobó en 1830."
+       "explanation": "Fue el primer presidente del Ecuador; la constitución se aprobó en 1830.",
+       "photo": {
+        "src": "images/foto-flores.jpg",
+        "alt": "Juan José Flores",
+        "credit": "Banrepcultural",
+        "license": "CC BY 2.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Fl%C3%B3rez,_Juan_Jos%C3%A9.jpg"
+       }
       }
      ]
     },
@@ -7763,7 +7826,14 @@
         "Juan José Flores",
         "José María Urbina"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-garcia-moreno.jpg",
+        "alt": "Gabriel García Moreno",
+        "credit": "Presidencia de la República del Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Gabriel_Garc%C3%ADa_Moreno.jpg"
+       }
       }
      ]
     },
@@ -8274,7 +8344,14 @@
         "Matilde Hidalgo"
        ],
        "answer": 0,
-       "explanation": "En casa de Manuela Cañizares se reunieron los patriotas la noche del 9 de agosto de 1809."
+       "explanation": "En casa de Manuela Cañizares se reunieron los patriotas la noche del 9 de agosto de 1809.",
+       "photo": {
+        "src": "images/foto-manuela-saenz.jpg",
+        "alt": "Manuela Sáenz, retrato de José María Espinosa",
+        "credit": "José María Espinosa",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Manuela_saenz.jpg"
+       }
       },
       {
        "id": "ViGCpBcuJARHVjsEJ.f",
@@ -9449,7 +9526,14 @@
         "José Joaquín de Olmedo"
        ],
        "answer": 0,
-       "explanation": "Gobernó desde 1830 y era venezolano. Vicente Rocafuerte fue el primer presidente nacido en territorio ecuatoriano."
+       "explanation": "Gobernó desde 1830 y era venezolano. Vicente Rocafuerte fue el primer presidente nacido en territorio ecuatoriano.",
+       "photo": {
+        "src": "images/foto-flores.jpg",
+        "alt": "Juan José Flores",
+        "credit": "Banrepcultural",
+        "license": "CC BY 2.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Fl%C3%B3rez,_Juan_Jos%C3%A9.jpg"
+       }
       },
       {
        "id": "YrlMW57kf06d7NUkW.f",
@@ -9467,7 +9551,14 @@
         "Gabriel García Moreno"
        ],
        "answer": 0,
-       "explanation": "Nació en Guayaquil y gobernó de 1835 a 1839. Su antecesor, Juan José Flores, era venezolano."
+       "explanation": "Nació en Guayaquil y gobernó de 1835 a 1839. Su antecesor, Juan José Flores, era venezolano.",
+       "photo": {
+        "src": "images/foto-rocafuerte.jpg",
+        "alt": "Vicente Rocafuerte",
+        "credit": "Autor desconocido",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Vicente_Rocafuerte2.jpg"
+       }
       },
       {
        "id": "UswoTwrxzwOBS9ATB.f",
@@ -9485,7 +9576,14 @@
         "Vicente Rocafuerte, en 1835"
        ],
        "answer": 0,
-       "explanation": "La Constitución de 1843, de Flores, se conoce como la «Carta de Esclavitud»."
+       "explanation": "La Constitución de 1843, de Flores, se conoce como la «Carta de Esclavitud».",
+       "photo": {
+        "src": "images/foto-garcia-moreno.jpg",
+        "alt": "Gabriel García Moreno",
+        "credit": "Presidencia de la República del Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Gabriel_Garc%C3%ADa_Moreno.jpg"
+       }
       },
       {
        "id": "Q61PFBv8FLNfBo4aB.f",
@@ -9502,7 +9600,14 @@
         "Juan José Flores"
        ],
        "answer": 0,
-       "explanation": "Eloy Alfaro lo terminó."
+       "explanation": "Eloy Alfaro lo terminó.",
+       "photo": {
+        "src": "images/foto-garcia-moreno.jpg",
+        "alt": "Gabriel García Moreno",
+        "credit": "Presidencia de la República del Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Gabriel_Garc%C3%ADa_Moreno.jpg"
+       }
       },
       {
        "id": "OZoMTwe8BYOtdg5N3.f",
@@ -9520,7 +9625,14 @@
         "Juan José Flores, en 1845"
        ],
        "answer": 0,
-       "explanation": "Eloy Alfaro fue asesinado en Quito tras ser apresado, y Jaime Roldós murió en un accidente de avión."
+       "explanation": "Eloy Alfaro fue asesinado en Quito tras ser apresado, y Jaime Roldós murió en un accidente de avión.",
+       "photo": {
+        "src": "images/foto-garcia-moreno.jpg",
+        "alt": "Gabriel García Moreno",
+        "credit": "Presidencia de la República del Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Gabriel_Garc%C3%ADa_Moreno.jpg"
+       }
       },
       {
        "id": "sKLytz6rD4rlVKcbx.f",
@@ -9555,7 +9667,14 @@
         "José María Velasco Ibarra",
         "Juan José Flores"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-alfaro.jpg",
+        "alt": "Eloy Alfaro",
+        "credit": "Autor desconocido",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Eloy_Alfaro2.jpg"
+       }
       },
       {
        "id": "ohMRtjh1UW9QpOtkt.f",
@@ -9573,7 +9692,14 @@
         "Eloy Alfaro"
        ],
        "answer": 0,
-       "explanation": "Fue presidente cinco veces entre 1934 y 1972, pero solo terminó uno de esos mandatos."
+       "explanation": "Fue presidente cinco veces entre 1934 y 1972, pero solo terminó uno de esos mandatos.",
+       "photo": {
+        "src": "images/foto-velasco-ibarra.jpg",
+        "alt": "José María Velasco Ibarra en 1973",
+        "credit": "ANEFO, Archivo Nacional de los Países Bajos",
+        "license": "CC BY-SA 3.0 nl",
+        "url": "https://commons.wikimedia.org/wiki/File:Jos%C3%A9_Mar%C3%ADa_Velasco_Ibarra.jpg"
+       }
       },
       {
        "id": "QSbWodVWZhvPchvXd.f",
