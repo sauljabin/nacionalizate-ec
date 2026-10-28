@@ -22,6 +22,12 @@ CARDS = ROOT / "docs" / "data" / "cards.json"
 COAT_SVG = ROOT / "assets" / "coat-of-arms-of-ecuador.svg"
 FLAG_SVG = ROOT / "assets" / "flag-of-ecuador.svg"
 
+# Wikimedia Commons files of the official SVGs, shown under each image.
+COAT_SOURCE = {"title": "Coat of arms of Ecuador", "license": "Public domain",
+               "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"}
+FLAG_SOURCE = {"title": "Flag of Ecuador", "license": "Public domain",
+               "url": "https://commons.wikimedia.org/wiki/File:Flag_of_Ecuador.svg"}
+
 # Card id, file key, name, point on the 800x960 coat of arms, description.
 COAT_PARTS = [
     ("hYB9kJClaxcQ32KId.9900036244614224", "condor", "Cóndor", (375, 125),
@@ -84,7 +90,7 @@ def escape(text):
     return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def build(parts, prefix, artwork, place, size, label_x, title_size, text_size, line, wrap):
+def build(parts, prefix, artwork, source, place, size, label_x, title_size, text_size, line, wrap):
     """Write one SVG per part and return the card image data by card id."""
     width, height = size
     drawing = nested_svg(artwork, *place)
@@ -119,15 +125,16 @@ def build(parts, prefix, artwork, place, size, label_x, title_size, text_size, l
             "blocks": [{"x": (label_x - 6) / width, "y": (top - 6) / height,
                         "width": (width - label_x - 4) / width,
                         "height": (bottom - top + 10) / height, "active": True}],
+            **source,
         }
     return images
 
 
 def main():
     images = {}
-    images.update(build(COAT_PARTS, "escudo", COAT_SVG, (20, 24, 560, 672), (960, 720),
+    images.update(build(COAT_PARTS, "escudo", COAT_SVG, COAT_SOURCE, (20, 24, 560, 672), (960, 720),
                         label_x=600, title_size=28, text_size=22, line=28, wrap=30))
-    images.update(build(FLAG_PARTS, "bandera", FLAG_SVG, (20, 20, 520, 346.67), (960, 480),
+    images.update(build(FLAG_PARTS, "bandera", FLAG_SVG, FLAG_SOURCE, (20, 20, 520, 346.67), (960, 480),
                         label_x=566, title_size=30, text_size=26, line=32, wrap=28))
     data = json.loads(CARDS.read_text())
     for category in data["categories"]:

@@ -344,7 +344,20 @@ function renderImage(image, { revealed }) {
     }
     figure.append(mask);
   }
-  return figure;
+  if (!image.url) return figure;
+  // The credit goes outside the figure: the masks are placed in % of it.
+  const wrap = document.createDocumentFragment();
+  const credit = document.createElement("p");
+  credit.className = "image-credit";
+  const source = document.createElement("a");
+  source.href = image.url;
+  source.target = "_blank";
+  source.rel = "noopener";
+  source.textContent = "Wikimedia Commons";
+  const author = image.credit ? `, de ${image.credit}` : "";
+  credit.append(`Imagen basada en «${image.title}»${author} · ${image.license} · `, source);
+  wrap.append(figure, credit);
+  return wrap;
 }
 
 function renderPhoto(photo) {
