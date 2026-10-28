@@ -24,6 +24,7 @@ Mantén siempre estos avisos en el README y en el pie de la página: el proyecto
 | `docs/index.html`, `app.js`, `styles.css` | La página. JavaScript sin frameworks ni compilación. |
 | `docs/sw.js`, `docs/manifest.webmanifest`, `docs/icons/` | Uso sin conexión (service worker) e instalación como app. |
 | `scripts/build_part_images.py`, `assets/` | Generador de las imágenes de las partes del escudo y de la bandera, y los SVG oficiales que usa. |
+| `scripts/build_photo_inventory.py` | Inventario numerado de las fotos de las respuestas, con licencia y preguntas, en `scripts/photo-inventory.html`. Solo para desarrollo: git lo ignora y la app no lo enlaza. |
 | `scripts/build_province_map.py` | Generador del mapa de «Mapa de provincias» (`docs/images/mapa-provincias.svg`) a partir de `assets/provinces-of-ecuador.svg`. |
 | `docs/audio/` | El himno instrumental de «Símbolos patrios». |
 | `docs/data/cards.json` | Todas las preguntas. Es la fuente de verdad: edítalo directamente. |
