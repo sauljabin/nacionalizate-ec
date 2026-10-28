@@ -4,22 +4,25 @@
 //
 // - Page files and data/cards.json: network first, so updates arrive as soon
 //   as there is a connection; the cached copy is used offline.
-// - Images and the anthem audio: cache first. Everything is saved on
-//   install (about 31 MB): question images, answer photos, the flag, the coat
+// - Images, fonts and the anthem audio: cache first. Everything is saved on
+//   install (about 33 MB): question images, answer photos, the flag, the coat
 //   of arms, the province map and the anthem.
-// - Google Fonts: served from cache when available and refreshed in the
-//   background.
+// - Nothing comes from another server: the fonts are in fonts/.
 //
-// Bump VERSION when an image or the audio keeps its file name but changes
-// its content.
+// Bump VERSION when an image, a font or the audio keeps its file name but
+// changes its content.
 
-const VERSION = "v5";
+const VERSION = "v6";
 const CACHE = `examen-${VERSION}`;
 const SHELL = [
   "./",
   "index.html",
   "app.js",
   "styles.css",
+  "fonts/atkinson-hyperlegible-400.woff2",
+  "fonts/atkinson-hyperlegible-400-italic.woff2",
+  "fonts/atkinson-hyperlegible-700.woff2",
+  "fonts/fraunces.woff2",
   "data/cards.json",
   "manifest.webmanifest",
   "icons/favicon-32.png",
@@ -137,26 +140,15 @@ async function cachedMedia(request) {
   });
 }
 
-async function staleWhileRevalidate(request) {
-  const cache = await caches.open(CACHE);
-  const cached = await cache.match(request);
-  const refresh = fetch(request).then((response) => {
-    if (response.ok || response.type === "opaque") cache.put(request, response.clone());
-    return response;
-  }).catch(() => cached);
-  return cached || refresh;
-}
-
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   if (request.method !== "GET") return;
   const url = new URL(request.url);
-  if (url.hostname === "fonts.googleapis.com" || url.hostname === "fonts.gstatic.com") {
-    event.respondWith(staleWhileRevalidate(request));
-  } else if (url.origin === self.location.origin && url.pathname.includes("/audio/")) {
+  if (url.origin === self.location.origin && url.pathname.includes("/audio/")) {
     event.respondWith(cachedMedia(request));
   } else if (url.origin === self.location.origin) {
-    const isImage = request.destination === "image" || url.pathname.includes("/images/");
-    event.respondWith(isImage ? cacheFirst(request) : networkFirst(request));
+    const isMedia = request.destination === "image" || request.destination === "font"
+      || url.pathname.includes("/images/") || url.pathname.includes("/fonts/");
+    event.respondWith(isMedia ? cacheFirst(request) : networkFirst(request));
   }
 });

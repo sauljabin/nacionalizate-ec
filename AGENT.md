@@ -23,6 +23,7 @@ Mantén siempre estos avisos en el README y en el pie de la página: el proyecto
 |---|---|
 | `docs/index.html`, `app.js`, `styles.css` | La página. JavaScript sin frameworks ni compilación. |
 | `docs/sw.js`, `docs/manifest.webmanifest`, `docs/icons/` | Uso sin conexión (service worker) e instalación como app. |
+| `docs/fonts/` | Las fuentes (Atkinson Hyperlegible y Fraunces, solo el subconjunto latino) y sus licencias OFL. La app no hace pedidos a otros servidores: no agregues fuentes, scripts ni imágenes externas. |
 | `scripts/build_part_images.py`, `assets/` | Generador de las imágenes de las partes del escudo y de la bandera, y los SVG oficiales que usa. |
 | `scripts/build_inventory.py` | Vista de solo lectura de `cards.json` en `scripts/inventory.html`: todas las preguntas con su popularidad, exámenes e imagen, con filtros por texto, tema, imagen y popularidad, y las fotos agrupadas y numeradas con su licencia. Solo para desarrollo: git lo ignora y la app no lo enlaza. |
 | `scripts/build_capital_maps.py` | Generador de los mapas de *Capitales en el mapa* (`docs/images/capital-*.svg`) a partir de `mapa-provincias.svg`. |
