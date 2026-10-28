@@ -755,6 +755,13 @@ function setupPractice() {
   app.querySelector("#start-marked").addEventListener("click", () => {
     startExam(shuffle(cardsFromIds(progress.marked)));
   });
+  const home = { back: showHome, label: "Volver al inicio" };
+  app.querySelector("#view-missed").addEventListener("click", () => {
+    startStudy(cardsFromIds(progress.missed), { exit: home });
+  });
+  app.querySelector("#view-marked").addEventListener("click", () => {
+    startStudy(cardsFromIds(progress.marked), { exit: home });
+  });
   app.querySelector("#clear-missed").addEventListener("click", async () => {
     if (await askConfirm({
       title: "¿Vaciar las falladas?",
@@ -855,6 +862,8 @@ function updatePractice() {
     : "Durante un examen o en el buscador, toca «Marcar» para guardar una pregunta aquí.";
   app.querySelector("#start-missed").disabled = !missed;
   app.querySelector("#start-marked").disabled = !marked;
+  app.querySelector("#view-missed").hidden = !missed;
+  app.querySelector("#view-marked").hidden = !marked;
   app.querySelector("#clear-missed").hidden = !missed;
   app.querySelector("#clear-marked").hidden = !marked;
   app.querySelector("#open-builder").textContent = draft ? `Seguir creando (${draft})` : "Crear examen";
