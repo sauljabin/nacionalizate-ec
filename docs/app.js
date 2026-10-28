@@ -756,10 +756,10 @@ function setupPractice() {
     startExam(shuffle(cardsFromIds(progress.marked)));
   });
   const home = { back: showHome, label: "Volver al inicio" };
-  app.querySelector("#view-missed").addEventListener("click", () => {
+  app.querySelector("#study-missed").addEventListener("click", () => {
     startStudy(cardsFromIds(progress.missed), { exit: home });
   });
-  app.querySelector("#view-marked").addEventListener("click", () => {
+  app.querySelector("#study-marked").addEventListener("click", () => {
     startStudy(cardsFromIds(progress.marked), { exit: home });
   });
   app.querySelector("#clear-missed").addEventListener("click", async () => {
@@ -862,8 +862,8 @@ function updatePractice() {
     : "Durante un examen o en el buscador, toca «Marcar» para guardar una pregunta aquí.";
   app.querySelector("#start-missed").disabled = !missed;
   app.querySelector("#start-marked").disabled = !marked;
-  app.querySelector("#view-missed").hidden = !missed;
-  app.querySelector("#view-marked").hidden = !marked;
+  app.querySelector("#study-missed").hidden = !missed;
+  app.querySelector("#study-marked").hidden = !marked;
   app.querySelector("#clear-missed").hidden = !missed;
   app.querySelector("#clear-marked").hidden = !marked;
   app.querySelector("#open-builder").textContent = draft ? `Seguir creando (${draft})` : "Crear examen";
@@ -3118,9 +3118,11 @@ function showShared({ cards, title, missing = 0 }) {
   const exit = { back: () => showShared({ cards, title }), label: "Volver al examen" };
   const start = app.querySelector(".shared-go");
   start.disabled = !cards.length;
-  start.addEventListener("click", () => {
-    startExam(app.querySelector("#shared-shuffle").checked ? shuffle(cards) : cards, { exit });
-  });
+  const ordered = () => app.querySelector("#shared-shuffle").checked ? shuffle(cards) : cards;
+  start.addEventListener("click", () => startExam(ordered(), { exit }));
+  const study = app.querySelector(".shared-study");
+  study.disabled = !cards.length;
+  study.addEventListener("click", () => startStudy(ordered(), { exit }));
 
   const input = app.querySelector(".share-link");
   const status = app.querySelector(".share-status");

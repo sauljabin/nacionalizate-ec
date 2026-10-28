@@ -923,7 +923,15 @@ select {
   border-radius: 0 8px 8px 0;
   background: var(--wrong-soft);
 }
-.shared-start { display: grid; gap: .75rem; max-width: 26rem; margin: 1.5rem 0 2rem; }
+/* The two start buttons sit side by side and stack when they don't fit. */
+.shared-start {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: .75rem;
+  max-width: 36rem;
+  margin: 1.5rem 0 2rem;
+}
+.shared-start .check { grid-column: 1 / -1; }
 .share-box {
   padding: 1rem 1.2rem 1.2rem;
   border: 2px solid var(--line-strong);
