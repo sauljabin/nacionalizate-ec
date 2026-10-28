@@ -2,4 +2,4 @@ __pycache__/
 .DS_Store
 .claude/
 backup/
-scripts/photo-inventory.html
+scripts/inventory.html

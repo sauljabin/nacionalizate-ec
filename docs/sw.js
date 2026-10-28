@@ -5,7 +5,7 @@
 // - Page files and data/cards.json: network first, so updates arrive as soon
 //   as there is a connection; the cached copy is used offline.
 // - Images and the anthem audio: cache first. Everything is saved on
-//   install (about 23 MB): question images, answer photos, the flag, the coat
+//   install (about 31 MB): question images, answer photos, the flag, the coat
 //   of arms, the province map and the anthem.
 // - Google Fonts: served from cache when available and refreshed in the
 //   background.

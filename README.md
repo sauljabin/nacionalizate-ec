@@ -83,7 +83,7 @@ Para obtener un PDF, elige «Guardar como PDF» en el diálogo de impresión del
 
 ### Usar sin conexión e instalar en el teléfono
 
-En la primera visita con internet, la página descarga todo lo que necesita (unos 23 MB, una sola vez): la página, las preguntas, las imágenes, las fotos de las respuestas, el mapa y el audio del himno. Después funciona sin conexión. Cuando vuelve la conexión, se descargan solas las preguntas actualizadas.
+En la primera visita con internet, la página descarga todo lo que necesita (unos 31 MB, una sola vez): la página, las preguntas, las imágenes, las fotos de las respuestas, el mapa y el audio del himno. Después funciona sin conexión. Cuando vuelve la conexión, se descargan solas las preguntas actualizadas.
 
 También se puede instalar como una app. En el inicio aparece un botón **Instalar app** (en Android y en Chrome o Edge de computadora) o, en el iPhone, las instrucciones para hacerlo; también se puede hacer a mano:
 
