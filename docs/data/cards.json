@@ -2642,7 +2642,8 @@
         "Manabí",
         "Santa Elena"
        ],
-       "answer": 0
+       "answer": 0,
+       "explanation": "Está a orillas del río Daule y es tierra montubia: cada 12 de octubre celebra un rodeo montubio. Su principal cultivo es el arroz."
       },
       {
        "id": "MyfhqGbmXaGbVOmGs.f",
@@ -2659,7 +2660,8 @@
         "Azuay",
         "Guayas"
        ],
-       "answer": 0
+       "answer": 0,
+       "explanation": "Es una ciudad minera de oro desde la Colonia, llamada la «Sultana de El Oro». Es Patrimonio Cultural del Ecuador desde 1990."
       },
       {
        "id": "chimborazo-cantones",
@@ -4484,7 +4486,8 @@
         "Nueva Loja",
         "Guaranda"
        ],
-       "answer": 0
+       "answer": 0,
+       "explanation": "Tiene el mercado artesanal indígena más grande de Sudamérica, en la Plaza de los Ponchos."
       },
       {
        "id": "IO3RnxHgilJJ7fGO0.f",
@@ -4721,6 +4724,7 @@
         "Manabí"
        ],
        "answer": 0,
+       "explanation": "Allí vivían los punáes, que en 1531 enfrentaron a Francisco Pizarro en la batalla de Puná.",
        "photo": {
         "src": "images/foto-puna.jpg",
         "alt": "Muelle en la Isla Puná",
@@ -4777,6 +4781,7 @@
         "Pedernales"
        ],
        "answer": 0,
+       "explanation": "Entre junio y octubre llegan las ballenas jorobadas a aparearse cerca de la isla Salango.",
        "photo": {
         "src": "images/foto-ballena-jorobada.jpg",
         "alt": "Ballena jorobada frente a la costa del Ecuador",
@@ -4806,7 +4811,8 @@
         "Jipijapa",
         "Montecristi"
        ],
-       "answer": 0
+       "answer": 0,
+       "explanation": "Es una parroquia de pescadores con un museo arqueológico de las culturas que vivieron allí, desde la Valdivia hasta la Manteña. Frente a ella está la isla Salango."
       },
       {
        "id": "OgqYpeYKj5BdBev0o.f",
@@ -4823,7 +4829,8 @@
         "Santa Elena",
         "Guayas"
        ],
-       "answer": 0
+       "answer": 0,
+       "explanation": "Son playas del norte de la costa. Cerca de Mompiche está la Playa Negra, de arena con hierro y titanio."
       },
       {
        "id": "KmPu0bq7Qm3T2Fp0b.f",
@@ -4870,7 +4877,8 @@
         "Esmeraldas",
         "Guayas"
        ],
-       "answer": 0
+       "answer": 0,
+       "explanation": "Manabí es la provincia más extensa de la Costa."
       },
       {
        "id": "69c8XlaZCX7GDXG30.f",
@@ -4887,7 +4895,8 @@
         "Esmeraldas",
         "El Oro"
        ],
-       "answer": 0
+       "answer": 0,
+       "explanation": "Salinas es el balneario más importante del país; Ayangue es conocida como la «piscina del Pacífico» por sus olas suaves, y Montañita atrae a surfistas."
       },
       {
        "id": "9fih3AShGC1bYfxvQ.f",
@@ -4912,6 +4921,7 @@
         "En Atacames, provincia de Esmeraldas"
        ],
        "answer": 0,
+       "explanation": "Está en la puntilla de Santa Elena, el extremo occidental del Ecuador continental. Se llama así porque las olas que chocan con las rocas parecen chocolate hirviendo.",
        "photo": {
         "src": "images/foto-chocolatera.jpg",
         "alt": "Faro de La Chocolatera, en Salinas",
@@ -14796,6 +14806,7 @@
         "Latacunga, en Cotopaxi"
        ],
        "answer": 0,
+       "explanation": "Allí nació Eloy Alfaro, y allí, en Ciudad Alfaro, se reunió la Asamblea Constituyente que redactó la Constitución de 2008.",
        "photo": {
         "src": "images/foto-sombrero-toquilla.jpg",
         "alt": "Sombreros de paja toquilla en distintas etapas de su elaboración, en Montecristi",
@@ -14865,7 +14876,8 @@
         "Montecristi, en Manabí",
         "Salasaca, en Tungurahua"
        ],
-       "answer": 0
+       "answer": 0,
+       "explanation": "Es una parroquia del cantón Sígsig. Montecristi es famoso por el sombrero de paja toquilla, y Otavalo, por sus tejidos."
       },
       {
        "id": "lnuDEoxhgWc3SU0qB.f",
