@@ -2384,9 +2384,11 @@ function answerMapGame(id) {
   const panel = app.querySelector(".map-panel");
   const feedback = document.createElement("p");
   feedback.className = `feedback ${right ? "is-right" : "is-wrong"}`;
+  // "en la Sierra", "en la región Insular".
+  const where = target.region === "Insular" ? "la región Insular" : `la ${target.region}`;
   feedback.textContent = right
-    ? `¡Correcto! Su capital es ${target.capital}.`
-    : `Esa es ${provinceById(id).name}. ${target.name} está marcada en el mapa; su capital es ${target.capital}.`;
+    ? `¡Correcto! Su capital es ${target.capital} y está en ${where}.`
+    : `Esa es ${provinceById(id).name}. ${target.name} está marcada en el mapa; su capital es ${target.capital} y está en ${where}.`;
   const next = document.createElement("button");
   next.type = "button";
   next.className = "primary";
