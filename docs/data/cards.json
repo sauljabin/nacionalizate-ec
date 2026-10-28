@@ -6689,7 +6689,14 @@
         "Cañari"
        ],
        "answer": 0,
-       "explanation": "Las Vegas es anterior pero no hacía cerámica; la Tolita y los cañaris son posteriores."
+       "explanation": "Las Vegas es anterior pero no hacía cerámica; la Tolita y los cañaris son posteriores.",
+       "photo": {
+        "src": "images/foto-venus-valdivia.jpg",
+        "alt": "Figurilla femenina de la cultura Valdivia, conocida como Venus de Valdivia",
+        "credit": "Brooklyn Museum",
+        "license": "CC BY",
+        "url": "https://commons.wikimedia.org/wiki/File:Valdivia_Female_Figurine_2600-1500_BCE_Brooklyn_Museum.jpg"
+       }
       },
       {
        "id": "culturas-costa",
@@ -6743,7 +6750,14 @@
         "Los puruhaes"
        ],
        "answer": 0,
-       "explanation": "La resistencia terminó con la matanza de Yahuarcocha, la «laguna de sangre», en Imbabura."
+       "explanation": "La resistencia terminó con la matanza de Yahuarcocha, la «laguna de sangre», en Imbabura.",
+       "photo": {
+        "src": "images/foto-yahuarcocha.jpg",
+        "alt": "Laguna de Yahuarcocha, Imbabura",
+        "credit": "Sylvain2803",
+        "license": "CC BY-SA 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Yahuarcocha2.JPG"
+       }
       },
       {
        "id": "inti",
@@ -6761,7 +6775,14 @@
         "Mama Cocha, la madre del mar"
        ],
        "answer": 0,
-       "explanation": "Los incas respetaban los cultos de cada pueblo, pero exigían el culto al Sol, que representaba el poder del imperio."
+       "explanation": "Los incas respetaban los cultos de cada pueblo, pero exigían el culto al Sol, que representaba el poder del imperio.",
+       "photo": {
+        "src": "images/foto-ingapirca.jpg",
+        "alt": "Complejo arqueológico de Ingapirca, Cañar",
+        "credit": "Delphine Ménard",
+        "license": "CC BY-SA 2.0 fr",
+        "url": "https://commons.wikimedia.org/wiki/File:Ecuador_ingapirca_inca_ruins.jpg"
+       }
       },
       {
        "id": "VASOWpvC796oYTLIZ.f",
@@ -6779,7 +6800,15 @@
         "En el siglo XVIII"
        ],
        "answer": 0,
-       "explanation": "La conquista española llegó en el siglo XVI."
+       "explanation": "La conquista española llegó en el siglo XVI.",
+       "photo": {
+        "src": "images/foto-tahuantinsuyo.jpg",
+        "alt": "Mapa de la expansión del Imperio inca, el Tahuantinsuyo, de 1438 a 1533",
+        "title": "Inca-expansion-map",
+        "credit": "Norki156",
+        "license": "CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Inca-expansion-map.png"
+       }
       },
       {
        "id": "pJoTuvoa3PGlvXQJS.f",
@@ -6814,7 +6843,14 @@
         "Los templos de piedra"
        ],
        "answer": 0,
-       "explanation": "Es una de las culturas alfareras más antiguas de América."
+       "explanation": "Es una de las culturas alfareras más antiguas de América.",
+       "photo": {
+        "src": "images/foto-venus-valdivia.jpg",
+        "alt": "Figurilla femenina de la cultura Valdivia, conocida como Venus de Valdivia",
+        "credit": "Brooklyn Museum",
+        "license": "CC BY",
+        "url": "https://commons.wikimedia.org/wiki/File:Valdivia_Female_Figurine_2600-1500_BCE_Brooklyn_Museum.jpg"
+       }
       },
       {
        "id": "cAOpixzgGXNvcO2cG.f",
@@ -6831,7 +6867,15 @@
         "A la Sierra sur",
         "A Quito"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-tahuantinsuyo.jpg",
+        "alt": "Mapa de la expansión del Imperio inca, el Tahuantinsuyo, de 1438 a 1533",
+        "title": "Inca-expansion-map",
+        "credit": "Norki156",
+        "license": "CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Inca-expansion-map.png"
+       }
       },
       {
        "id": "qmI5z3SfLcetPxcvb.f",
@@ -6864,7 +6908,15 @@
         "El templo del sol del Cusco",
         "El sistema de caminos de los incas"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-tahuantinsuyo.jpg",
+        "alt": "Mapa de la expansión del Imperio inca, el Tahuantinsuyo, de 1438 a 1533",
+        "title": "Inca-expansion-map",
+        "credit": "Norki156",
+        "license": "CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Inca-expansion-map.png"
+       }
       },
       {
        "id": "mooTBooLJxhFHBvp8.f",
