@@ -4697,7 +4697,14 @@
         "Isla San Cristóbal"
        ],
        "answer": 0,
-       "explanation": "La isla Santay también está frente a Guayaquil, pero es mucho más pequeña."
+       "explanation": "La isla Santay también está frente a Guayaquil, pero es mucho más pequeña.",
+       "photo": {
+        "src": "images/foto-puna.jpg",
+        "alt": "Muelle en la Isla Puná",
+        "credit": "Pesca Deportiva Ecuador",
+        "license": "CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Pun%C3%A1.jpg"
+       }
       },
       {
        "id": "haUA3gnuq8yjqcjEd.f",
@@ -4713,7 +4720,14 @@
         "Santa Elena",
         "Manabí"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-puna.jpg",
+        "alt": "Muelle en la Isla Puná",
+        "credit": "Pesca Deportiva Ecuador",
+        "license": "CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Pun%C3%A1.jpg"
+       }
       },
       {
        "id": "WxpPa3GNZyEb2DXYc.f",
@@ -4738,7 +4752,14 @@
         "Esmeraldas"
        ],
        "answer": 0,
-       "explanation": "Está en el golfo de Guayaquil."
+       "explanation": "Está en el golfo de Guayaquil.",
+       "photo": {
+        "src": "images/foto-jambeli.jpg",
+        "alt": "Manglares del Archipiélago de Jambelí vistos desde el aire",
+        "credit": "WMrapids",
+        "license": "CC0",
+        "url": "https://commons.wikimedia.org/wiki/File:Archipi%C3%A9lago_de_Jambel%C3%AD.jpg"
+       }
       },
       {
        "id": "wjIXQ3cEwFm4L8MeU.f",
@@ -4755,7 +4776,14 @@
         "Bahía de Caráquez",
         "Pedernales"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-ballena-jorobada.jpg",
+        "alt": "Ballena jorobada frente a la costa del Ecuador",
+        "credit": "Azurfrog",
+        "license": "CC BY-SA 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Humpback_whale_Ecuador.jpg"
+       }
       },
       {
        "id": "zPpsG3qC6xIRlMwAI.f",
@@ -4819,7 +4847,14 @@
         "El Oro"
        ],
        "answer": 0,
-       "explanation": "Está dentro del Parque Nacional Machalilla."
+       "explanation": "Está dentro del Parque Nacional Machalilla.",
+       "photo": {
+        "src": "images/foto-los-frailes.jpg",
+        "alt": "Playa Los Frailes, en el Parque Nacional Machalilla",
+        "credit": "AnitaAD",
+        "license": "CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Playa_Los_Frailes.jpg"
+       }
       },
       {
        "id": "iKOBeGwiDOUZDoBQ0.f",
@@ -4876,7 +4911,14 @@
         "En Manta, provincia de Manabí",
         "En Atacames, provincia de Esmeraldas"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-chocolatera.jpg",
+        "alt": "Faro de La Chocolatera, en Salinas",
+        "credit": "Diego Tirira",
+        "license": "CC BY-SA 2.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Y_La_Chocolatera_0908_%281%29_%2817123441468%29.jpg"
+       }
       },
       {
        "id": "dSDaZXGFPYe8Mdd8J.f",
@@ -5969,7 +6011,14 @@
         "El Jubones y el Catamayo"
        ],
        "answer": 0,
-       "explanation": "El Guayas, el Esmeraldas y el Jubones desembocan en el océano Pacífico."
+       "explanation": "El Guayas, el Esmeraldas y el Jubones desembocan en el océano Pacífico.",
+       "photo": {
+        "src": "images/foto-rio-napo.jpg",
+        "alt": "Río Napo cerca de Tena",
+        "credit": "David C. S.",
+        "license": "CC BY-SA 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:R%C3%ADo_Napo%2C_Selina_Amazon_Lodge_-_Tena.jpg"
+       }
       },
       {
        "id": "Mn4ClQrcpbQHMQv7L.f",
@@ -5990,7 +6039,14 @@
         0,
         1
        ],
-       "explanation": "El Napo y el Pastaza son ríos amazónicos que desembocan en el Amazonas."
+       "explanation": "El Napo y el Pastaza son ríos amazónicos que desembocan en el Amazonas.",
+       "photo": {
+        "src": "images/foto-rio-guayas.jpg",
+        "alt": "Río Guayas desde el cerro Santa Ana, en Guayaquil",
+        "credit": "Marc Figueras",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Guayas_from_Santa_Ana.JPG"
+       }
       },
       {
        "id": "iI5PhIg1CUj2SKyRW.f",
@@ -6022,7 +6078,14 @@
         "El río Pastaza",
         "El río Putumayo"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-rio-guayas.jpg",
+        "alt": "Río Guayas desde el cerro Santa Ana, en Guayaquil",
+        "credit": "Marc Figueras",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Guayas_from_Santa_Ana.JPG"
+       }
       },
       {
        "id": "bMfaBVRrZXtPNpjbQ.f",
@@ -6038,7 +6101,14 @@
         "El Esmeraldas",
         "El Pastaza"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-rio-napo.jpg",
+        "alt": "Río Napo cerca de Tena",
+        "credit": "David C. S.",
+        "license": "CC BY-SA 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:R%C3%ADo_Napo%2C_Selina_Amazon_Lodge_-_Tena.jpg"
+       }
       },
       {
        "id": "kzkDzyBSiSJD2z2B4.f",
@@ -6061,7 +6131,14 @@
         "Quito",
         "Riobamba"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-tomebamba.jpg",
+        "alt": "Río Tomebamba en Cuenca",
+        "credit": "Martín Vasco",
+        "license": "CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:R%C3%ADo_Tomebamba_desde_el_Paseo_3_de_Noviembre%2C_Cuenca.jpg"
+       }
       },
       {
        "id": "MdeoN3GBpGpAEu5YA.f",
@@ -14812,7 +14889,14 @@
         "Una danza afroecuatoriana"
        ],
        "answer": 0,
-       "explanation": "También se la llama Fiesta del Sol y se celebra alrededor del solsticio de junio (21 de junio), cuando el sol alcanza su punto más al norte."
+       "explanation": "También se la llama Fiesta del Sol y se celebra alrededor del solsticio de junio (21 de junio), cuando el sol alcanza su punto más al norte.",
+       "photo": {
+        "src": "images/foto-inti-raymi.jpg",
+        "alt": "Aya humas bailando en el Inti Raymi, en las calles de Quito",
+        "credit": "TupakAmaruIshkay",
+        "license": "CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Characters_of_%22Aya_Uma%22_dancing_in_the_%22Inti_Raymi%22_festival_in_the_streets_of_Quito,_Ecuador.jpg"
+       }
       },
       {
        "id": "7npaP19nlZ3TB0r9r.f",
