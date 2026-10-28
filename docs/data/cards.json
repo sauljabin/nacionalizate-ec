@@ -14592,7 +14592,14 @@
         "Ambato, en Tungurahua",
         "Latacunga, en Cotopaxi"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-sombrero-toquilla.jpg",
+        "alt": "Sombreros de paja toquilla en distintas etapas de su elaboración, en Montecristi",
+        "credit": "Sylvain2803",
+        "license": "CC BY-SA 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Panama_hats_montecristi.jpg"
+       }
       },
       {
        "id": "gBM3K1Io3LFJiaD1r.f",
@@ -14608,7 +14615,14 @@
         "Pichincha",
         "Loja"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-sombrero-toquilla.jpg",
+        "alt": "Sombreros de paja toquilla en distintas etapas de su elaboración, en Montecristi",
+        "credit": "Sylvain2803",
+        "license": "CC BY-SA 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Panama_hats_montecristi.jpg"
+       }
       },
       {
        "id": "EbEhuz0Vn5aYaKGyn.f",
@@ -14625,7 +14639,14 @@
         "Porque lo usaba un presidente panameño"
        ],
        "answer": 0,
-       "explanation": "Se exportaba por Panamá desde la fiebre del oro del siglo XIX."
+       "explanation": "Se exportaba por Panamá desde la fiebre del oro del siglo XIX.",
+       "photo": {
+        "src": "images/foto-sombrero-toquilla.jpg",
+        "alt": "Sombreros de paja toquilla en distintas etapas de su elaboración, en Montecristi",
+        "credit": "Sylvain2803",
+        "license": "CC BY-SA 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Panama_hats_montecristi.jpg"
+       }
       },
       {
        "id": "rwZyKkdHkvfpNvkLA.f",
@@ -15340,7 +15361,14 @@
         "1983",
         "2012"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-cuenca.jpg",
+        "alt": "Cúpulas de la Catedral Nueva de Cuenca",
+        "credit": "Rommel Gsrcía",
+        "license": "CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:C%C3%BApulas_de_la_Catedral_Nueva,_Cuenca_-_Ecuador.JPG"
+       }
       },
       {
        "id": "zo3Qz3arJwBnbYVtI.f",
@@ -15378,7 +15406,14 @@
         "2014",
         "1978"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-sombrero-toquilla.jpg",
+        "alt": "Sombreros de paja toquilla en distintas etapas de su elaboración, en Montecristi",
+        "credit": "Sylvain2803",
+        "license": "CC BY-SA 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Panama_hats_montecristi.jpg"
+       }
       },
       {
        "id": "q2SHagLs1DwiDZrEk.f",
@@ -15409,7 +15444,14 @@
         "1999",
         "1983"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/foto-qhapaq-nan.jpg",
+        "alt": "Tramo del Qhapaq Ñan cerca de Ingapirca",
+        "credit": "Ministerio de Cultura y Patrimonio",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:C%C3%A1pac_%C3%91an.jpg"
+       }
       }
      ]
     },
