@@ -1247,7 +1247,11 @@ function speechText(card) {
     if (state.revealed) {
       parts.push(app.querySelector(".feedback")?.textContent || `Respuesta: ${correctAnswerText(card)}.`, card.explanation);
     } else {
-      state.optionOrder.forEach((index, position) => parts.push(`Opción ${position + 1}: ${card.options[index]}.`));
+      // The position goes in words: "Opción 3: 10" reads as a time on some
+      // voices ("10 de la mañana").
+      const positions = ["uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho"];
+      state.optionOrder.forEach((index, position) =>
+        parts.push(`Opción ${positions[position] || position + 1}: ${card.options[index]}.`));
     }
   } else if (card.type === "image") {
     parts.push(state.revealed
