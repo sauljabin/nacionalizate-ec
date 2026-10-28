@@ -134,7 +134,7 @@ def main():
     images = {}
     images.update(build(COAT_PARTS, "escudo", COAT_SVG, COAT_SOURCE, (20, 24, 560, 672), (960, 720),
                         label_x=600, title_size=28, text_size=22, line=28, wrap=30))
-    images.update(build(FLAG_PARTS, "bandera", FLAG_SVG, FLAG_SOURCE, (20, 20, 520, 346.67), (960, 480),
+    images.update(build(FLAG_PARTS, "bandera", FLAG_SVG, FLAG_SOURCE, (20, 20, 520, 346.67), (960, 387),
                         label_x=566, title_size=30, text_size=26, line=32, wrap=28))
     data = json.loads(CARDS.read_text())
     for category in data["categories"]:

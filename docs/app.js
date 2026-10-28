@@ -372,7 +372,12 @@ function renderPhoto(photo) {
   source.target = "_blank";
   source.rel = "noopener";
   source.textContent = "Wikimedia Commons";
-  caption.append(`${photo.alt}. Foto: ${photo.credit} · ${photo.license} · `, source);
+  // Drawings (flags, coats of arms) name the Commons file they are based on;
+  // photos name who took them.
+  const origin = photo.title
+    ? `Imagen basada en «${photo.title}»${photo.credit ? `, de ${photo.credit}` : ""}`
+    : `Foto: ${photo.credit}`;
+  caption.append(`${photo.alt}. ${origin} · ${photo.license} · `, source);
   figure.append(img, caption);
   return figure;
 }

@@ -671,7 +671,8 @@ select {
   max-height: 24rem;
   border: 2px solid var(--line-strong);
   border-radius: 10px;
-  background: var(--sunken);
+  /* White, also in dark mode: flags and coats of arms have transparent edges. */
+  background: #fff;
 }
 .photo figcaption {
   margin-top: .4rem;

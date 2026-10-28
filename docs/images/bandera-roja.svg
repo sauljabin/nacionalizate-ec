@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="480" viewBox="0 0 960 480">
-<rect width="960" height="480" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="387" viewBox="0 0 960 387">
+<rect width="960" height="387" fill="#fff"/>
 <svg x="20" y="20" width="520" height="346.67" viewBox="0 0 1440 960" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
 <linearGradient id="grad1" y2="277.58" gradientUnits="userSpaceOnUse" x2="601.38" gradientTransform="matrix(1.146366,0,0,1.1711652,33.178489,82.1384)" y1="342.3" x1="597.92">
@@ -1378,11 +1378,11 @@
 </g>
 </g>
 </svg>
-<polyline points="470.0,318.0 556,318.0" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
-<polyline points="470.0,318.0 556,318.0" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+<polyline points="470.0,318.0 556,229.0" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+<polyline points="470.0,318.0 556,229.0" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"/>
 <circle cx="470.0" cy="318.0" r="7" fill="#000" stroke="#fff" stroke-width="2"/>
 <g font-family="Arial, Helvetica, sans-serif" fill="#000">
-<text x="566" y="328.0" font-size="30" font-weight="bold">Franja roja</text>
-<text font-size="26"><tspan x="566" y="362.0">Simboliza la sangre</tspan><tspan x="566" y="394.0">derramada por los soldados y</tspan><tspan x="566" y="426.0">mártires de la</tspan><tspan x="566" y="458.0">independencia.</tspan></text>
+<text x="566" y="239.0" font-size="30" font-weight="bold">Franja roja</text>
+<text font-size="26"><tspan x="566" y="273.0">Simboliza la sangre</tspan><tspan x="566" y="305.0">derramada por los soldados y</tspan><tspan x="566" y="337.0">mártires de la</tspan><tspan x="566" y="369.0">independencia.</tspan></text>
 </g>
 </svg>

@@ -83,7 +83,14 @@
         "La paz y la unidad del país"
        ],
        "answer": 0,
-       "explanation": "El azul simboliza el mar y el cielo, y el rojo, la sangre de los héroes."
+       "explanation": "El azul simboliza el mar y el cielo, y el rojo, la sangre de los héroes.",
+       "photo": {
+        "src": "images/bandera-amarilla.svg",
+        "alt": "La franja amarilla de la Bandera Nacional",
+        "title": "Flag of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Flag_of_Ecuador.svg"
+       }
       },
       {
        "id": "yRqa5kieyIOGL93cY.f",
@@ -108,7 +115,14 @@
         "Los ríos de la Amazonía"
        ],
        "answer": 0,
-       "explanation": "El amarillo simboliza las riquezas de la tierra, y el rojo, la sangre de los héroes."
+       "explanation": "El amarillo simboliza las riquezas de la tierra, y el rojo, la sangre de los héroes.",
+       "photo": {
+        "src": "images/bandera-azul.svg",
+        "alt": "La franja azul de la Bandera Nacional",
+        "title": "Flag of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Flag_of_Ecuador.svg"
+       }
       },
       {
        "id": "vftUQyPMogHAsMAoT.f",
@@ -133,7 +147,14 @@
         "El amor a la patria de los pueblos indígenas"
        ],
        "answer": 0,
-       "explanation": "El amarillo simboliza las riquezas de la tierra, y el azul, el mar y el cielo."
+       "explanation": "El amarillo simboliza las riquezas de la tierra, y el azul, el mar y el cielo.",
+       "photo": {
+        "src": "images/bandera-roja.svg",
+        "alt": "La franja roja de la Bandera Nacional",
+        "title": "Flag of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Flag_of_Ecuador.svg"
+       }
       },
       {
        "id": "bandera-escudo-centro",
@@ -150,7 +171,14 @@
         "Siete estrellas blancas"
        ],
        "answer": 0,
-       "explanation": "El escudo reúne el Chimborazo, el río Guayas, el sol y el cóndor."
+       "explanation": "El escudo reúne el Chimborazo, el río Guayas, el sol y el cóndor.",
+       "photo": {
+        "src": "images/bandera-escudo.svg",
+        "alt": "El Escudo Nacional en el centro de la Bandera Nacional",
+        "title": "Flag of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Flag_of_Ecuador.svg"
+       }
       },
       {
        "id": "XrrSsOnGix2d5MT4c.f",
@@ -175,7 +203,14 @@
         "Es el triple de ancha que las otras"
        ],
        "answer": 0,
-       "explanation": "Ocupa la mitad de la bandera; el azul y el rojo, un cuarto cada uno."
+       "explanation": "Ocupa la mitad de la bandera; el azul y el rojo, un cuarto cada uno.",
+       "photo": {
+        "src": "images/bandera.svg",
+        "alt": "La Bandera Nacional",
+        "title": "Flag of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Flag_of_Ecuador.svg"
+       }
       },
       {
        "id": "XnW4lBMz0kw0Rl7UI.f",
@@ -227,7 +262,15 @@
         "Blanca con un cuadro azul y una estrella"
        ],
        "answer": 0,
-       "explanation": "La celeste y blanca con estrellas fue la de Guayaquil en 1820; el tricolor llegó con la Gran Colombia."
+       "explanation": "La celeste y blanca con estrellas fue la de Guayaquil en 1820; el tricolor llegó con la Gran Colombia.",
+       "photo": {
+        "src": "images/foto-bandera-1809.svg",
+        "alt": "Bandera de los patriotas quiteños de 1809",
+        "title": "Flag of Quito Revolution (1809–1812)",
+        "credit": "EuropeanV",
+        "license": "CC0",
+        "url": "https://commons.wikimedia.org/wiki/File:Flag_of_Quito_Revolution_(1809%E2%80%931812).svg"
+       }
       },
       {
        "id": "bandera-guayaquil-1820",
@@ -245,7 +288,14 @@
         "Blanca, celeste y blanca con siete estrellas"
        ],
        "answer": 0,
-       "explanation": "La roja con aspa blanca fue la de Quito en 1809, y la de siete estrellas, la de la Revolución Marcista de 1845."
+       "explanation": "La roja con aspa blanca fue la de Quito en 1809, y la de siete estrellas, la de la Revolución Marcista de 1845.",
+       "photo": {
+        "src": "images/foto-bandera-guayaquil-1820.svg",
+        "alt": "Bandera de Guayaquil independiente, de 1820",
+        "title": "Estandarte de la Libertad Guayaquil Libre IB",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Estandarte_de_la_Libertad_Guayaquil_Libre_IB.svg"
+       }
       },
       {
        "id": "3wBVbWN4TlrqUujCd.f",
@@ -263,7 +313,14 @@
         "Una bandera roja y blanca, con una cruz"
        ],
        "answer": 0,
-       "explanation": "Era la bandera de la Revolución Marcista; en 1860 se volvió al tricolor."
+       "explanation": "Era la bandera de la Revolución Marcista; en 1860 se volvió al tricolor.",
+       "photo": {
+        "src": "images/foto-bandera-1845-1860.svg",
+        "alt": "Bandera del Ecuador de 1845 a 1860, con siete estrellas",
+        "title": "Flag of Ecuador (1845–1860)",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Flag_of_Ecuador_(1845%E2%80%931860).svg"
+       }
       },
       {
        "id": "sOmNzS3JxxQLQD36c.f",
@@ -281,7 +338,14 @@
         "Primero 7; después, 24"
        ],
        "answer": 0,
-       "explanation": "Las 3 representaban los departamentos de Quito, Guayas y Azuay; las 7, una por cada provincia de entonces."
+       "explanation": "Las 3 representaban los departamentos de Quito, Guayas y Azuay; las 7, una por cada provincia de entonces.",
+       "photo": {
+        "src": "images/foto-bandera-1845.svg",
+        "alt": "Primera bandera de la Revolución Marcista, de 1845, con tres estrellas",
+        "title": "Flag of Ecuador (1845)",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Flag_of_Ecuador_(1845).svg"
+       }
       },
       {
        "id": "tGqYBaYws52xAyMQN.f",
@@ -511,13 +575,13 @@
        "image": {
         "src": "images/bandera-amarilla.svg",
         "width": 960,
-        "height": 480,
+        "height": 387,
         "blocks": [
          {
           "x": 0.5833333333333334,
-          "y": 0.2437615740740741,
+          "y": 0.30233993683606086,
           "width": 0.40625,
-          "height": 0.225,
+          "height": 0.27906976744186046,
           "active": true
          }
         ],
@@ -537,13 +601,13 @@
        "image": {
         "src": "images/bandera-azul.svg",
         "width": 960,
-        "height": 480,
+        "height": 387,
         "blocks": [
          {
           "x": 0.5833333333333334,
-          "y": 0.5166261574074074,
+          "y": 0.6407766293425208,
           "width": 0.40625,
-          "height": 0.09166666666666666,
+          "height": 0.11369509043927649,
           "active": true
          }
         ],
@@ -563,13 +627,13 @@
        "image": {
         "src": "images/bandera-roja.svg",
         "width": 960,
-        "height": 480,
+        "height": 387,
         "blocks": [
          {
           "x": 0.5833333333333334,
-          "y": 0.6874768518518518,
+          "y": 0.6227390180878553,
           "width": 0.40625,
-          "height": 0.2916666666666667,
+          "height": 0.36175710594315247,
           "active": true
          }
         ],
@@ -589,13 +653,13 @@
        "image": {
         "src": "images/bandera-escudo.svg",
         "width": 960,
-        "height": 480,
+        "height": 387,
         "blocks": [
          {
           "x": 0.5833333333333334,
-          "y": 0.39580439814814816,
+          "y": 0.49092018374964114,
           "width": 0.40625,
-          "height": 0.29166666666666663,
+          "height": 0.36175710594315236,
           "active": true
          }
         ],
@@ -1180,7 +1244,15 @@
         "Las siete ciudades fundadas por los españoles"
        ],
        "answer": 0,
-       "explanation": "El escudo de Rocafuerte conservó el sol y las estrellas del primer escudo, y añadió el Guagua y el Rucu Pichincha."
+       "explanation": "El escudo de Rocafuerte conservó el sol y las estrellas del primer escudo, y añadió el Guagua y el Rucu Pichincha.",
+       "photo": {
+        "src": "images/foto-escudo-1836.png",
+        "alt": "Escudo del Ecuador de 1836, con siete estrellas",
+        "title": "Coat of arms of Ecuador (1835)",
+        "credit": "Milenioscuro",
+        "license": "CC BY-SA 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador_(1835).svg"
+       }
       },
       {
        "id": "escudo-marcista",
@@ -1188,7 +1260,7 @@
        "type": "choice",
        "front": [
         {
-         "text": "¿Qué escudo incorporó por primera vez los signos del zodiaco?"
+         "text": "¿Desde qué escudo aparecen los signos de Aries, Tauro, Géminis y Cáncer?"
         }
        ],
        "options": [
@@ -1198,7 +1270,15 @@
         "El de Eloy Alfaro, de 1900"
        ],
        "answer": 0,
-       "explanation": "Los signos recuerdan los meses de marzo a junio de 1845, cuando ocurrió la Revolución Marcista. El escudo de 1900 los conservó."
+       "explanation": "Recuerdan los meses de marzo a junio de 1845, cuando ocurrió la Revolución Marcista, y el escudo de 1900 los conservó. El escudo de 1836, de Rocafuerte, ya tenía signos del zodiaco, pero otros: de Leo a Escorpio, por los meses de la revolución de 1820.",
+       "photo": {
+        "src": "images/foto-escudo-1845.png",
+        "alt": "Escudo del Ecuador de 1845, de la Revolución Marcista",
+        "title": "Coat of arms of Ecuador (1845)",
+        "credit": "Milenioscuro",
+        "license": "CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador_(1845).svg"
+       }
       },
       {
        "id": "JdjiW5ljGD9dJzDhY.f",
@@ -1214,7 +1294,14 @@
         "El Primer Grito de Independencia de 1809",
         "La separación de la Gran Colombia en 1830"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/escudo-zodiaco.svg",
+        "alt": "Los signos del zodiaco en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "fStHSTqN0zX1WMIpg.f",
@@ -1359,7 +1446,14 @@
         "La fuerza pública"
        ],
        "answer": 0,
-       "explanation": "Tiene las alas desplegadas, en actitud de vuelo. La paz la representa la palma; la gloria, el laurel; y la fuerza pública, la segur."
+       "explanation": "Tiene las alas desplegadas, en actitud de vuelo. La paz la representa la palma; la gloria, el laurel; y la fuerza pública, la segur.",
+       "photo": {
+        "src": "images/escudo-condor.svg",
+        "alt": "El cóndor en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "HABx9DF0AawkW5HLC.f",
@@ -1376,7 +1470,14 @@
         "De frente, hacia quien lo mira"
        ],
        "answer": 0,
-       "explanation": "En heráldica, la derecha del escudo es la izquierda de quien lo mira."
+       "explanation": "En heráldica, la derecha del escudo es la izquierda de quien lo mira.",
+       "photo": {
+        "src": "images/escudo.svg",
+        "alt": "El Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "escudo-sol",
@@ -1393,7 +1494,14 @@
         "La gloria de la nación"
        ],
        "answer": 0,
-       "explanation": "También se lo llama Sol Incaico. Está en la parte superior del óvalo, junto a los signos del zodiaco."
+       "explanation": "También se lo llama Sol Incaico. Está en la parte superior del óvalo, junto a los signos del zodiaco.",
+       "photo": {
+        "src": "images/escudo-sol.svg",
+        "alt": "El sol dorado en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "Wt9PNGxsBRbpDRvfS.3693047218280958",
@@ -1411,7 +1519,14 @@
         "Leo, Virgo, Libra y Escorpio"
        ],
        "answer": 0,
-       "explanation": "Corresponden a marzo, abril, mayo y junio, los meses de la Revolución Marcista de 1845."
+       "explanation": "Corresponden a marzo, abril, mayo y junio, los meses de la Revolución Marcista de 1845.",
+       "photo": {
+        "src": "images/escudo-zodiaco.svg",
+        "alt": "Los signos del zodiaco en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "T8b0cNKvrNHqGy6I6.2965482665332704",
@@ -1429,7 +1544,14 @@
         "Septiembre, octubre, noviembre y diciembre"
        ],
        "answer": 0,
-       "explanation": "Recuerdan los meses de la Revolución Marcista de 1845. Los signos son Aries, Tauro, Géminis y Cáncer."
+       "explanation": "Recuerdan los meses de la Revolución Marcista de 1845. Los signos son Aries, Tauro, Géminis y Cáncer.",
+       "photo": {
+        "src": "images/escudo-zodiaco.svg",
+        "alt": "Los signos del zodiaco en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "escudo-zodiaco-posicion",
@@ -1446,7 +1568,14 @@
         "Los cuatro están a la derecha del escudo"
        ],
        "answer": 0,
-       "explanation": "En heráldica, la derecha del escudo es la izquierda de quien lo mira."
+       "explanation": "En heráldica, la derecha del escudo es la izquierda de quien lo mira.",
+       "photo": {
+        "src": "images/escudo-zodiaco.svg",
+        "alt": "Los signos del zodiaco en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "escudo-chimborazo",
@@ -1464,7 +1593,14 @@
         "El Tungurahua"
        ],
        "answer": 0,
-       "explanation": "Es el volcán más alto del Ecuador. En el escudo, de él nace el río Guayas, aunque en la realidad el Guayas se forma por la unión de los ríos Daule y Babahoyo."
+       "explanation": "Es el volcán más alto del Ecuador. En el escudo, de él nace el río Guayas, aunque en la realidad el Guayas se forma por la unión de los ríos Daule y Babahoyo.",
+       "photo": {
+        "src": "images/escudo-chimborazo.svg",
+        "alt": "El Chimborazo en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "escudo-rio-guayas",
@@ -1482,7 +1618,14 @@
         "La fuerza pública"
        ],
        "answer": 0,
-       "explanation": "Sus orillas con vegetación expresan la agricultura nacional. La navegación y el comercio los simboliza el caduceo."
+       "explanation": "Sus orillas con vegetación expresan la agricultura nacional. La navegación y el comercio los simboliza el caduceo.",
+       "photo": {
+        "src": "images/escudo-rio-guayas.svg",
+        "alt": "El río Guayas en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "escudo-buque",
@@ -1500,7 +1643,14 @@
         "Es un buque de guerra peruano capturado en 1829"
        ],
        "answer": 0,
-       "explanation": "Se construyó en los astilleros de Guayaquil."
+       "explanation": "Se construyó en los astilleros de Guayaquil.",
+       "photo": {
+        "src": "images/escudo-buque.svg",
+        "alt": "El buque a vapor Guayas en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "dnkHxhMRe28bj5IqG.4106292682709909",
@@ -1518,7 +1668,14 @@
         "1900"
        ],
        "answer": 0,
-       "explanation": "Se construyó en los astilleros de Guayaquil. Por eso aparece en el Escudo Nacional."
+       "explanation": "Se construyó en los astilleros de Guayaquil. Por eso aparece en el Escudo Nacional.",
+       "photo": {
+        "src": "images/escudo-buque.svg",
+        "alt": "El buque a vapor Guayas en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "o8XW1jM1r0AOi5Htf.f",
@@ -1535,7 +1692,14 @@
         "Una balanza, símbolo de la justicia"
        ],
        "answer": 0,
-       "explanation": "Está asociado con Mercurio (Hermes en la mitología griega), dios del comercio. Lo usan instituciones de ciencias económicas."
+       "explanation": "Está asociado con Mercurio (Hermes en la mitología griega), dios del comercio. Lo usan instituciones de ciencias económicas.",
+       "photo": {
+        "src": "images/escudo-caduceo.svg",
+        "alt": "El caduceo en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "escudo-caduceo",
@@ -1553,7 +1717,14 @@
         "La gloria de la nación"
        ],
        "answer": 0,
-       "explanation": "Está coronado por dos alas, rodeado de serpientes y es atributo de Mercurio; en el escudo sirve de mástil al buque Guayas."
+       "explanation": "Está coronado por dos alas, rodeado de serpientes y es atributo de Mercurio; en el escudo sirve de mástil al buque Guayas.",
+       "photo": {
+        "src": "images/escudo-caduceo.svg",
+        "alt": "El caduceo en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "escudo-banderas",
@@ -1569,7 +1740,14 @@
         "Seis, tres a cada lado",
         "Cuatro, todas a la izquierda"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/escudo-banderas.svg",
+        "alt": "Las cuatro banderas en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "escudo-astas",
@@ -1586,7 +1764,14 @@
         "Las cuatro regiones del país"
        ],
        "answer": 0,
-       "explanation": "Son cuatro y coronan las banderas."
+       "explanation": "Son cuatro y coronan las banderas.",
+       "photo": {
+        "src": "images/escudo-astas.svg",
+        "alt": "Las astas en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "escudo-laurel",
@@ -1604,7 +1789,14 @@
         "La dignidad republicana"
        ],
        "answer": 0,
-       "explanation": "La paz la representa la palma; la fuerza pública, la segur; y la dignidad republicana, las fasces."
+       "explanation": "La paz la representa la palma; la fuerza pública, la segur; y la dignidad republicana, las fasces.",
+       "photo": {
+        "src": "images/escudo-laurel.svg",
+        "alt": "El laurel en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "escudo-palma",
@@ -1622,7 +1814,14 @@
         "La navegación y el comercio"
        ],
        "answer": 0,
-       "explanation": "Algunas fuentes la interpretan también como el martirio de quienes lucharon por la libertad. La gloria la representa el laurel."
+       "explanation": "Algunas fuentes la interpretan también como el martirio de quienes lucharon por la libertad. La gloria la representa el laurel.",
+       "photo": {
+        "src": "images/escudo-palma.svg",
+        "alt": "La palma en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "ry72oPwyGsTdBCCxM.f",
@@ -1639,7 +1838,14 @@
         "Escudos redondos de los legionarios romanos"
        ],
        "answer": 0,
-       "explanation": "Las portaban los lictores, servidores de los cónsules, como símbolo de su derecho a ejecutar la ley."
+       "explanation": "Las portaban los lictores, servidores de los cónsules, como símbolo de su derecho a ejecutar la ley.",
+       "photo": {
+        "src": "images/escudo-fasces.svg",
+        "alt": "Las fasces consulares en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "escudo-fasces",
@@ -1657,7 +1863,14 @@
         "La gloria de la nación"
        ],
        "answer": 0,
-       "explanation": "El escudo descansa sobre ellas."
+       "explanation": "El escudo descansa sobre ellas.",
+       "photo": {
+        "src": "images/escudo-fasces.svg",
+        "alt": "Las fasces consulares en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "8dApZSZHw314x9WKn.f",
@@ -1674,7 +1887,14 @@
         "Un juez de la antigua Roma"
        ],
        "answer": 0,
-       "explanation": "Hacía funciones parecidas a las de la policía: mantenía el orden público y custodiaba a los presos."
+       "explanation": "Hacía funciones parecidas a las de la policía: mantenía el orden público y custodiaba a los presos.",
+       "photo": {
+        "src": "images/escudo-fasces.svg",
+        "alt": "Las fasces consulares en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "ETSQbqhERXqnTujI1.f",
@@ -1690,7 +1910,14 @@
         "Un escudo pequeño",
         "Una espada curva"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/escudo-segur.svg",
+        "alt": "La segur en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "escudo-segur",
@@ -1706,7 +1933,14 @@
         "La gloria de la nación",
         "La navegación y el comercio"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/escudo-segur.svg",
+        "alt": "La segur en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "escudo-liston",
@@ -1722,7 +1956,14 @@
         "Una franja de la bandera",
         "Una cadena de oro"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/escudo-liston.svg",
+        "alt": "El listón en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       },
       {
        "id": "escudo-ovalo",
@@ -1738,7 +1979,14 @@
         "De laureles entrelazados",
         "De doble borde tricolor"
        ],
-       "answer": 0
+       "answer": 0,
+       "photo": {
+        "src": "images/escudo-ovalo.svg",
+        "alt": "El óvalo en el Escudo Nacional",
+        "title": "Coat of arms of Ecuador",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Coat_of_arms_of_Ecuador.svg"
+       }
       }
      ]
     },
@@ -4853,14 +5101,7 @@
         "Isla San Cristóbal"
        ],
        "answer": 0,
-       "explanation": "La isla Santay también está frente a Guayaquil, pero es mucho más pequeña.",
-       "photo": {
-        "src": "images/foto-puna.jpg",
-        "alt": "Muelle en la Isla Puná",
-        "credit": "Pesca Deportiva Ecuador",
-        "license": "CC BY-SA 4.0",
-        "url": "https://commons.wikimedia.org/wiki/File:Pun%C3%A1.jpg"
-       }
+       "explanation": "La isla Santay también está frente a Guayaquil, pero es mucho más pequeña."
       },
       {
        "id": "haUA3gnuq8yjqcjEd.f",
@@ -4877,14 +5118,7 @@
         "Manabí"
        ],
        "answer": 0,
-       "explanation": "Allí vivían los punáes, que en 1531 enfrentaron a Francisco Pizarro en la batalla de Puná.",
-       "photo": {
-        "src": "images/foto-puna.jpg",
-        "alt": "Muelle en la Isla Puná",
-        "credit": "Pesca Deportiva Ecuador",
-        "license": "CC BY-SA 4.0",
-        "url": "https://commons.wikimedia.org/wiki/File:Pun%C3%A1.jpg"
-       }
+       "explanation": "Allí vivían los punáes, que en 1531 enfrentaron a Francisco Pizarro en la batalla de Puná."
       },
       {
        "id": "WxpPa3GNZyEb2DXYc.f",
@@ -4909,14 +5143,7 @@
         "Esmeraldas"
        ],
        "answer": 0,
-       "explanation": "Está en el golfo de Guayaquil.",
-       "photo": {
-        "src": "images/foto-jambeli.jpg",
-        "alt": "Manglares del Archipiélago de Jambelí vistos desde el aire",
-        "credit": "WMrapids",
-        "license": "CC0",
-        "url": "https://commons.wikimedia.org/wiki/File:Archipi%C3%A9lago_de_Jambel%C3%AD.jpg"
-       }
+       "explanation": "Está en el golfo de Guayaquil."
       },
       {
        "id": "wjIXQ3cEwFm4L8MeU.f",
@@ -6174,14 +6401,7 @@
         "El Jubones y el Catamayo"
        ],
        "answer": 0,
-       "explanation": "El Guayas, el Esmeraldas y el Jubones desembocan en el océano Pacífico.",
-       "photo": {
-        "src": "images/foto-rio-napo.jpg",
-        "alt": "Río Napo cerca de Tena",
-        "credit": "David C. S.",
-        "license": "CC BY-SA 3.0",
-        "url": "https://commons.wikimedia.org/wiki/File:R%C3%ADo_Napo%2C_Selina_Amazon_Lodge_-_Tena.jpg"
-       }
+       "explanation": "El Guayas, el Esmeraldas y el Jubones desembocan en el océano Pacífico."
       },
       {
        "id": "Mn4ClQrcpbQHMQv7L.f",
@@ -6264,14 +6484,7 @@
         "El Esmeraldas",
         "El Pastaza"
        ],
-       "answer": 0,
-       "photo": {
-        "src": "images/foto-rio-napo.jpg",
-        "alt": "Río Napo cerca de Tena",
-        "credit": "David C. S.",
-        "license": "CC BY-SA 3.0",
-        "url": "https://commons.wikimedia.org/wiki/File:R%C3%ADo_Napo%2C_Selina_Amazon_Lodge_-_Tena.jpg"
-       }
+       "answer": 0
       },
       {
        "id": "kzkDzyBSiSJD2z2B4.f",
@@ -6294,14 +6507,7 @@
         "Quito",
         "Riobamba"
        ],
-       "answer": 0,
-       "photo": {
-        "src": "images/foto-tomebamba.jpg",
-        "alt": "Río Tomebamba en Cuenca",
-        "credit": "Martín Vasco",
-        "license": "CC BY-SA 4.0",
-        "url": "https://commons.wikimedia.org/wiki/File:R%C3%ADo_Tomebamba_desde_el_Paseo_3_de_Noviembre%2C_Cuenca.jpg"
-       }
+       "answer": 0
       },
       {
        "id": "MdeoN3GBpGpAEu5YA.f",

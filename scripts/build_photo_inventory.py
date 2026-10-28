@@ -54,7 +54,8 @@ def collect(data):
 def box(number, entry):
     e = html.escape
     photo = entry["photo"]
-    license_line = " · ".join(e(part) for part in (photo.get("credit"), photo.get("license")) if part)
+    title = f'«{photo["title"]}»' if photo.get("title") else None
+    license_line = " · ".join(e(part) for part in (title, photo.get("credit"), photo.get("license")) if part)
     if photo.get("url"):
         license_line += f' · <a href="{e(photo["url"])}">Commons</a>'
     questions = "".join(
