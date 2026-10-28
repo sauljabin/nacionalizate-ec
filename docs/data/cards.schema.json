@@ -1,0 +1,255 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://sauljabin.dev/nacionalizate-ec/data/cards.schema.json",
+ "title": "Preguntas de Nacionalízate EC",
+ "description": "Formato de cards.json: las preguntas agrupadas por categoría y subcategoría, y los exámenes recomendados. AGENT.md explica cada campo.",
+ "type": "object",
+ "required": ["categories", "exams"],
+ "additionalProperties": false,
+ "properties": {
+  "$schema": {"type": "string"},
+  "categories": {
+   "type": "array",
+   "minItems": 1,
+   "items": {"$ref": "#/$defs/category"}
+  },
+  "exams": {
+   "description": "Exámenes recomendados de «Mis exámenes».",
+   "type": "array",
+   "items": {"$ref": "#/$defs/exam"}
+  }
+ },
+ "$defs": {
+  "slug": {
+   "description": "Nace del título en minúsculas, sin tildes y con guiones. No cambia aunque cambie el título: los enlaces #temas= lo usan.",
+   "type": "string",
+   "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+  },
+  "text": {"type": "string", "minLength": 1},
+  "category": {
+   "type": "object",
+   "required": ["id", "title", "subcategories"],
+   "additionalProperties": false,
+   "properties": {
+    "id": {"$ref": "#/$defs/slug"},
+    "title": {"$ref": "#/$defs/text"},
+    "subcategories": {
+     "type": "array",
+     "minItems": 1,
+     "items": {"$ref": "#/$defs/subcategory"}
+    }
+   }
+  },
+  "subcategory": {
+   "type": "object",
+   "required": ["id", "title", "cards"],
+   "additionalProperties": false,
+   "properties": {
+    "id": {"$ref": "#/$defs/slug"},
+    "title": {"$ref": "#/$defs/text"},
+    "summary": {
+     "description": "Resumen para la «Línea de tiempo» (subcategorías de Historia).",
+     "$ref": "#/$defs/text"
+    },
+    "cards": {
+     "type": "array",
+     "minItems": 1,
+     "items": {"$ref": "#/$defs/card"}
+    }
+   }
+  },
+  "segment": {
+   "type": "object",
+   "required": ["text"],
+   "additionalProperties": false,
+   "properties": {
+    "text": {"type": "string"},
+    "bold": {"type": "boolean"},
+    "color": {"enum": ["red", "orange", "yellow", "green", "purple", "blue", "gray", "brown", "pink"]},
+    "cloze": {
+     "description": "Texto oculto hasta revelar la respuesta.",
+     "type": "boolean"
+    }
+   }
+  },
+  "segments": {
+   "type": "array",
+   "minItems": 1,
+   "items": {"$ref": "#/$defs/segment"}
+  },
+  "commonsWork": {
+   "description": "Obra de Wikimedia Commons en que se basa una imagen.",
+   "type": "object",
+   "properties": {
+    "title": {
+     "description": "Nombre del archivo en Commons.",
+     "$ref": "#/$defs/text"
+    },
+    "credit": {
+     "description": "Autor, si la licencia pide nombrarlo.",
+     "$ref": "#/$defs/text"
+    },
+    "license": {"$ref": "#/$defs/text"},
+    "url": {
+     "type": "string",
+     "pattern": "^https://commons\\.wikimedia\\.org/wiki/File:"
+    }
+   }
+  },
+  "imageSrc": {
+   "type": "string",
+   "pattern": "^images/[^/]+\\.(svg|png|jpg|webp)$"
+  },
+  "photo": {
+   "description": "Foto que aparece al revelar la respuesta. Para dibujos (banderas, escudos, mapas) lleva title: el pie dice «Imagen basada en…».",
+   "allOf": [{"$ref": "#/$defs/commonsWork"}],
+   "type": "object",
+   "required": ["src", "alt", "license", "url"],
+   "unevaluatedProperties": false,
+   "properties": {
+    "src": {"$ref": "#/$defs/imageSrc"},
+    "alt": {"$ref": "#/$defs/text"}
+   }
+  },
+  "block": {
+   "description": "Recuadro sobre la imagen, en fracciones de su ancho y alto.",
+   "type": "object",
+   "required": ["x", "y", "width", "height", "active"],
+   "additionalProperties": false,
+   "properties": {
+    "x": {"type": "number", "minimum": 0, "maximum": 1},
+    "y": {"type": "number", "minimum": 0, "maximum": 1},
+    "width": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+    "height": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+    "active": {
+     "description": "true en el recuadro que se revela.",
+     "type": "boolean"
+    }
+   }
+  },
+  "image": {
+   "allOf": [{"$ref": "#/$defs/commonsWork"}],
+   "type": "object",
+   "required": ["src", "width", "height", "blocks", "title", "license", "url"],
+   "unevaluatedProperties": false,
+   "properties": {
+    "src": {"$ref": "#/$defs/imageSrc"},
+    "width": {
+     "description": "Tamaño original; solo se usa su proporción.",
+     "type": "number",
+     "exclusiveMinimum": 0
+    },
+    "height": {"type": "number", "exclusiveMinimum": 0},
+    "blocks": {
+     "description": "Exactamente un recuadro tiene active: true.",
+     "type": "array",
+     "minItems": 1,
+     "items": {"$ref": "#/$defs/block"},
+     "contains": {
+      "type": "object",
+      "properties": {"active": {"const": true}},
+      "required": ["active"]
+     },
+     "minContains": 1,
+     "maxContains": 1
+    }
+   }
+  },
+  "card": {
+   "type": "object",
+   "required": ["id", "type", "front"],
+   "properties": {
+    "id": {
+     "description": "Único y fijo: el progreso y los exámenes compartidos lo usan.",
+     "$ref": "#/$defs/text"
+    },
+    "popularity": {
+     "description": "Cuántas veces aparece en las guías de estudio públicas. Sin el campo, cuenta como 0.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "type": {"enum": ["basic", "cloze", "choice", "image"]},
+    "topic": {
+     "description": "Carpeta por debajo de la subcategoría.",
+     "$ref": "#/$defs/text"
+    },
+    "front": {"$ref": "#/$defs/segments"},
+    "photo": {"$ref": "#/$defs/photo"}
+   },
+   "oneOf": [
+    {
+     "properties": {
+      "type": {"const": "basic"},
+      "back": {"$ref": "#/$defs/segments"}
+     },
+     "required": ["back"]
+    },
+    {
+     "description": "Al menos un segmento de front tiene cloze: true.",
+     "properties": {
+      "type": {"const": "cloze"},
+      "front": {
+       "contains": {
+        "type": "object",
+        "properties": {"cloze": {"const": true}},
+        "required": ["cloze"]
+       }
+      }
+     }
+    },
+    {
+     "properties": {
+      "type": {"const": "choice"},
+      "options": {
+       "type": "array",
+       "minItems": 2,
+       "maxItems": 4,
+       "items": {"$ref": "#/$defs/text"}
+      },
+      "answer": {
+       "description": "Índice de la opción correcta, o lista de índices si hay varias.",
+       "oneOf": [
+        {"type": "integer", "minimum": 0, "maximum": 3},
+        {
+         "type": "array",
+         "minItems": 2,
+         "uniqueItems": true,
+         "items": {"type": "integer", "minimum": 0, "maximum": 3}
+        }
+       ]
+      },
+      "explanation": {
+       "description": "Texto corto que aparece al responder.",
+       "$ref": "#/$defs/text"
+      }
+     },
+     "required": ["options", "answer"]
+    },
+    {
+     "properties": {
+      "type": {"const": "image"},
+      "image": {"$ref": "#/$defs/image"}
+     },
+     "required": ["image"]
+    }
+   ],
+   "unevaluatedProperties": false
+  },
+  "exam": {
+   "type": "object",
+   "required": ["id", "title", "ids"],
+   "additionalProperties": false,
+   "properties": {
+    "id": {"$ref": "#/$defs/slug"},
+    "title": {"$ref": "#/$defs/text"},
+    "ids": {
+     "description": "ids de tarjetas que existen en categories.",
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {"$ref": "#/$defs/text"}
+    }
+   }
+  }
+ }
+}

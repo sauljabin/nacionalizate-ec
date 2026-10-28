@@ -1,4 +1,5 @@
 {
+ "$schema": "cards.schema.json",
  "categories": [
   {
    "id": "simbolos-patrios",

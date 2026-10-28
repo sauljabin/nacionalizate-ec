@@ -133,6 +133,7 @@ docs/                       Página estática (lo que publica GitHub Pages)
   sw.js, manifest.webmanifest  Uso sin conexión e instalación como app
   icons/                    Íconos de la app
   data/cards.json           Preguntas (y los resúmenes de la línea de tiempo)
+  data/cards.schema.json    Formato de cards.json (JSON Schema)
   images/                   Imágenes de las preguntas, la bandera, el escudo y el mapa de provincias
   audio/                    El himno instrumental
 .github/ISSUE_TEMPLATE/     Formularios para reportar errores y proponer preguntas
@@ -144,7 +145,11 @@ assets/                     SVG originales: escudo, bandera y mapa de provincias
 
 ## Editar las preguntas
 
-Todas las preguntas están en `docs/data/cards.json`, agrupadas por categoría y subcategoría. Para corregir o añadir una, edita ese archivo; el formato está descrito en [AGENT.md](AGENT.md). Las imágenes van en `docs/images/`.
+Todas las preguntas están en `docs/data/cards.json`, agrupadas por categoría y subcategoría. Para corregir o añadir una, edita ese archivo; el formato está descrito en [AGENT.md](AGENT.md) y en el JSON Schema [`docs/data/cards.schema.json`](docs/data/cards.schema.json). Los editores que entienden JSON Schema, como VS Code, marcan los errores y autocompletan los campos mientras escribes. Las imágenes van en `docs/images/`. Después de editar, comprueba el archivo con [uv](https://docs.astral.sh/uv/):
+
+```bash
+uvx check-jsonschema --schemafile docs/data/cards.schema.json docs/data/cards.json
+```
 
 Las imágenes de *Partes del Escudo Nacional* y *Partes de la Bandera Nacional* se generan con un script a partir de los SVG oficiales. Para corregir un texto o mover un indicador, edita la lista del script y ejecútalo:
 
