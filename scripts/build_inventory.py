@@ -138,6 +138,8 @@ PAGE = """<!doctype html>
   dialog::backdrop { background: rgb(0 0 0 / .75); }
   dialog img { display: block; max-width: 100%; max-height: calc(96vh - 80px); margin: 0 auto; background: #fff; cursor: zoom-out; }
   dialog p { margin: 8px 0 0; font-size: 14px; }
+  /* Drawings are vectors: show them as large as the screen allows. */
+  dialog img[src$=".svg"] { width: auto; height: calc(96vh - 80px); }
   [hidden] { display: none !important; }
   @media (max-width: 640px) { .q { grid-template-columns: 52px 1fr; } .q > :last-child { grid-column: 1 / -1; } }
 </style>
