@@ -363,7 +363,7 @@
         "9 de octubre de 1820"
        ],
        "answer": 0,
-       "explanation": "En 1900 se oficializó de forma definitiva, y en 1955 se decretó el Día de la Bandera."
+       "explanation": "Ese día, Gabriel García Moreno restableció el tricolor de la Gran Colombia. En 1900 se oficializó de forma definitiva, y en 1955 se decretó el Día de la Bandera."
       },
       {
        "id": "02FeFG3DFhgBYBXTv.f",
@@ -1244,7 +1244,7 @@
         "Las siete ciudades fundadas por los españoles"
        ],
        "answer": 0,
-       "explanation": "El escudo de Rocafuerte conservó el sol y las estrellas del primer escudo, y añadió el Guagua y el Rucu Pichincha.",
+       "explanation": "Cada estrella era una provincia. El escudo también tenía el sol, signos del zodiaco de Leo a Escorpio y los cerros Guagua y Rucu Pichincha, con cóndores.",
        "photo": {
         "src": "images/foto-escudo-1836.png",
         "alt": "Escudo del Ecuador de 1836, con siete estrellas",
@@ -2629,7 +2629,7 @@
         "2 % de la fauna y 5 % de la flora"
        ],
        "answer": 0,
-       "explanation": "El 10 % de las plantas lo respalda el informe del Ecuador al Convenio sobre Diversidad Biológica, con apenas el 0,2 % de la superficie terrestre del planeta. El 8 % de los animales es aproximado, porque cambia según el grupo: cerca del 18 % de las aves y del 7 % de los anfibios y mamíferos."
+       "explanation": "Es mucho para un país que ocupa apenas el 0,2 % de la superficie terrestre. El 8 % de la fauna es un promedio: el Ecuador tiene cerca del 18 % de las aves del mundo y el 7 % de los anfibios y mamíferos."
       },
       {
        "id": "aves",
@@ -7283,7 +7283,14 @@
         "En Riobamba"
        ],
        "answer": 0,
-       "explanation": "Guayaquil se independizó el 9 de octubre de 1820, y Cuenca, el 3 de noviembre de 1820."
+       "explanation": "Guayaquil se independizó el 9 de octubre de 1820, y Cuenca, el 3 de noviembre de 1820.",
+       "photo": {
+        "src": "images/foto-monumento-independencia.jpg",
+        "alt": "Monumento a los Héroes de la Independencia, Plaza Grande de Quito",
+        "credit": "H3kt0r",
+        "license": "CC BY-SA 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Monumento_a_los_H%C3%A9roes_del_10_de_Agosto_de_1809_(Quito_DM).jpg"
+       }
       },
       {
        "id": "6VfKStcIlOJSngAz5.f",
@@ -7325,7 +7332,14 @@
         "13 de mayo"
        ],
        "answer": 0,
-       "explanation": "Recuerda el 10 de agosto de 1809, cuando se instaló en Quito la Junta Soberana. El 24 de mayo recuerda la Batalla del Pichincha; el 9 de octubre, la independencia de Guayaquil; y el 13 de mayo, el nacimiento de la República (1830)."
+       "explanation": "Recuerda el 10 de agosto de 1809, cuando se instaló en Quito la Junta Soberana. El 24 de mayo recuerda la Batalla del Pichincha; el 9 de octubre, la independencia de Guayaquil; y el 13 de mayo, el nacimiento de la República (1830).",
+       "photo": {
+        "src": "images/foto-monumento-independencia.jpg",
+        "alt": "Monumento a los Héroes de la Independencia, Plaza Grande de Quito",
+        "credit": "H3kt0r",
+        "license": "CC BY-SA 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Monumento_a_los_H%C3%A9roes_del_10_de_Agosto_de_1809_(Quito_DM).jpg"
+       }
       },
       {
        "id": "sntI1X1BGqsMrv5zD.f",
@@ -7342,7 +7356,15 @@
         "La Gloriosa"
        ],
        "answer": 0,
-       "explanation": "La Revolución Marcista fue en 1845, la Liberal en 1895 y La Gloriosa en 1944."
+       "explanation": "La Revolución Marcista fue en 1845, la Liberal en 1895 y La Gloriosa en 1944.",
+       "photo": {
+        "src": "images/foto-bandera-1809.svg",
+        "alt": "Bandera de los patriotas quiteños de 1809",
+        "title": "Flag of Quito Revolution (1809–1812)",
+        "credit": "EuropeanV",
+        "license": "CC0",
+        "url": "https://commons.wikimedia.org/wiki/File:Flag_of_Quito_Revolution_(1809%E2%80%931812).svg"
+       }
       },
       {
        "id": "3bjv1BI1ScnNZrQHM.f",
@@ -7409,7 +7431,14 @@
         "24 de mayo de 1822"
        ],
        "answer": 0,
-       "explanation": "El 10 de agosto de 1809 fue el Primer Grito de Independencia en Quito, el 3 de noviembre de 1820 se independizó Cuenca y el 24 de mayo de 1822 fue la Batalla del Pichincha."
+       "explanation": "El 10 de agosto de 1809 fue el Primer Grito de Independencia en Quito, el 3 de noviembre de 1820 se independizó Cuenca y el 24 de mayo de 1822 fue la Batalla del Pichincha.",
+       "photo": {
+        "src": "images/foto-bandera-guayaquil-1820.svg",
+        "alt": "Bandera de Guayaquil independiente, de 1820",
+        "title": "Estandarte de la Libertad Guayaquil Libre IB",
+        "license": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Estandarte_de_la_Libertad_Guayaquil_Libre_IB.svg"
+       }
       },
       {
        "id": "Qa62ryyj1UIWT3yQi.f",
@@ -7500,7 +7529,15 @@
         "9 de octubre de 1820"
        ],
        "answer": 0,
-       "explanation": "Se libró en las faldas del volcán Pichincha."
+       "explanation": "Se libró en las faldas del volcán Pichincha.",
+       "photo": {
+        "src": "images/foto-capitulacion-quito.jpg",
+        "alt": "Capitulación de Quito, tras la Batalla del Pichincha",
+        "title": "Capitulación de Quito",
+        "credit": "Antonio Salas",
+        "license": "CC0",
+        "url": "https://commons.wikimedia.org/wiki/File:Capitulacionquitosalas.png"
+       }
       },
       {
        "id": "jwjckhGw4FDhvi3A2.f",
@@ -7518,7 +7555,15 @@
         "La separación de la Gran Colombia"
        ],
        "answer": 0,
-       "explanation": "La República del Ecuador nació en 1830, al separarse de la Gran Colombia."
+       "explanation": "La República del Ecuador nació en 1830, al separarse de la Gran Colombia.",
+       "photo": {
+        "src": "images/foto-capitulacion-quito.jpg",
+        "alt": "Capitulación de Quito, tras la Batalla del Pichincha",
+        "title": "Capitulación de Quito",
+        "credit": "Antonio Salas",
+        "license": "CC0",
+        "url": "https://commons.wikimedia.org/wiki/File:Capitulacionquitosalas.png"
+       }
       },
       {
        "id": "NdNjqsUtv4crriGtg.f",
@@ -14722,7 +14767,7 @@
         "El intruso"
        ],
        "answer": 0,
-       "explanation": "Es una comedia que desmitifica el papel «sagrado» de la madre. «La Marujita se ha muerto con leucemia» es la obra de Juana Guarderas y Las Marujitas, las «Estampas quiteñas» son de Ernesto Albán y «El intruso», de Jorge Icaza."
+       "explanation": "Es una comedia que desmitifica el papel «sagrado» de la madre. Las otras obras son de otros autores: «La Marujita se ha muerto con leucemia», de Juana Guarderas con Las Marujitas; «Estampas quiteñas», de Ernesto Albán; y «El intruso», de Jorge Icaza."
       }
      ]
     },
