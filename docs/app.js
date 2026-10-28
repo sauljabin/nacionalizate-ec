@@ -588,6 +588,12 @@ function topicsFromHash() {
   return keys;
 }
 
+// Counts for the «Mi pana» achievement; shown the next time achievements are.
+function markShared() {
+  progress.stats.shared = true;
+  saveProgress();
+}
+
 // Phones and tablets open the system share sheet (WhatsApp, copy and so on);
 // computers copy the link. Returns "copied", "failed" or null after sharing.
 const nativeShare = Boolean(navigator.share) && matchMedia("(pointer: coarse)").matches;
@@ -598,11 +604,13 @@ async function shareLink(link, title, text) {
   if (nativeShare) {
     try {
       await navigator.share({ title, text, url: link });
+      markShared();
     } catch {}
     return null;
   }
   try {
     await navigator.clipboard.writeText(link);
+    markShared();
     return "copied";
   } catch {
     return "failed";
@@ -1309,6 +1317,7 @@ function grade(knewIt) {
   card.lastResult = knewIt;
   if (!knewIt) state.missed.push(card);
   const hadMissed = progress.missed.length > 0;
+  if (knewIt && progress.missed.includes(card.id)) progress.stats.missedRecovered = true;
   setInList(progress.missed, card.id, !knewIt);
   if (hadMissed && !progress.missed.length) progress.stats.clearedMissed = true;
   recordAnswer(card, knewIt);
@@ -1522,6 +1531,7 @@ const MOCK_HISTORY = 200;
 function recordExam(right) {
   const stats = progress.stats;
   stats.exams = (stats.exams || 0) + 1;
+  if (state.queue.length >= 10 && right === state.queue.length) stats.perfectExam = true;
   if (state.passMark) {
     stats.mocks = (stats.mocks || 0) + 1;
     stats.bestMock = Math.max(stats.bestMock || 0, right);
@@ -1571,37 +1581,45 @@ function mastery(cards) {
   return { right, wrong, total: cards.length };
 }
 
+// In groups (first steps, habit, volume, right answers, mock exams, mastery,
+// games), each from easiest to hardest.
 const ACHIEVEMENTS = [
   { id: "first-answer", title: "Primer paso", text: "Responde tu primera pregunta.", test: (s) => s.answered >= 1 },
   { id: "first-exam", title: "Primer examen", text: "Termina un examen.", test: (s) => s.exams >= 1 },
-  { id: "answered-100", title: "Cien preguntas", text: "Responde 100 preguntas.", test: (s) => s.answered >= 100 },
-  { id: "answered-500", title: "Quinientas preguntas", text: "Responde 500 preguntas.", test: (s) => s.answered >= 500 },
+  { id: "goal-1", title: "Meta cumplida", text: "Cumple tu meta diaria.", test: (s) => s.goalDays >= 1 },
+  { id: "own-exam", title: "Examen propio", text: "Guarda tu primer examen en «Mis exámenes».", test: (s) => s.savedExams >= 1 },
+  { id: "shared", title: "Mi pana", text: "Comparte un examen, un resultado o la página.", test: (s) => s.shared },
   { id: "streak-3", title: "Tres días seguidos", text: "Practica 3 días seguidos.", test: (s) => s.bestStreak >= 3 },
   { id: "streak-7", title: "Una semana seguida", text: "Practica 7 días seguidos.", test: (s) => s.bestStreak >= 7 },
-  { id: "all-categories", title: "De todo un poco", text: "Acierta al menos una pregunta de cada categoría.", test: (s) => s.allCategories },
+  { id: "streak-14", title: "Dos semanas seguidas", text: "Practica 14 días seguidos.", test: (s) => s.bestStreak >= 14 },
+  { id: "comeback", title: "Ya mismo", text: "Vuelve a practicar después de una semana o más sin hacerlo.", test: (s) => s.comeback },
+  { id: "goal-7", title: "Siete metas", text: "Cumple tu meta diaria en 7 días distintos.", test: (s) => s.goalDays >= 7 },
+  { id: "goal-30", title: "Treinta metas", text: "Cumple tu meta diaria en 30 días distintos.", test: (s) => s.goalDays >= 30 },
+  { id: "double-goal", title: "Con yapa", text: "Responde el doble de tu meta diaria en un mismo día.", test: (s) => s.busiestDay >= s.goal * 2 },
+  { id: "answered-100-day", title: "¡Full camello!", text: "Responde 100 preguntas en un mismo día.", test: (s) => s.busiestDay >= 100 },
+  { id: "answered-100", title: "Cien preguntas", text: "Responde 100 preguntas.", test: (s) => s.answered >= 100 },
+  { id: "answered-500", title: "Quinientas preguntas", text: "Responde 500 preguntas.", test: (s) => s.answered >= 500 },
+  { id: "answered-1000", title: "Mil preguntas", text: "Responde 1000 preguntas.", test: (s) => s.answered >= 1000 },
+  { id: "exams-40", title: "¡Cuarenta!", text: "Termina 40 exámenes o simulacros.", test: (s) => s.exams >= 40 },
+  { id: "missed-recovered", title: "¡Caída!", text: "Acierta una pregunta que estaba en tus falladas.", test: (s) => s.missedRecovered },
   { id: "cleared-missed", title: "Cuenta saldada", text: "Vacía tus falladas acertándolas todas.", test: (s) => s.clearedMissed },
-  { id: "mock-passed", title: "Simulacro aprobado", text: `Aprueba un simulacro con ${MOCK_PASS} aciertos o más.`, test: (s) => s.mocksPassed >= 1 },
-  { id: "mock-perfect", title: "Simulacro perfecto", text: `Acierta las ${MOCK_SIZE} preguntas de un simulacro.`, test: (s) => s.bestMock >= MOCK_SIZE },
-  { id: "symbols-mastered", title: "Símbolos dominados", text: "Domina todas las preguntas de Símbolos Patrios.", test: (s) => s.symbolsMastered },
-  { id: "half-mastered", title: "Mitad del camino", text: "Domina la mitad de todas las preguntas.", test: (s) => s.mastered * 2 >= s.total },
   { id: "combo-10", title: "Diez seguidas", text: "Acierta 10 preguntas seguidas en un examen.", test: (s) => s.bestCombo >= 10 },
   { id: "combo-25", title: "Veinticinco seguidas", text: "Acierta 25 preguntas seguidas en un examen.", test: (s) => s.bestCombo >= 25 },
-  { id: "goal-1", title: "Meta cumplida", text: "Cumple tu meta diaria.", test: (s) => s.goalDays >= 1 },
-  { id: "goal-7", title: "Siete metas", text: "Cumple tu meta diaria en 7 días distintos.", test: (s) => s.goalDays >= 7 },
-  { id: "streak-30", title: "Un mes seguido", text: "Practica 30 días seguidos.", test: (s) => s.bestStreak >= 30 },
-  { id: "mocks-5", title: "Cinco aprobados", text: "Aprueba 5 simulacros.", test: (s) => s.mocksPassed >= 5 },
-  { id: "own-exam", title: "Examen propio", text: "Guarda tu primer examen en «Mis exámenes».", test: (s) => s.savedExams >= 1 },
-  { id: "all-mastered", title: "Todo dominado", text: "Domina todas las preguntas.", test: (s) => s.mastered >= s.total },
-  { id: "streak-14", title: "Dos semanas seguidas", text: "Practica 14 días seguidos.", test: (s) => s.bestStreak >= 14 },
-  { id: "answered-1000", title: "Mil preguntas", text: "Responde 1000 preguntas.", test: (s) => s.answered >= 1000 },
-  { id: "goal-30", title: "Treinta metas", text: "Cumple tu meta diaria en 30 días distintos.", test: (s) => s.goalDays >= 30 },
-  { id: "mocks-10", title: "Diez aprobados", text: "Aprueba 10 simulacros.", test: (s) => s.mocksPassed >= 10 },
+  { id: "perfect-exam", title: "Limpia", text: "Termina un examen de 10 preguntas o más sin fallar ninguna.", test: (s) => s.perfectExam },
+  { id: "first-mock-passed", title: "Chulla vida", text: "Aprueba el primer simulacro que hagas.", test: (s) => s.firstMockPassed },
+  { id: "mock-passed", title: "Simulacro aprobado", text: `Aprueba un simulacro con ${MOCK_PASS} aciertos o más.`, test: (s) => s.mocksPassed >= 1 },
   { id: "mocks-row-3", title: "Tres aprobados seguidos", text: "Aprueba 3 simulacros seguidos.", test: (s) => s.mocksInRow >= 3 },
-  { id: "map-perfect", title: "Mapa a la primera", text: "Encuentra las 24 provincias a la primera en el mapa.", test: (s) => s.mapPerfect },
+  { id: "mocks-5", title: "Cinco aprobados", text: "Aprueba 5 simulacros.", test: (s) => s.mocksPassed >= 5 },
+  { id: "mock-perfect", title: "Simulacro perfecto", text: `Acierta las ${MOCK_SIZE} preguntas de un simulacro.`, test: (s) => s.bestMock >= MOCK_SIZE },
+  { id: "all-categories", title: "De todo un poco", text: "Acierta al menos una pregunta de cada categoría.", test: (s) => s.allCategories },
+  { id: "symbols-mastered", title: "Símbolos dominados", text: "Domina todas las preguntas de Símbolos Patrios.", test: (s) => s.symbolsMastered },
   { id: "geography-mastered", title: "Geografía dominada", text: "Domina todas las preguntas de Geografía.", test: (s) => s.categoryMastered.has("Geografía") },
   { id: "history-mastered", title: "Historia dominada", text: "Domina todas las preguntas de Historia.", test: (s) => s.categoryMastered.has("Historia") },
   { id: "politics-mastered", title: "Política dominada", text: "Domina todas las preguntas de Política.", test: (s) => s.categoryMastered.has("Política") },
   { id: "culture-mastered", title: "Cultura dominada", text: "Domina todas las preguntas de Cultura.", test: (s) => s.categoryMastered.has("Cultura") },
+  { id: "half-mastered", title: "Mitad del mundo", text: "Domina la mitad de todas las preguntas.", test: (s) => s.mastered * 2 >= s.total },
+  { id: "true-false-timed", title: "¡Pilas!", text: "Gana «Verdadero o falso» contrarreloj.", test: (s) => s.trueFalseTimed },
+  { id: "map-perfect", title: "Mapa a la primera", text: "Encuentra las 24 provincias a la primera en el mapa.", test: (s) => s.mapPerfect },
 ];
 
 // The most mock exams passed one after another, from the history.
@@ -1623,6 +1641,7 @@ function progressSnapshot() {
       return result.right === result.total;
     })
     .map((category) => category.title));
+  const days = progress.days.map(dayNumber);
   return {
     answered: stats.answered || 0,
     exams: stats.exams || 0,
@@ -1640,6 +1659,15 @@ function progressSnapshot() {
     bestCombo: stats.bestCombo || 0,
     goalDays: progress.goalDays.length,
     savedExams: progress.exams.length,
+    goal: progress.goal,
+    missedRecovered: Boolean(stats.missedRecovered),
+    // A perfect mock exam from before this stat existed also counts.
+    perfectExam: Boolean(stats.perfectExam) || (stats.bestMock || 0) >= MOCK_SIZE,
+    busiestDay: Math.max(0, ...Object.values(progress.activity)),
+    firstMockPassed: progress.mocks.some((entry) => entry.n === 1 && mockPassed(entry)),
+    trueFalseTimed: Boolean(stats.trueFalseTimed),
+    comeback: days.some((day, index) => index > 0 && day - days[index - 1] > 7),
+    shared: Boolean(stats.shared),
   };
 }
 
@@ -1685,7 +1713,7 @@ function updateProgressSummary() {
   renderGoal(app.querySelector(".progress-summary"));
   const { current } = streaks();
   const mastered = mastery(state.allCards).right;
-  const unlocked = Object.keys(progress.achievements).length;
+  const unlocked = ACHIEVEMENTS.filter((item) => progress.achievements[item.id]).length;
   app.querySelector(".stat-streak").replaceChildren(statValue(current, current === 1 ? "día" : "días"));
   app.querySelector(".stat-mastered").replaceChildren(statValue(mastered, `de ${state.allCards.length}`));
   app.querySelector(".stat-achievements").replaceChildren(statValue(unlocked, `de ${ACHIEVEMENTS.length}`));
@@ -2720,6 +2748,12 @@ function endTrueFalse(answers, { timed, mode, seconds }) {
   if (!won && !timed) detail += ` Para ganar necesitas ${needed} de ${TF_UNTIMED}.`;
   else if (!won && answers.length < TF_TIMED_MIN) detail += ` Para ganar necesitas al menos ${TF_TIMED_MIN} respuestas con el 90 % de aciertos.`;
   else if (!won) detail += " Para ganar necesitas el 90 % de aciertos.";
+  if (won && timed) {
+    progress.stats.trueFalseTimed = true;
+    saveProgress();
+    const unlocked = unlockAchievements();
+    if (unlocked.length) detail += ` Ganaste el logro «${unlocked.map((item) => item.title).join("», «")}».`;
+  }
   const result = gameVerdict(won, detail);
   const actions = make("div", "practice-actions");
   actions.append(makeButton("primary", "Jugar otra vez", () => playTrueFalse(mode)));
@@ -2894,11 +2928,13 @@ function setupShareResult(entry) {
     if (nativeShare) {
       try {
         await navigator.share({ text, url });
+        markShared();
       } catch {}
       return;
     }
     try {
       await navigator.clipboard.writeText(`${text} ${url}`);
+      markShared();
       status.textContent = "Resultado copiado. Pégalo en un mensaje para compartirlo.";
     } catch {
       status.textContent = `${text} ${url}`;
