@@ -237,6 +237,8 @@ function markButton(card) {
   button.addEventListener("click", () => {
     setInList(progress.marked, card.id, !progress.marked.includes(card.id));
     sync();
+    // The search is on the home page: keep its «Marcadas» card in step.
+    if (app.querySelector(".marked-summary")) updatePractice();
   });
   sync();
   return button;
