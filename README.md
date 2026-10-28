@@ -74,7 +74,7 @@ En el inicio hay un buscador: escribe una o varias palabras (por ejemplo, «Chim
 
 ### Imprimir o guardar como PDF
 
-En **Por temas**, el botón **Imprimir o PDF**, junto a «Comenzar», imprime los temas que tengas marcados. Los exámenes guardados también se imprimen desde su página. Puedes elegir:
+En **Por temas**, el botón **Imprimir o PDF**, junto a «Empezar», imprime los temas que tengas marcados. Los exámenes guardados también se imprimen desde su página. Puedes elegir:
 
 - **Incluir las respuestas:** sin ellas obtienes un cuestionario para responder en papel, con líneas y huecos en blanco.
 - **Incluir imágenes y fotos:** sin ellas sale solo texto; las preguntas que solo tienen sentido con su imagen (como los mapas) se omiten.

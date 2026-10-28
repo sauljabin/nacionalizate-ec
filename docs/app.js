@@ -645,7 +645,7 @@ function updateTopics() {
   start.disabled = available === 0;
   app.querySelector("#print").disabled = available === 0;
   start.textContent = available
-    ? `${state.topicsMode === "study" ? "Estudiar" : "Comenzar"} · ${plural(total, "pregunta", "preguntas")}`
+    ? `${state.topicsMode === "study" ? "Estudiar" : "Empezar"} · ${plural(total, "pregunta", "preguntas")}`
     : "Elige al menos un tema";
   app.querySelector("#question-count").onchange = (event) => {
     state.topicCount = event.target.value;
@@ -2556,7 +2556,7 @@ function showOrderGame() {
       celebrate();
     }
     actions.replaceChildren(
-      makeButton("primary", "Otra ronda", showOrderGame),
+      makeButton("primary", "Jugar otra vez", showOrderGame),
       makeButton("ghost", "Ver la línea de tiempo", () => showTimeline()),
     );
     actions.before(result);
@@ -2726,7 +2726,7 @@ function endTrueFalse(answers, { timed, mode, seconds }) {
   const wrong = answers.filter((item) => !item.right);
   if (wrong.length) {
     const cards = [...new Set(wrong.map((item) => item.card))];
-    actions.append(makeButton("ghost", "Practicar las que fallaste", () => startExam(cards, {
+    actions.append(makeButton("ghost", "Repasar las que fallaste", () => startExam(cards, {
       exit: { back: () => showTrueFalseGame(mode), label: "Volver a Verdadero o falso" },
     })));
   }

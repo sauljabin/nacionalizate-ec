@@ -439,7 +439,14 @@ kbd {
   letter-spacing: .1em;
   text-transform: uppercase;
 }
-.shared-about { margin: -.5rem 0 1rem; color: var(--muted); }
+.shared-about {
+  margin: 1rem 0 0;
+  padding: .6rem .9rem;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: var(--accent-soft);
+  font-size: .95rem;
+}
 
 .topics-intro { padding-top: .5rem; }
 .topics-intro h1 { margin: 0 0 .75rem; font-size: clamp(1.8rem, 5vw, 2.5rem); }
