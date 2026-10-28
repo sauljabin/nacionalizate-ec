@@ -160,6 +160,58 @@ El mapa de **Mapa de provincias** también se genera con un script, a partir del
 python3 scripts/build_province_map.py
 ```
 
+### Consultar las preguntas con jq
+
+Con [jq](https://jqlang.org/) puedes consultar `cards.json` desde la terminal. Ejecuta estos comandos desde la raíz del repositorio. `.popularity // 0` cuenta como 0 las preguntas sin popularidad, y `[.front[].text // ""] | join("")` arma el texto de la pregunta, que está dividido en partes.
+
+Todas las preguntas, solo el texto:
+
+```bash
+jq -r '.categories[].subcategories[].cards[] | [.front[].text // ""] | join("")' docs/data/cards.json
+```
+
+Cuántas preguntas hay:
+
+```bash
+jq '[.categories[].subcategories[].cards[]] | length' docs/data/cards.json
+```
+
+Las más populares (6 o más), de mayor a menor:
+
+```bash
+jq -r '.categories[].subcategories[].cards[] | select((.popularity // 0) >= 6) | "\(.popularity)\t\([.front[].text] | join(""))"' docs/data/cards.json | sort -rn
+```
+
+Cuántas preguntas hay de cada popularidad:
+
+```bash
+jq -r '[.categories[].subcategories[].cards[] | .popularity // 0] | group_by(.) | map("\(.[0])\t\(length)") | .[]' docs/data/cards.json
+```
+
+Buscar un texto en las preguntas, con su tema (escríbelo en minúsculas; distingue tildes):
+
+```bash
+jq -r '.categories[] | .title as $c | .subcategories[] | .title as $s | .cards[] | select([.front[].text // ""] | join("") | ascii_downcase | test("alfaro")) | "\($c) › \($s)\t\([.front[].text // ""] | join(""))"' docs/data/cards.json
+```
+
+Una pregunta por su `id` (en las de varias respuestas, usa `[.options[.answer[]]]`):
+
+```bash
+jq '.categories[].subcategories[].cards[] | select(.id == "LViQQ60zvH1EZpjkY.5917871796852614") | {id, popularity, answer: .options[.answer]}' docs/data/cards.json
+```
+
+Por tema, el total de preguntas y cuántas tienen imagen:
+
+```bash
+jq -r '.categories[] | .title as $c | .subcategories[] | "\($c) › \(.title)\t\(.cards | length)\t\([.cards[] | select(.photo or .image)] | length)"' docs/data/cards.json
+```
+
+Para revisar las preguntas con filtros y ver sus imágenes, genera el inventario y abre `scripts/inventory.html` en el navegador:
+
+```bash
+python3 scripts/build_inventory.py
+```
+
 ## Probar en local
 
 La página carga `data/cards.json` con `fetch`, así que hay que abrirla desde un servidor y no con doble clic:
