@@ -61,9 +61,9 @@ Durante el examen (menos en el simulacro), un contador muestra tus aciertos segu
 
 Todo se guarda solo en el navegador de cada dispositivo. Para pasarlo a otro teléfono o computadora, en **Mis datos** usa **Descargar mis datos** (guarda un archivo) y luego **Cargar mis datos** en el otro dispositivo. **Borrar mi progreso** lo reinicia, también tus simulacros, sin tocar tus falladas, marcadas ni exámenes.
 
-### Preguntas frecuentes
+### Dudas y ayuda
 
-Al final del inicio, y con el enlace **Preguntas frecuentes** del pie de página, hay respuestas cortas en dos grupos:
+Al final del inicio, y con el enlace **Dudas y ayuda** del pie de página, hay respuestas cortas en dos grupos:
 
 - **Sobre el examen oficial de nacionalización:** cómo es, qué evalúa, con cuántas respuestas se aprueba, qué pasa si no apruebas, cómo llega la cita y quién no lo rinde, con enlaces a las fuentes oficiales.
 - **Sobre esta página:** si es oficial, si las preguntas son las del examen, cómo conviene estudiar, dónde se guarda el progreso, si funciona sin internet, cómo reportar un error y cómo compartir un examen.

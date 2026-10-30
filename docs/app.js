@@ -2815,10 +2815,10 @@ function endTrueFalse(answers, { timed, mode, seconds }) {
 // Frequently asked questions ---------------------------------------------------
 
 // The questions live at the end of the home page; old links to the former
-// "#como-es-el-examen" page land there too.
+// "#preguntas-frecuentes" section and "#como-es-el-examen" page land there too.
 function showFaq() {
   showHome();
-  const faq = document.getElementById("preguntas-frecuentes");
+  const faq = document.getElementById("dudas-y-ayuda");
   faq.querySelector("details").open = true;
   faq.scrollIntoView();
 }
@@ -3633,7 +3633,7 @@ fetch("data/cards.json")
       const topics = topicsFromHash();
       if (exam) showShared(exam);
       else if (topics) showSharedTopics(topics);
-      else if (["#preguntas-frecuentes", "#como-es-el-examen"].includes(location.hash)) showFaq();
+      else if (["#dudas-y-ayuda", "#preguntas-frecuentes", "#como-es-el-examen"].includes(location.hash)) showFaq();
       else return false;
       return true;
     };
